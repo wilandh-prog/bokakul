@@ -1,0 +1,182 @@
+[
+    {
+        "description": "Du säljer varor UTAN MOMS för 10 000 kr kontant. Kontera denna händelse.",
+        "hint": "Försäljning utan moms. Pengarna går till kassan och varuförsäljning ökar.",
+        "correctAnswer": [
+            { "account": "1910", "side": "debet", "amount": 10000 },
+            { "account": "3010", "side": "kredit", "amount": 10000 }
+        ],
+        "level": 1
+    },
+    {
+        "description": "Du säljer varor UTAN MOMS för 15 000 kr på kredit. Kontera denna händelse.",
+        "hint": "Försäljning utan moms på kredit skapar en kundfordran.",
+        "correctAnswer": [
+            { "account": "1510", "side": "debet", "amount": 15000 },
+            { "account": "3010", "side": "kredit", "amount": 15000 }
+        ],
+        "level": 1
+    },
+    {
+        "description": "Du köper in varor UTAN MOMS för 8 000 kr kontant. Kontera denna händelse.",
+        "hint": "Inköp utan moms. Varuinköp är en kostnad och kassan minskar.",
+        "correctAnswer": [
+            { "account": "4010", "side": "debet", "amount": 8000 },
+            { "account": "1910", "side": "kredit", "amount": 8000 }
+        ],
+        "level": 1
+    },
+    {
+        "description": "Du köper in varor UTAN MOMS för 12 000 kr på kredit. Kontera denna händelse.",
+        "hint": "Inköp utan moms på kredit skapar en leverantörsskuld.",
+        "correctAnswer": [
+            { "account": "4010", "side": "debet", "amount": 12000 },
+            { "account": "2440", "side": "kredit", "amount": 12000 }
+        ],
+        "level": 1
+    },
+    {
+        "description": "Du utför ett uppdrag UTAN MOMS för 20 000 kr och får betalt kontant. Kontera denna händelse.",
+        "hint": "Tjänsteförsäljning utan moms. Pengarna går till kassan.",
+        "correctAnswer": [
+            { "account": "1910", "side": "debet", "amount": 20000 },
+            { "account": "3030", "side": "kredit", "amount": 20000 }
+        ],
+        "level": 1
+    },
+    {
+        "description": "Du utför ett uppdrag UTAN MOMS för 25 000 kr på kredit. Kontera denna händelse.",
+        "hint": "Tjänsteförsäljning utan moms på kredit skapar en kundfordran.",
+        "correctAnswer": [
+            { "account": "1510", "side": "debet", "amount": 25000 },
+            { "account": "3030", "side": "kredit", "amount": 25000 }
+        ],
+        "level": 1
+    },
+    {
+        "description": "En kund betalar sin skuld på 15 000 kr till företagskontot. Kontera denna händelse.",
+        "hint": "Betalning från kund minskar kundfordran och ökar bankkontot.",
+        "correctAnswer": [
+            { "account": "1930", "side": "debet", "amount": 15000 },
+            { "account": "1510", "side": "kredit", "amount": 15000 }
+        ],
+        "level": 1
+    },
+    {
+        "description": "Du betalar en leverantörsskuld på 12 000 kr från företagskontot. Kontera denna händelse.",
+        "hint": "Betalning till leverantör minskar både skulden och bankkontot.",
+        "correctAnswer": [
+            { "account": "2440", "side": "debet", "amount": 12000 },
+            { "account": "1930", "side": "kredit", "amount": 12000 }
+        ],
+        "level": 1
+    },
+    {
+        "description": "Du säljer varor UTAN MOMS för 30 000 kr och får betalt till plusgiro. Kontera denna händelse.",
+        "hint": "Försäljning utan moms. Pengarna sätts in på plusgiro.",
+        "correctAnswer": [
+            { "account": "1920", "side": "debet", "amount": 30000 },
+            { "account": "3010", "side": "kredit", "amount": 30000 }
+        ],
+        "level": 1
+    },
+    {
+        "description": "Du köper in varor UTAN MOMS för 18 000 kr och betalar från plusgiro. Kontera denna händelse.",
+        "hint": "Inköp utan moms betalas från plusgiro.",
+        "correctAnswer": [
+            { "account": "4010", "side": "debet", "amount": 18000 },
+            { "account": "1920", "side": "kredit", "amount": 18000 }
+        ],
+        "level": 1
+    },
+    {
+        "description": "Du säljer varor UTAN MOMS för 22 000 kr och får betalt till företagskontot. Kontera denna händelse.",
+        "hint": "Försäljning utan moms. Pengarna sätts in på företagskontot.",
+        "correctAnswer": [
+            { "account": "1930", "side": "debet", "amount": 22000 },
+            { "account": "3010", "side": "kredit", "amount": 22000 }
+        ],
+        "level": 1
+    },
+    {
+        "description": "Du köper in varor UTAN MOMS för 9 500 kr och betalar från företagskontot. Kontera denna händelse.",
+        "hint": "Inköp utan moms betalas från företagskontot.",
+        "correctAnswer": [
+            { "account": "4010", "side": "debet", "amount": 9500 },
+            { "account": "1930", "side": "kredit", "amount": 9500 }
+        ],
+        "level": 1
+    },
+    {
+        "description": "Du utför ett uppdrag UTAN MOMS för 35 000 kr och får betalt till plusgiro. Kontera denna händelse.",
+        "hint": "Tjänsteförsäljning utan moms. Pengarna går till plusgiro.",
+        "correctAnswer": [
+            { "account": "1920", "side": "debet", "amount": 35000 },
+            { "account": "3030", "side": "kredit", "amount": 35000 }
+        ],
+        "level": 1
+    },
+    {
+        "description": "En kund betalar sin skuld på 25 000 kr kontant. Kontera denna händelse.",
+        "hint": "Betalning från kund minskar kundfordran och pengarna går till kassan.",
+        "correctAnswer": [
+            { "account": "1910", "side": "debet", "amount": 25000 },
+            { "account": "1510", "side": "kredit", "amount": 25000 }
+        ],
+        "level": 1
+    },
+    {
+        "description": "Du betalar en leverantörsskuld på 8 000 kr kontant. Kontera denna händelse.",
+        "hint": "Betalning till leverantör minskar skulden och kassan.",
+        "correctAnswer": [
+            { "account": "2440", "side": "debet", "amount": 8000 },
+            { "account": "1910", "side": "kredit", "amount": 8000 }
+        ],
+        "level": 1
+    },
+    {
+        "description": "Du säljer varor UTAN MOMS för 40 000 kr på kredit. Kontera denna händelse.",
+        "hint": "Försäljning utan moms på kredit ökar kundfordringar.",
+        "correctAnswer": [
+            { "account": "1510", "side": "debet", "amount": 40000 },
+            { "account": "3010", "side": "kredit", "amount": 40000 }
+        ],
+        "level": 1
+    },
+    {
+        "description": "Du köper in varor UTAN MOMS för 16 000 kr på kredit. Kontera denna händelse.",
+        "hint": "Inköp utan moms på kredit ökar leverantörsskulder.",
+        "correctAnswer": [
+            { "account": "4010", "side": "debet", "amount": 16000 },
+            { "account": "2440", "side": "kredit", "amount": 16000 }
+        ],
+        "level": 1
+    },
+    {
+        "description": "En kund betalar sin skuld på 40 000 kr till plusgiro. Kontera denna händelse.",
+        "hint": "Betalning från kund minskar kundfordran och ökar plusgiro.",
+        "correctAnswer": [
+            { "account": "1920", "side": "debet", "amount": 40000 },
+            { "account": "1510", "side": "kredit", "amount": 40000 }
+        ],
+        "level": 1
+    },
+    {
+        "description": "Du betalar en leverantörsskuld på 16 000 kr från plusgiro. Kontera denna händelse.",
+        "hint": "Betalning till leverantör minskar både skulden och plusgiro.",
+        "correctAnswer": [
+            { "account": "2440", "side": "debet", "amount": 16000 },
+            { "account": "1920", "side": "kredit", "amount": 16000 }
+        ],
+        "level": 1
+    },
+    {
+        "description": "Du utför ett uppdrag UTAN MOMS för 50 000 kr och får betalt till företagskontot. Kontera denna händelse.",
+        "hint": "Tjänsteförsäljning utan moms. Pengarna sätts in på företagskontot.",
+        "correctAnswer": [
+            { "account": "1930", "side": "debet", "amount": 50000 },
+            { "account": "3030", "side": "kredit", "amount": 50000 }
+        ],
+        "level": 1
+    }
+]

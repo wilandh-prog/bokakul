@@ -1,0 +1,153 @@
+KONTOPLAN
+
+Kontoklass 1
+
+1210 Maskiner
+
+1219 Ack, avskrivningar maskiner
+
+1220 Inventarier
+
+1229 Ack avskrivningar inventarier
+
+1240 Bilar
+
+1249 Ack avskrivningar på bilar
+
+1250 Datorer
+
+1259 Ack. avskrivningar på datorer
+
+1400 Varulager
+
+1510 Kundfordringar
+
+1580 Fordran kontokort
+
+1710 Förutbetald hyra
+
+1730 Förutbetald försäkring
+
+1790 Upplupna intäkter och förutbetalda kostnader
+
+1910 Kassa
+
+1920 Plusgiro
+
+1930 Företagskonto
+
+1940 Bank
+
+Kontoklass 2
+
+2010 Eget kapital
+
+2012 Skattekonto
+
+2013 Eget uttag
+
+2018 Egen insattning
+
+2019 Årets resultat
+
+2081 Aktiekapital
+
+2091 Balanserad vinst
+
+2098 Foregående års vinst
+
+2099 Årets resultat
+
+2350 Banklån
+
+2440 Leverantörsskulder
+
+2490 Övriga skulder
+
+2610 Utgående moms, 25%
+
+2620 Utgående moms, 12%
+
+2630 Utgående moms. 6%
+
+2615 Beräknad utgående EU-moms
+
+2640 Ingående moms
+
+2650 Momsredovisning
+
+2710 Personalens skatter
+
+2730 Skuld for sociala avgifter
+
+2960 Upplupen ränta
+
+2990 Upplupna kostnader och förutbetalda intakter
+
+Kontoklass 3
+
+3010 Varuförsäljning
+
+3030 Utförda uppdrag
+
+3960 Kursvinster
+
+Kontoklass 4
+
+4010 Varuinköp
+
+4900 Varulagerforandring
+
+Kontoklass 5
+
+5010 Lokalhyra
+
+5060 Städning
+
+5410 Förbrukningsinventarier
+
+5460 Forbrukningsmaterial
+
+5610 Driftkostnader bilar
+
+5800 Resekostnader
+
+5900 Reklam
+
+Kontoklass 6
+
+6040 Kontokortsavgifter
+
+6100 Kontorsmaterial
+
+6200 Tele och post
+
+6310 Försäkringar
+
+6990 Övriga kostnader
+
+2645 Beräknad ingående EU-moms
+
+Kontoklass 7
+
+7010 Löner
+
+7510 Arbetsgivaravgifter
+
+7832 Avskrivning mask/inve
+
+7834 Avskrivning bilar
+
+7960 Kursförlust
+
+Kontoklass 8
+
+8310 Ränteintäkter
+
+8320 Erhållen drojmålsranta.
+
+8410 Räntekostnader
+
+8420 Erlagd dröjmålsränta
+
+8999 Årets resultat 

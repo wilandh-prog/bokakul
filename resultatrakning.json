@@ -1,0 +1,172 @@
+[
+    {
+        "description": "Årets resultat ska bokföras. Intäkter (3010) har totalt 50 000 kr (kredit), kostnader (4010) har 30 000 kr (debet). Nollställ resultatkontona mot 8999 och för över resultatet till 2019.",
+        "hint": "Vinst = 20 000 kr. Nollställ intäkter (debet 3010, kredit 8999), nollställ kostnader (debet 8999, kredit 4010), för över vinsten (debet 8999, kredit 2019).",
+        "correctAnswer": [
+            { "account": "3010", "side": "debet", "amount": 50000 },
+            { "account": "8999", "side": "kredit", "amount": 50000 },
+            { "account": "8999", "side": "debet", "amount": 30000 },
+            { "account": "4010", "side": "kredit", "amount": 30000 },
+            { "account": "8999", "side": "debet", "amount": 20000 },
+            { "account": "2019", "side": "kredit", "amount": 20000 }
+        ],
+        "level": 5
+    },
+    {
+        "description": "Bokför årets resultat. Varuförsäljning (3010) har 80 000 kr (kredit), varuinköp (4010) har 45 000 kr (debet), lokalhyra (5010) har 15 000 kr (debet). Nollställ mot 8999 och för över till 2019.",
+        "hint": "Vinst = 80 000 - 45 000 - 15 000 = 20 000 kr.",
+        "correctAnswer": [
+            { "account": "3010", "side": "debet", "amount": 80000 },
+            { "account": "8999", "side": "kredit", "amount": 80000 },
+            { "account": "8999", "side": "debet", "amount": 45000 },
+            { "account": "4010", "side": "kredit", "amount": 45000 },
+            { "account": "8999", "side": "debet", "amount": 15000 },
+            { "account": "5010", "side": "kredit", "amount": 15000 },
+            { "account": "8999", "side": "debet", "amount": 20000 },
+            { "account": "2019", "side": "kredit", "amount": 20000 }
+        ],
+        "level": 5
+    },
+    {
+        "description": "Bokför årets resultat. Intäkter (3010) är 100 000 kr, kostnader: varuinköp (4010) 60 000 kr, löner (7010) 50 000 kr. Nollställ mot 8999 och för över till 2019.",
+        "hint": "Förlust = 100 000 - 60 000 - 50 000 = -10 000 kr. Vid förlust: kredit 8999, debet 2019.",
+        "correctAnswer": [
+            { "account": "3010", "side": "debet", "amount": 100000 },
+            { "account": "8999", "side": "kredit", "amount": 100000 },
+            { "account": "8999", "side": "debet", "amount": 60000 },
+            { "account": "4010", "side": "kredit", "amount": 60000 },
+            { "account": "8999", "side": "debet", "amount": 50000 },
+            { "account": "7010", "side": "kredit", "amount": 50000 },
+            { "account": "2019", "side": "debet", "amount": 10000 },
+            { "account": "8999", "side": "kredit", "amount": 10000 }
+        ],
+        "level": 5
+    },
+    {
+        "description": "Bokför årets resultat. Varuförsäljning (3010) 120 000 kr, varuinköp (4010) 70 000 kr, lokalhyra (5010) 24 000 kr, löner (7010) 20 000 kr. Nollställ och för över till 2019.",
+        "hint": "Vinst = 120 000 - 70 000 - 24 000 - 20 000 = 6 000 kr.",
+        "correctAnswer": [
+            { "account": "3010", "side": "debet", "amount": 120000 },
+            { "account": "8999", "side": "kredit", "amount": 120000 },
+            { "account": "8999", "side": "debet", "amount": 70000 },
+            { "account": "4010", "side": "kredit", "amount": 70000 },
+            { "account": "8999", "side": "debet", "amount": 24000 },
+            { "account": "5010", "side": "kredit", "amount": 24000 },
+            { "account": "8999", "side": "debet", "amount": 20000 },
+            { "account": "7010", "side": "kredit", "amount": 20000 },
+            { "account": "8999", "side": "debet", "amount": 6000 },
+            { "account": "2019", "side": "kredit", "amount": 6000 }
+        ],
+        "level": 5
+    },
+    {
+        "description": "Bokför årets resultat. Intäkter (3010) 200 000 kr, varuinköp (4010) 100 000 kr, arbetsgivaravgifter (7510) 25 000 kr, räntekostnader (8410) 5 000 kr. Nollställ och för över till 2019.",
+        "hint": "Vinst = 200 000 - 100 000 - 25 000 - 5 000 = 70 000 kr.",
+        "correctAnswer": [
+            { "account": "3010", "side": "debet", "amount": 200000 },
+            { "account": "8999", "side": "kredit", "amount": 200000 },
+            { "account": "8999", "side": "debet", "amount": 100000 },
+            { "account": "4010", "side": "kredit", "amount": 100000 },
+            { "account": "8999", "side": "debet", "amount": 25000 },
+            { "account": "7510", "side": "kredit", "amount": 25000 },
+            { "account": "8999", "side": "debet", "amount": 5000 },
+            { "account": "8410", "side": "kredit", "amount": 5000 },
+            { "account": "8999", "side": "debet", "amount": 70000 },
+            { "account": "2019", "side": "kredit", "amount": 70000 }
+        ],
+        "level": 5
+    },
+    {
+        "description": "Bokför årets resultat. Varuförsäljning (3010) 75 000 kr, utförda uppdrag (3030) 25 000 kr, varuinköp (4010) 40 000 kr, lokalhyra (5010) 30 000 kr. Nollställ och för över till 2019.",
+        "hint": "Totala intäkter = 100 000 kr. Totala kostnader = 70 000 kr. Vinst = 30 000 kr.",
+        "correctAnswer": [
+            { "account": "3010", "side": "debet", "amount": 75000 },
+            { "account": "8999", "side": "kredit", "amount": 75000 },
+            { "account": "3030", "side": "debet", "amount": 25000 },
+            { "account": "8999", "side": "kredit", "amount": 25000 },
+            { "account": "8999", "side": "debet", "amount": 40000 },
+            { "account": "4010", "side": "kredit", "amount": 40000 },
+            { "account": "8999", "side": "debet", "amount": 30000 },
+            { "account": "5010", "side": "kredit", "amount": 30000 },
+            { "account": "8999", "side": "debet", "amount": 30000 },
+            { "account": "2019", "side": "kredit", "amount": 30000 }
+        ],
+        "level": 5
+    },
+    {
+        "description": "Bokför årets resultat. Intäkter (3010) 150 000 kr, ränteintäkter (8310) 2 000 kr, varuinköp (4010) 90 000 kr, löner (7010) 80 000 kr. Nollställ och för över till 2019.",
+        "hint": "Totala intäkter = 152 000 kr. Totala kostnader = 170 000 kr. Förlust = 18 000 kr.",
+        "correctAnswer": [
+            { "account": "3010", "side": "debet", "amount": 150000 },
+            { "account": "8999", "side": "kredit", "amount": 150000 },
+            { "account": "8310", "side": "debet", "amount": 2000 },
+            { "account": "8999", "side": "kredit", "amount": 2000 },
+            { "account": "8999", "side": "debet", "amount": 90000 },
+            { "account": "4010", "side": "kredit", "amount": 90000 },
+            { "account": "8999", "side": "debet", "amount": 80000 },
+            { "account": "7010", "side": "kredit", "amount": 80000 },
+            { "account": "2019", "side": "debet", "amount": 18000 },
+            { "account": "8999", "side": "kredit", "amount": 18000 }
+        ],
+        "level": 5
+    },
+    {
+        "description": "Bokför årets resultat. Varuförsäljning (3010) 300 000 kr, varuinköp (4010) 180 000 kr, lokalhyra (5010) 36 000 kr, löner (7010) 60 000 kr, avskrivningar (7832) 12 000 kr. Nollställ och för över till 2019.",
+        "hint": "Vinst = 300 000 - 180 000 - 36 000 - 60 000 - 12 000 = 12 000 kr.",
+        "correctAnswer": [
+            { "account": "3010", "side": "debet", "amount": 300000 },
+            { "account": "8999", "side": "kredit", "amount": 300000 },
+            { "account": "8999", "side": "debet", "amount": 180000 },
+            { "account": "4010", "side": "kredit", "amount": 180000 },
+            { "account": "8999", "side": "debet", "amount": 36000 },
+            { "account": "5010", "side": "kredit", "amount": 36000 },
+            { "account": "8999", "side": "debet", "amount": 60000 },
+            { "account": "7010", "side": "kredit", "amount": 60000 },
+            { "account": "8999", "side": "debet", "amount": 12000 },
+            { "account": "7832", "side": "kredit", "amount": 12000 },
+            { "account": "8999", "side": "debet", "amount": 12000 },
+            { "account": "2019", "side": "kredit", "amount": 12000 }
+        ],
+        "level": 5
+    },
+    {
+        "description": "Bokför årets resultat. Intäkter (3010) 85 000 kr, varuinköp (4010) 50 000 kr, försäkringar (6310) 8 000 kr, kontorsmaterial (6100) 2 000 kr, räntekostnader (8410) 5 000 kr. Nollställ och för över till 2019.",
+        "hint": "Vinst = 85 000 - 50 000 - 8 000 - 2 000 - 5 000 = 20 000 kr.",
+        "correctAnswer": [
+            { "account": "3010", "side": "debet", "amount": 85000 },
+            { "account": "8999", "side": "kredit", "amount": 85000 },
+            { "account": "8999", "side": "debet", "amount": 50000 },
+            { "account": "4010", "side": "kredit", "amount": 50000 },
+            { "account": "8999", "side": "debet", "amount": 8000 },
+            { "account": "6310", "side": "kredit", "amount": 8000 },
+            { "account": "8999", "side": "debet", "amount": 2000 },
+            { "account": "6100", "side": "kredit", "amount": 2000 },
+            { "account": "8999", "side": "debet", "amount": 5000 },
+            { "account": "8410", "side": "kredit", "amount": 5000 },
+            { "account": "8999", "side": "debet", "amount": 20000 },
+            { "account": "2019", "side": "kredit", "amount": 20000 }
+        ],
+        "level": 5
+    },
+    {
+        "description": "Bokför årets resultat. Varuförsäljning (3010) 500 000 kr, ränteintäkter (8310) 3 000 kr, varuinköp (4010) 300 000 kr, löner (7010) 120 000 kr, arbetsgivaravgifter (7510) 38 000 kr, lokalhyra (5010) 48 000 kr. Nollställ och för över till 2019.",
+        "hint": "Totala intäkter = 503 000 kr. Totala kostnader = 506 000 kr. Förlust = 3 000 kr.",
+        "correctAnswer": [
+            { "account": "3010", "side": "debet", "amount": 500000 },
+            { "account": "8999", "side": "kredit", "amount": 500000 },
+            { "account": "8310", "side": "debet", "amount": 3000 },
+            { "account": "8999", "side": "kredit", "amount": 3000 },
+            { "account": "8999", "side": "debet", "amount": 300000 },
+            { "account": "4010", "side": "kredit", "amount": 300000 },
+            { "account": "8999", "side": "debet", "amount": 120000 },
+            { "account": "7010", "side": "kredit", "amount": 120000 },
+            { "account": "8999", "side": "debet", "amount": 38000 },
+            { "account": "7510", "side": "kredit", "amount": 38000 },
+            { "account": "8999", "side": "debet", "amount": 48000 },
+            { "account": "5010", "side": "kredit", "amount": 48000 },
+            { "account": "2019", "side": "debet", "amount": 3000 },
+            { "account": "8999", "side": "kredit", "amount": 3000 }
+        ],
+        "level": 5
+    }
+]

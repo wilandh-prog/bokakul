@@ -1,0 +1,272 @@
+[
+    {
+        "description": "Du ska nollställa utgående moms 25% (2610) som har ett saldo på 5 000 kr (kredit). Bokför överföringen till momsredovisningskontot (2650).",
+        "hint": "Utgående moms är en skuld (kreditsaldo). För att nollställa debiterar du 2610 och krediterar 2650.",
+        "correctAnswer": [
+            { "account": "2610", "side": "debet", "amount": 5000 },
+            { "account": "2650", "side": "kredit", "amount": 5000 }
+        ],
+        "level": 4
+    },
+    {
+        "description": "Du ska nollställa ingående moms (2640) som har ett saldo på 3 000 kr (debet). Bokför överföringen till momsredovisningskontot (2650).",
+        "hint": "Ingående moms är en fordran (debetsaldo). För att nollställa krediterar du 2640 och debiterar 2650.",
+        "correctAnswer": [
+            { "account": "2650", "side": "debet", "amount": 3000 },
+            { "account": "2640", "side": "kredit", "amount": 3000 }
+        ],
+        "level": 4
+    },
+    {
+        "description": "Momsredovisningskontot (2650) visar en skuld på 8 000 kr (kreditsaldo). Bokför överföringen till skattekontot (2012).",
+        "hint": "En momsskuld på 2650 (kredit) överförs till skattekontot som en skuld. Debitera 2650 och kreditera 2012.",
+        "correctAnswer": [
+            { "account": "2650", "side": "debet", "amount": 8000 },
+            { "account": "2012", "side": "kredit", "amount": 8000 }
+        ],
+        "level": 4
+    },
+    {
+        "description": "Du betalar momsskulden på 8 000 kr från företagskontot (1930) till skattekontot (2012). Kontera betalningen.",
+        "hint": "Betalning till skattekontot ökar saldot på 2012 (debet) och minskar bankkontot (kredit).",
+        "correctAnswer": [
+            { "account": "2012", "side": "debet", "amount": 8000 },
+            { "account": "1930", "side": "kredit", "amount": 8000 }
+        ],
+        "level": 4
+    },
+    {
+        "description": "Du ska nollställa utgående moms 12% (2620) som har ett saldo på 2 400 kr (kredit). Bokför överföringen till momsredovisningskontot.",
+        "hint": "Utgående moms 12% nollställs på samma sätt som 25% - debitera 2620 och kreditera 2650.",
+        "correctAnswer": [
+            { "account": "2620", "side": "debet", "amount": 2400 },
+            { "account": "2650", "side": "kredit", "amount": 2400 }
+        ],
+        "level": 4
+    },
+    {
+        "description": "Du ska nollställa utgående moms 6% (2630) som har ett saldo på 1 200 kr (kredit). Bokför överföringen till momsredovisningskontot.",
+        "hint": "Utgående moms 6% nollställs genom att debitera 2630 och kreditera 2650.",
+        "correctAnswer": [
+            { "account": "2630", "side": "debet", "amount": 1200 },
+            { "account": "2650", "side": "kredit", "amount": 1200 }
+        ],
+        "level": 4
+    },
+    {
+        "description": "Hela kedjan: Utgående moms 25% har 10 000 kr (kredit), ingående moms har 4 000 kr (debet). Nollställ båda mot 2650, överför momsskulden till skattekontot och betala från banken.",
+        "hint": "Steg 1: Nollställ utgående moms. Steg 2: Nollställ ingående moms. Steg 3: Överför nettoskuld (6 000 kr) till 1630. Steg 4: Betala från 1930.",
+        "correctAnswer": [
+            { "account": "2610", "side": "debet", "amount": 10000 },
+            { "account": "2650", "side": "kredit", "amount": 10000 },
+            { "account": "2650", "side": "debet", "amount": 4000 },
+            { "account": "2640", "side": "kredit", "amount": 4000 },
+            { "account": "2650", "side": "debet", "amount": 6000 },
+            { "account": "1630", "side": "kredit", "amount": 6000 },
+            { "account": "1630", "side": "debet", "amount": 6000 },
+            { "account": "1930", "side": "kredit", "amount": 6000 }
+        ],
+        "level": 4
+    },
+    {
+        "description": "Hela kedjan: Utgående moms 25% har 15 000 kr, ingående moms har 9 000 kr. Gör komplett momsredovisning och betala momsskulden. Använd skattekonto 2012.",
+        "hint": "Nettoskulden blir 6 000 kr (15 000 - 9 000). Nollställ momskontona, överför till skattekonto 2012, betala från bank.",
+        "correctAnswer": [
+            { "account": "2610", "side": "debet", "amount": 15000 },
+            { "account": "2650", "side": "kredit", "amount": 15000 },
+            { "account": "2650", "side": "debet", "amount": 9000 },
+            { "account": "2640", "side": "kredit", "amount": 9000 },
+            { "account": "2650", "side": "debet", "amount": 6000 },
+            { "account": "2012", "side": "kredit", "amount": 6000 },
+            { "account": "2012", "side": "debet", "amount": 6000 },
+            { "account": "1930", "side": "kredit", "amount": 6000 }
+        ],
+        "level": 4
+    },
+    {
+        "description": "Hela kedjan: Utgående moms 25% har 20 000 kr, ingående moms har 8 000 kr. Genomför hela momsredovisningen inklusive betalning.",
+        "hint": "Momsskulden blir 12 000 kr. Följ alla fyra stegen: nollställ utgående, nollställ ingående, överför till skattekonto, betala.",
+        "correctAnswer": [
+            { "account": "2610", "side": "debet", "amount": 20000 },
+            { "account": "2650", "side": "kredit", "amount": 20000 },
+            { "account": "2650", "side": "debet", "amount": 8000 },
+            { "account": "2640", "side": "kredit", "amount": 8000 },
+            { "account": "2650", "side": "debet", "amount": 12000 },
+            { "account": "1630", "side": "kredit", "amount": 12000 },
+            { "account": "1630", "side": "debet", "amount": 12000 },
+            { "account": "1930", "side": "kredit", "amount": 12000 }
+        ],
+        "level": 4
+    },
+    {
+        "description": "Hela kedjan: Utgående moms 25% har 7 500 kr, utgående moms 12% har 1 200 kr, ingående moms har 5 500 kr. Gör hela momsredovisningen och betala. Använd skattekonto 2012.",
+        "hint": "Total utgående: 8 700 kr. Nettoskuld: 3 200 kr. Nollställ alla momskonton, överför till skattekonto 2012, betala.",
+        "correctAnswer": [
+            { "account": "2610", "side": "debet", "amount": 7500 },
+            { "account": "2620", "side": "debet", "amount": 1200 },
+            { "account": "2650", "side": "kredit", "amount": 8700 },
+            { "account": "2650", "side": "debet", "amount": 5500 },
+            { "account": "2640", "side": "kredit", "amount": 5500 },
+            { "account": "2650", "side": "debet", "amount": 3200 },
+            { "account": "2012", "side": "kredit", "amount": 3200 },
+            { "account": "2012", "side": "debet", "amount": 3200 },
+            { "account": "1930", "side": "kredit", "amount": 3200 }
+        ],
+        "level": 4
+    },
+    {
+        "description": "Hela kedjan: Utgående moms 25% har 12 500 kr, utgående moms 6% har 600 kr, ingående moms har 10 000 kr. Genomför momsredovisning och betalning.",
+        "hint": "Total utgående: 13 100 kr. Nettoskuld: 3 100 kr.",
+        "correctAnswer": [
+            { "account": "2610", "side": "debet", "amount": 12500 },
+            { "account": "2630", "side": "debet", "amount": 600 },
+            { "account": "2650", "side": "kredit", "amount": 13100 },
+            { "account": "2650", "side": "debet", "amount": 10000 },
+            { "account": "2640", "side": "kredit", "amount": 10000 },
+            { "account": "2650", "side": "debet", "amount": 3100 },
+            { "account": "1630", "side": "kredit", "amount": 3100 },
+            { "account": "1630", "side": "debet", "amount": 3100 },
+            { "account": "1930", "side": "kredit", "amount": 3100 }
+        ],
+        "level": 4
+    },
+    {
+        "description": "Hela kedjan: Utgående moms 25% har 30 000 kr, ingående moms har 18 000 kr. Gör komplett momsredovisning med betalning.",
+        "hint": "Nettoskuld: 12 000 kr. Fyra steg: nollställ utgående, nollställ ingående, överför till skattekonto, betala från bank.",
+        "correctAnswer": [
+            { "account": "2610", "side": "debet", "amount": 30000 },
+            { "account": "2650", "side": "kredit", "amount": 30000 },
+            { "account": "2650", "side": "debet", "amount": 18000 },
+            { "account": "2640", "side": "kredit", "amount": 18000 },
+            { "account": "2650", "side": "debet", "amount": 12000 },
+            { "account": "1630", "side": "kredit", "amount": 12000 },
+            { "account": "1630", "side": "debet", "amount": 12000 },
+            { "account": "1930", "side": "kredit", "amount": 12000 }
+        ],
+        "level": 4
+    },
+    {
+        "description": "Hela kedjan med tre momssatser: Utgående 25% har 8 000 kr, utgående 12% har 2 400 kr, utgående 6% har 900 kr, ingående moms har 6 000 kr. Genomför hela kedjan. Använd skattekonto 2012.",
+        "hint": "Total utgående: 11 300 kr. Nettoskuld: 5 300 kr. Använd 2012 som skattekonto.",
+        "correctAnswer": [
+            { "account": "2610", "side": "debet", "amount": 8000 },
+            { "account": "2620", "side": "debet", "amount": 2400 },
+            { "account": "2630", "side": "debet", "amount": 900 },
+            { "account": "2650", "side": "kredit", "amount": 11300 },
+            { "account": "2650", "side": "debet", "amount": 6000 },
+            { "account": "2640", "side": "kredit", "amount": 6000 },
+            { "account": "2650", "side": "debet", "amount": 5300 },
+            { "account": "2012", "side": "kredit", "amount": 5300 },
+            { "account": "2012", "side": "debet", "amount": 5300 },
+            { "account": "1930", "side": "kredit", "amount": 5300 }
+        ],
+        "level": 4
+    },
+    {
+        "description": "Hela kedjan: Utgående moms 25% har 5 000 kr, ingående moms har 2 000 kr. Nollställ, överför och betala momsskulden.",
+        "hint": "Nettoskuld: 3 000 kr. Gå igenom alla fyra stegen.",
+        "correctAnswer": [
+            { "account": "2610", "side": "debet", "amount": 5000 },
+            { "account": "2650", "side": "kredit", "amount": 5000 },
+            { "account": "2650", "side": "debet", "amount": 2000 },
+            { "account": "2640", "side": "kredit", "amount": 2000 },
+            { "account": "2650", "side": "debet", "amount": 3000 },
+            { "account": "1630", "side": "kredit", "amount": 3000 },
+            { "account": "1630", "side": "debet", "amount": 3000 },
+            { "account": "1930", "side": "kredit", "amount": 3000 }
+        ],
+        "level": 4
+    },
+    {
+        "description": "Hela kedjan: Utgående moms 25% har 18 750 kr, ingående moms har 11 250 kr. Genomför hela momsredovisningen med betalning. Använd skattekonto 2012.",
+        "hint": "Nettoskuld: 7 500 kr. Använd 2012 som skattekonto.",
+        "correctAnswer": [
+            { "account": "2610", "side": "debet", "amount": 18750 },
+            { "account": "2650", "side": "kredit", "amount": 18750 },
+            { "account": "2650", "side": "debet", "amount": 11250 },
+            { "account": "2640", "side": "kredit", "amount": 11250 },
+            { "account": "2650", "side": "debet", "amount": 7500 },
+            { "account": "2012", "side": "kredit", "amount": 7500 },
+            { "account": "2012", "side": "debet", "amount": 7500 },
+            { "account": "1930", "side": "kredit", "amount": 7500 }
+        ],
+        "level": 4
+    },
+    {
+        "description": "Hela kedjan: Utgående moms 25% har 25 000 kr, utgående moms 12% har 3 600 kr, ingående moms har 14 000 kr. Komplett momsredovisning och betalning.",
+        "hint": "Total utgående: 28 600 kr. Nettoskuld: 14 600 kr.",
+        "correctAnswer": [
+            { "account": "2610", "side": "debet", "amount": 25000 },
+            { "account": "2620", "side": "debet", "amount": 3600 },
+            { "account": "2650", "side": "kredit", "amount": 28600 },
+            { "account": "2650", "side": "debet", "amount": 14000 },
+            { "account": "2640", "side": "kredit", "amount": 14000 },
+            { "account": "2650", "side": "debet", "amount": 14600 },
+            { "account": "1630", "side": "kredit", "amount": 14600 },
+            { "account": "1630", "side": "debet", "amount": 14600 },
+            { "account": "1930", "side": "kredit", "amount": 14600 }
+        ],
+        "level": 4
+    },
+    {
+        "description": "Hela kedjan: Utgående moms 25% har 6 250 kr, ingående moms har 3 750 kr. Gör hela momsredovisningen från start till betalning. Använd skattekonto 2012.",
+        "hint": "Nettoskuld: 2 500 kr. Använd 2012 som skattekonto.",
+        "correctAnswer": [
+            { "account": "2610", "side": "debet", "amount": 6250 },
+            { "account": "2650", "side": "kredit", "amount": 6250 },
+            { "account": "2650", "side": "debet", "amount": 3750 },
+            { "account": "2640", "side": "kredit", "amount": 3750 },
+            { "account": "2650", "side": "debet", "amount": 2500 },
+            { "account": "2012", "side": "kredit", "amount": 2500 },
+            { "account": "2012", "side": "debet", "amount": 2500 },
+            { "account": "1930", "side": "kredit", "amount": 2500 }
+        ],
+        "level": 4
+    },
+    {
+        "description": "Hela kedjan: Utgående moms 25% har 40 000 kr, ingående moms har 25 000 kr. Genomför komplett momsredovisning med betalning.",
+        "hint": "Nettoskuld: 15 000 kr.",
+        "correctAnswer": [
+            { "account": "2610", "side": "debet", "amount": 40000 },
+            { "account": "2650", "side": "kredit", "amount": 40000 },
+            { "account": "2650", "side": "debet", "amount": 25000 },
+            { "account": "2640", "side": "kredit", "amount": 25000 },
+            { "account": "2650", "side": "debet", "amount": 15000 },
+            { "account": "1630", "side": "kredit", "amount": 15000 },
+            { "account": "1630", "side": "debet", "amount": 15000 },
+            { "account": "1930", "side": "kredit", "amount": 15000 }
+        ],
+        "level": 4
+    },
+    {
+        "description": "Hela kedjan: Utgående moms 25% har 9 375 kr, utgående moms 6% har 450 kr, ingående moms har 7 500 kr. Komplett momsredovisning och betalning. Använd skattekonto 2012.",
+        "hint": "Total utgående: 9 825 kr. Nettoskuld: 2 325 kr. Använd 2012 som skattekonto.",
+        "correctAnswer": [
+            { "account": "2610", "side": "debet", "amount": 9375 },
+            { "account": "2630", "side": "debet", "amount": 450 },
+            { "account": "2650", "side": "kredit", "amount": 9825 },
+            { "account": "2650", "side": "debet", "amount": 7500 },
+            { "account": "2640", "side": "kredit", "amount": 7500 },
+            { "account": "2650", "side": "debet", "amount": 2325 },
+            { "account": "2012", "side": "kredit", "amount": 2325 },
+            { "account": "2012", "side": "debet", "amount": 2325 },
+            { "account": "1930", "side": "kredit", "amount": 2325 }
+        ],
+        "level": 4
+    },
+    {
+        "description": "Hela kedjan: Utgående moms 25% har 22 500 kr, ingående moms har 13 500 kr. Genomför momsredovisning och betala momsskulden.",
+        "hint": "Nettoskuld: 9 000 kr.",
+        "correctAnswer": [
+            { "account": "2610", "side": "debet", "amount": 22500 },
+            { "account": "2650", "side": "kredit", "amount": 22500 },
+            { "account": "2650", "side": "debet", "amount": 13500 },
+            { "account": "2640", "side": "kredit", "amount": 13500 },
+            { "account": "2650", "side": "debet", "amount": 9000 },
+            { "account": "1630", "side": "kredit", "amount": 9000 },
+            { "account": "1630", "side": "debet", "amount": 9000 },
+            { "account": "1930", "side": "kredit", "amount": 9000 }
+        ],
+        "level": 4
+    }
+]

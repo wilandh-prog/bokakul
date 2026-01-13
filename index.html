@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BokaKul - Öva Bokföring</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📚 BokaKul</h1>
+            <div class="stats">
+                <div class="stat">
+                    <span class="label">Poäng:</span>
+                    <span id="score" class="value">0</span>
+                </div>
+                <div class="stat">
+                    <span class="label">Nivå:</span>
+                    <span id="level" class="value">1</span>
+                </div>
+                <div class="stat highlight">
+                    <span class="label">🏆 Highscore:</span>
+                    <span id="high-score" class="value">0</span>
+                </div>
+                <div class="stat">
+                    <span class="label">🔥 Streak:</span>
+                    <span id="streak" class="value streak-value">0</span>
+                </div>
+                <div class="stat">
+                    <span class="label">⭐ Bästa:</span>
+                    <span id="best-streak" class="value">0</span>
+                </div>
+                <div class="stat">
+                    <span class="label">Rätt:</span>
+                    <span id="correct" class="value">0</span>
+                </div>
+                <div class="stat">
+                    <span class="label">Fel:</span>
+                    <span id="incorrect" class="value">0</span>
+                </div>
+                <div class="stat">
+                    <span class="label">📊 Totalt rätt:</span>
+                    <span id="total-correct" class="value">0</span>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="level-selector">
+                <h3>Välj nivå</h3>
+                <div class="level-buttons">
+                    <button id="level-1-btn" class="btn btn-level active" data-level="1">
+                        Nivå 1 - Grundläggande
+                    </button>
+                    <button id="level-2-btn" class="btn btn-level" data-level="2">
+                        Nivå 2 - Försäljning och inköp utan moms
+                    </button>
+                    <button id="level-3-btn" class="btn btn-level" data-level="3">
+                        Nivå 3 - Transaktioner med 25% moms
+                    </button>
+                    <button id="level-4-btn" class="btn btn-level" data-level="4">
+                        Nivå 4 - Momsredovisning
+                    </button>
+                    <button id="level-5-btn" class="btn btn-level" data-level="5">
+                        Nivå 5 - Resultaträkning
+                    </button>
+                </div>
+            </div>
+
+            <div class="event-card">
+                <div class="event-header">
+                    <h2>Affärshändelse</h2>
+                    <span id="event-counter" class="event-counter"></span>
+                </div>
+                <p id="event-description" class="event-description"></p>
+            </div>
+
+            <div class="booking-area">
+                <h3>Kontera händelsen:</h3>
+
+                <div class="booking-entries" id="booking-entries">
+                    <!-- Bokföringsrader kommer här -->
+                </div>
+
+                <button id="add-row" class="btn btn-secondary">+ Lägg till rad</button>
+            </div>
+
+            <div class="controls">
+                <button id="check-answer" class="btn btn-primary">Kontrollera svar</button>
+                <button id="next-event" class="btn btn-secondary" style="display: none;">Nästa händelse</button>
+                <button id="show-hint" class="btn btn-hint">💡 Ledtråd</button>
+            </div>
+
+            <div id="feedback" class="feedback" style="display: none;"></div>
+
+            <div id="hint" class="hint" style="display: none;"></div>
+        </main>
+
+        <aside class="sidebar">
+            <div class="achievements-section">
+                <h3>🏅 Utmärkelser</h3>
+                <div id="achievements-list" class="achievements-list"></div>
+            </div>
+
+            <div class="account-plan">
+                <h3>Kontoplan</h3>
+                <div id="account-list" class="account-list"></div>
+            </div>
+        </aside>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
