@@ -403,6 +403,12 @@ function loadEvent() {
     bookingRows = [];
     renderBookingRows();
     addBookingRow();
+
+    // Scrolla till uppgiften
+    const eventCard = document.querySelector('.event-card');
+    if (eventCard) {
+        eventCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
 }
 
 // Lägg till bokföringsrad
