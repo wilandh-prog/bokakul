@@ -111,50 +111,37 @@ main {
 }
 
 .level-selector {
-    background: #f8f9fa;
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    border: 2px solid #667eea;
-}
-
-.level-selector h3 {
-    color: #667eea;
-    margin-bottom: 15px;
-    font-size: 1.1em;
-}
-
-.level-buttons {
     display: flex;
-    gap: 10px;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
     flex-wrap: wrap;
 }
 
-.btn-level {
-    padding: 12px 20px;
+.level-label {
+    color: #667eea;
+    font-weight: 600;
+    font-size: 1em;
+}
+
+.level-dropdown {
+    flex: 1;
+    min-width: 200px;
+    padding: 12px 15px;
     border: 2px solid #667eea;
     border-radius: 8px;
     background: white;
-    color: #667eea;
+    color: #333;
     font-size: 1em;
-    font-weight: 600;
+    font-weight: 500;
     cursor: pointer;
     transition: all 0.3s;
-    flex: 1;
-    min-width: 200px;
-    text-align: center;
 }
 
-.btn-level:hover {
-    background: #f0f3ff;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(102, 126, 234, 0.2);
-}
-
-.btn-level.active {
-    background: #667eea;
-    color: white;
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+.level-dropdown:focus {
+    outline: none;
+    border-color: #5568d3;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
 }
 
 .booking-area h3 {
@@ -475,15 +462,6 @@ main {
 
     header h1 {
         font-size: 1.3em;
-    }
-
-    .level-buttons {
-        flex-direction: column;
-    }
-
-    .btn-level {
-        min-width: auto;
-        width: 100%;
     }
 
     .controls {

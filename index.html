@@ -48,24 +48,14 @@
 
         <main>
             <div class="level-selector">
-                <h3>Välj nivå</h3>
-                <div class="level-buttons">
-                    <button id="level-1-btn" class="btn btn-level active" data-level="1">
-                        Nivå 1 - Grundläggande
-                    </button>
-                    <button id="level-2-btn" class="btn btn-level" data-level="2">
-                        Nivå 2 - Försäljning och inköp utan moms
-                    </button>
-                    <button id="level-3-btn" class="btn btn-level" data-level="3">
-                        Nivå 3 - Transaktioner med 25% moms
-                    </button>
-                    <button id="level-4-btn" class="btn btn-level" data-level="4">
-                        Nivå 4 - Momsredovisning
-                    </button>
-                    <button id="level-5-btn" class="btn btn-level" data-level="5">
-                        Nivå 5 - Resultaträkning
-                    </button>
-                </div>
+                <label for="level-select" class="level-label">Välj nivå</label>
+                <select id="level-select" class="level-dropdown">
+                    <option value="1">Nivå 1 - Grundläggande</option>
+                    <option value="2">Nivå 2 - Försäljning och inköp utan moms</option>
+                    <option value="3">Nivå 3 - Transaktioner med 25% moms</option>
+                    <option value="4">Nivå 4 - Momsredovisning</option>
+                    <option value="5">Nivå 5 - Resultaträkning</option>
+                </select>
             </div>
 
             <div class="event-card">

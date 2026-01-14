@@ -687,6 +687,9 @@ function showFeedback(isCorrect, message) {
         <p style="white-space: pre-line;">${message}</p>
     `;
     feedback.style.display = 'block';
+
+    // Scrolla till feedbacken på mobil
+    feedback.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
 // Visa ledtråd
@@ -782,11 +785,11 @@ let selectedLevel = 1;
 async function loadLevel(levelNumber) {
     selectedLevel = levelNumber;
 
-    // Uppdatera aktiv knapp
-    document.querySelectorAll('.btn-level').forEach(btn => {
-        btn.classList.remove('active');
-    });
-    document.querySelector(`[data-level="${levelNumber}"]`).classList.add('active');
+    // Uppdatera dropdown
+    const dropdown = document.getElementById('level-select');
+    if (dropdown) {
+        dropdown.value = levelNumber;
+    }
 
     const fileName = levelFiles[levelNumber];
 
@@ -847,13 +850,14 @@ function setupEventListeners() {
     document.getElementById('next-event').addEventListener('click', nextEvent);
     document.getElementById('show-hint').addEventListener('click', showHint);
 
-    // Nivåval
-    document.querySelectorAll('.btn-level').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const level = parseInt(btn.dataset.level);
+    // Nivåval via dropdown
+    const levelSelect = document.getElementById('level-select');
+    if (levelSelect) {
+        levelSelect.addEventListener('change', (e) => {
+            const level = parseInt(e.target.value);
             loadLevel(level);
         });
-    });
+    }
 }
 
 // Starta spelet när sidan laddas
