@@ -5,6 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BokaKul - Öva Bokföring</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Google Analytics - laddas endast efter samtycke -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+
+        function loadGoogleAnalytics() {
+            var script = document.createElement('script');
+            script.async = true;
+            script.src = 'https://www.googletagmanager.com/gtag/js?id=G-YFZ26E07SE';
+            document.head.appendChild(script);
+            gtag('js', new Date());
+            gtag('config', 'G-YFZ26E07SE');
+        }
+
+        // Kolla om användaren redan gett samtycke
+        if (localStorage.getItem('cookieConsent') === 'accepted') {
+            loadGoogleAnalytics();
+        }
+    </script>
 </head>
 <body>
     <div class="container">
@@ -121,5 +140,34 @@
     </div>
 
     <script src="app.js"></script>
+
+    <!-- Cookie Banner -->
+    <div id="cookie-banner" class="cookie-banner" style="display: none;">
+        <div class="cookie-content">
+            <p>Vi använder cookies för att analysera hur webbplatsen används.</p>
+            <div class="cookie-buttons">
+                <button id="cookie-accept" class="btn btn-primary">Acceptera</button>
+                <button id="cookie-decline" class="btn btn-secondary">Avböj</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Visa cookie-banner om inget val gjorts
+        if (!localStorage.getItem('cookieConsent')) {
+            document.getElementById('cookie-banner').style.display = 'flex';
+        }
+
+        document.getElementById('cookie-accept').addEventListener('click', function() {
+            localStorage.setItem('cookieConsent', 'accepted');
+            document.getElementById('cookie-banner').style.display = 'none';
+            loadGoogleAnalytics();
+        });
+
+        document.getElementById('cookie-decline').addEventListener('click', function() {
+            localStorage.setItem('cookieConsent', 'declined');
+            document.getElementById('cookie-banner').style.display = 'none';
+        });
+    </script>
 </body>
 </html>
