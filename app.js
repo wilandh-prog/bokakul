@@ -409,8 +409,8 @@ function loadEvent() {
 function addBookingRow() {
     bookingRows.push({
         account: '',
-        side: 'debet',
-        amount: ''
+        debetAmount: '',
+        kreditAmount: ''
     });
     renderBookingRows();
 }
@@ -424,43 +424,63 @@ function removeBookingRow(index) {
 // Rendera bokföringsrader
 function renderBookingRows() {
     const container = document.getElementById('booking-entries');
+    const event = events[currentEventIndex];
 
-    // Skapa lista över alla konton för dropdown
-    const allAccounts = [];
+    // Hämta konton som används i uppgiften
+    const usedAccountNumbers = event.correctAnswer.map(entry => entry.account);
+
+    // Filtrera till bara relevanta konton
+    const relevantAccounts = [];
     for (const accountArray of Object.values(accounts)) {
-        allAccounts.push(...accountArray);
+        for (const acc of accountArray) {
+            if (usedAccountNumbers.includes(acc.number)) {
+                relevantAccounts.push(acc);
+            }
+        }
     }
-    allAccounts.sort((a, b) => a.number.localeCompare(b.number));
+    relevantAccounts.sort((a, b) => a.number.localeCompare(b.number));
 
-    container.innerHTML = bookingRows.map((row, index) => `
-        <div class="booking-row">
-            <select data-index="${index}" data-field="account">
-                <option value="">Välj konto...</option>
-                ${allAccounts.map(acc => `
-                    <option value="${acc.number}" ${row.account === acc.number ? 'selected' : ''}>
-                        ${acc.number} - ${acc.name}
-                    </option>
-                `).join('')}
-            </select>
-
-            <select data-index="${index}" data-field="side">
-                <option value="debet" ${row.side === 'debet' ? 'selected' : ''}>Debet</option>
-                <option value="kredit" ${row.side === 'kredit' ? 'selected' : ''}>Kredit</option>
-            </select>
-
-            <input type="number"
-                   data-index="${index}"
-                   data-field="amount"
-                   value="${row.amount}"
-                   placeholder="Belopp">
-
-            <button class="btn-remove" data-index="${index}">Ta bort</button>
-        </div>
-    `).join('');
+    container.innerHTML = bookingRows.map((row, index) => {
+        return `
+        <tr>
+            <td colspan="2">
+                <select class="account-select" data-index="${index}" data-field="account">
+                    <option value="">Välj konto...</option>
+                    ${relevantAccounts.map(acc => `
+                        <option value="${acc.number}" ${row.account === acc.number ? 'selected' : ''}>
+                            ${acc.number} - ${acc.name}
+                        </option>
+                    `).join('')}
+                </select>
+            </td>
+            <td>
+                <input type="number"
+                       data-index="${index}"
+                       data-field="debetAmount"
+                       value="${row.debetAmount}"
+                       placeholder="0"
+                       min="0"
+                       step="0.01">
+            </td>
+            <td>
+                <input type="number"
+                       data-index="${index}"
+                       data-field="kreditAmount"
+                       value="${row.kreditAmount}"
+                       placeholder="0"
+                       min="0"
+                       step="0.01">
+            </td>
+            <td>
+                <button class="btn-remove" data-index="${index}">X</button>
+            </td>
+        </tr>
+    `}).join('');
 
     // Event listeners för inputs
     container.querySelectorAll('select, input').forEach(el => {
         el.addEventListener('change', handleInputChange);
+        el.addEventListener('input', handleInputChange);
     });
 
     container.querySelectorAll('.btn-remove').forEach(btn => {
@@ -469,21 +489,72 @@ function renderBookingRows() {
             removeBookingRow(index);
         });
     });
+
+    updateTotals();
+}
+
+// Uppdatera summering
+function updateTotals() {
+    const debetSum = bookingRows.reduce((sum, row) => sum + (parseFloat(row.debetAmount) || 0), 0);
+    const kreditSum = bookingRows.reduce((sum, row) => sum + (parseFloat(row.kreditAmount) || 0), 0);
+
+    const debetEl = document.getElementById('total-debet');
+    const kreditEl = document.getElementById('total-kredit');
+
+    debetEl.textContent = debetSum.toLocaleString('sv-SE');
+    kreditEl.textContent = kreditSum.toLocaleString('sv-SE');
+
+    // Visa om det balanserar
+    const isBalanced = Math.abs(debetSum - kreditSum) < 0.01 && debetSum > 0;
+
+    debetEl.className = 'total-cell' + (isBalanced ? ' balance-ok' : (debetSum > 0 ? ' balance-error' : ''));
+    kreditEl.className = 'total-cell' + (isBalanced ? ' balance-ok' : (kreditSum > 0 ? ' balance-error' : ''));
 }
 
 // Hantera input-ändringar
 function handleInputChange(e) {
     const index = parseInt(e.target.dataset.index);
     const field = e.target.dataset.field;
-    const value = field === 'amount' ? parseFloat(e.target.value) || '' : e.target.value;
+    let value = e.target.value;
+
+    if (field === 'debetAmount' || field === 'kreditAmount') {
+        value = parseFloat(value) || '';
+    }
 
     bookingRows[index][field] = value;
+
+    // Uppdatera kontonamn om konto ändrades
+    if (field === 'account') {
+        renderBookingRows();
+    } else {
+        updateTotals();
+    }
 }
 
 // Kontrollera svar
 function checkAnswer() {
     const event = events[currentEventIndex];
-    const userAnswer = bookingRows.filter(row => row.account && row.amount);
+
+    // Konvertera nya formatet till gammalt format för jämförelse
+    const userAnswer = [];
+    bookingRows.forEach(row => {
+        if (row.account) {
+            if (row.debetAmount && parseFloat(row.debetAmount) > 0) {
+                userAnswer.push({
+                    account: row.account,
+                    side: 'debet',
+                    amount: parseFloat(row.debetAmount)
+                });
+            }
+            if (row.kreditAmount && parseFloat(row.kreditAmount) > 0) {
+                userAnswer.push({
+                    account: row.account,
+                    side: 'kredit',
+                    amount: parseFloat(row.kreditAmount)
+                });
+            }
+        }
+    });
 
     // Validera att det finns svar
     if (userAnswer.length === 0) {
@@ -494,11 +565,11 @@ function checkAnswer() {
     // Kontrollera att debet = kredit
     const debetSum = userAnswer
         .filter(row => row.side === 'debet')
-        .reduce((sum, row) => sum + parseFloat(row.amount), 0);
+        .reduce((sum, row) => sum + row.amount, 0);
 
     const kreditSum = userAnswer
         .filter(row => row.side === 'kredit')
-        .reduce((sum, row) => sum + parseFloat(row.amount), 0);
+        .reduce((sum, row) => sum + row.amount, 0);
 
     if (Math.abs(debetSum - kreditSum) > 0.01) {
         showFeedback(false, `Debet (${debetSum} kr) måste vara lika med kredit (${kreditSum} kr)!`);

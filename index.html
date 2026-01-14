@@ -79,8 +79,28 @@
             <div class="booking-area">
                 <h3>Kontera händelsen:</h3>
 
-                <div class="booking-entries" id="booking-entries">
-                    <!-- Bokföringsrader kommer här -->
+                <div class="booking-order">
+                    <table class="booking-table">
+                        <thead>
+                            <tr>
+                                <th colspan="2">Konto</th>
+                                <th>Debet</th>
+                                <th>Kredit</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="booking-entries">
+                            <!-- Bokföringsrader kommer här -->
+                        </tbody>
+                        <tfoot>
+                            <tr class="totals-row">
+                                <td colspan="2"><strong>Summa</strong></td>
+                                <td id="total-debet" class="total-cell">0</td>
+                                <td id="total-kredit" class="total-cell">0</td>
+                                <td></td>
+                            </tr>
+                        </tfoot>
+                    </table>
                 </div>
 
                 <button id="add-row" class="btn btn-secondary">+ Lägg till rad</button>
