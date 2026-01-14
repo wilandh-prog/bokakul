@@ -771,8 +771,8 @@ function nextEvent() {
 
 // Nivåfiler
 const levelFiles = {
-    1: 'grundläggande kontering.json',
-    2: 'försäljning-inköp-utan-moms.json',
+    1: 'grundlaggande-kontering.json',
+    2: 'forsaljning-inkop-utan-moms.json',
     3: 'transaktioner.json',
     4: 'momsredovisning.json',
     5: 'resultatrakning.json'
