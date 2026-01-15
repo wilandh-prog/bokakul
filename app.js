@@ -369,9 +369,6 @@ async function init() {
     renderAchievements();
     setupEventListeners();
     updateStats();
-    // Starta sessionstimer
-    setInterval(updateSessionTime, 1000);
-    updateSessionTime();
     // Ladda nivå 1 som standard
     await loadLevel(1);
 }
