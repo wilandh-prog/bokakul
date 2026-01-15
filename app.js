@@ -2,11 +2,11 @@
 const accounts = {
     "Tillgångar": [
         { number: "1210", name: "Maskiner" },
-        { number: "1219", name: "Ack, avskrivningar maskiner" },
+        { number: "1219", name: "Ack. avskrivningar maskiner" },
         { number: "1220", name: "Inventarier" },
-        { number: "1229", name: "Ack avskrivningar inventarier" },
+        { number: "1229", name: "Ack. avskrivningar inventarier" },
         { number: "1240", name: "Bilar" },
-        { number: "1249", name: "Ack avskrivningar på bilar" },
+        { number: "1249", name: "Ack. avskrivningar på bilar" },
         { number: "1250", name: "Datorer" },
         { number: "1259", name: "Ack. avskrivningar på datorer" },
         { number: "1400", name: "Varulager" },
@@ -29,14 +29,14 @@ const accounts = {
         { number: "2019", name: "Årets resultat" },
         { number: "2081", name: "Aktiekapital" },
         { number: "2091", name: "Balanserad vinst" },
-        { number: "2098", name: "Foregående års vinst" },
+        { number: "2098", name: "Föregående års vinst" },
         { number: "2099", name: "Årets resultat" },
         { number: "2350", name: "Banklån" },
         { number: "2440", name: "Leverantörsskulder" },
         { number: "2490", name: "Övriga skulder" },
         { number: "2610", name: "Utgående moms, 25%" },
         { number: "2620", name: "Utgående moms, 12%" },
-        { number: "2630", name: "Utgående moms. 6%" },
+        { number: "2630", name: "Utgående moms, 6%" },
         { number: "2615", name: "Beräknad utgående EU-moms" },
         { number: "2640", name: "Ingående moms" },
         { number: "2645", name: "Beräknad ingående EU-moms" },
@@ -194,6 +194,12 @@ let bestStreak = 0;
 let highScore = 0;
 let totalCorrect = 0;
 let totalIncorrect = 0;
+let levelStartTime = null;
+
+// Sessionsstatistik (nollställs vid sidomladdning)
+let sessionCorrect = 0;
+let sessionIncorrect = 0;
+const sessionStartTime = Date.now();
 
 // Achievements
 const achievements = {
@@ -363,6 +369,9 @@ async function init() {
     renderAchievements();
     setupEventListeners();
     updateStats();
+    // Starta sessionstimer
+    setInterval(updateSessionTime, 1000);
+    updateSessionTime();
     // Ladda nivå 1 som standard
     await loadLevel(1);
 }
@@ -562,6 +571,15 @@ function checkAnswer() {
         }
     });
 
+    // Kolla om det finns rader med belopp men inget konto valt
+    const rowsWithoutAccount = bookingRows.filter(row =>
+        !row.account && (row.debetAmount || row.kreditAmount)
+    );
+    if (rowsWithoutAccount.length > 0) {
+        showFeedback(false, "Du har fyllt i belopp utan att välja konto. Välj konto i dropdown-menyn!");
+        return;
+    }
+
     // Validera att det finns svar
     if (userAnswer.length === 0) {
         showFeedback(false, "Du måste fylla i minst en bokföringsrad!");
@@ -588,6 +606,7 @@ function checkAnswer() {
     if (isCorrect) {
         correctCount++;
         totalCorrect++;
+        sessionCorrect++;
         streak++;
 
         // Uppdatera bästa streak
@@ -619,9 +638,9 @@ function checkAnswer() {
 
         updateStats();
 
-        let message = `Rätt! Du fick ${basePoints} poäng!`;
+        let message = `Rätt! Du fick ${points} poäng!`;
         if (streakBonus > 0) {
-            message += ` (+${streakBonus} streak-bonus!)`;
+            message += ` (inkl. ${streakBonus} streak-bonus)`;
         }
         if (streak >= 3) {
             message += `\n🔥 ${streak} rätt i rad!`;
@@ -630,6 +649,7 @@ function checkAnswer() {
     } else {
         incorrectCount++;
         totalIncorrect++;
+        sessionIncorrect++;
         streak = 0; // Återställ streak
 
         saveProgress();
@@ -638,7 +658,8 @@ function checkAnswer() {
         let explanation = "Fel svar. Rätt kontering är:\n\n";
         event.correctAnswer.forEach(entry => {
             const accountInfo = findAccountByNumber(entry.account);
-            explanation += `${entry.account} ${accountInfo.name} - ${entry.side}: ${entry.amount} kr\n`;
+            const accountName = accountInfo ? accountInfo.name : 'Okänt konto';
+            explanation += `${entry.account} ${accountName} - ${entry.side}: ${entry.amount} kr\n`;
         });
 
         showFeedback(false, explanation);
@@ -650,7 +671,46 @@ function checkAnswer() {
 
 // Jämför användarens svar med rätt svar
 function compareAnswers(userAnswer, correctAnswer) {
-    if (userAnswer.length !== correctAnswer.length) {
+    // Netta poster på samma konto (debet - kredit) och returnera nettoresultat
+    const netEntries = (entries) => {
+        const accountMap = {};
+
+        // Summera debet och kredit per konto
+        entries.forEach(entry => {
+            const account = entry.account;
+            if (!accountMap[account]) {
+                accountMap[account] = { debet: 0, kredit: 0 };
+            }
+            if (entry.side === 'debet') {
+                accountMap[account].debet += parseFloat(entry.amount);
+            } else {
+                accountMap[account].kredit += parseFloat(entry.amount);
+            }
+        });
+
+        // Beräkna netto per konto
+        const result = [];
+        for (const account of Object.keys(accountMap)) {
+            const debet = accountMap[account].debet;
+            const kredit = accountMap[account].kredit;
+            const net = debet - kredit;
+
+            if (Math.abs(net) > 0.01) {
+                result.push({
+                    account: account,
+                    side: net > 0 ? 'debet' : 'kredit',
+                    amount: Math.abs(net)
+                });
+            }
+        }
+
+        return result;
+    };
+
+    const nettedUser = netEntries(userAnswer);
+    const nettedCorrect = netEntries(correctAnswer);
+
+    if (nettedUser.length !== nettedCorrect.length) {
         return false;
     }
 
@@ -661,13 +721,13 @@ function compareAnswers(userAnswer, correctAnswer) {
         return a.amount - b.amount;
     });
 
-    const sortedUser = sortAnswer([...userAnswer]);
-    const sortedCorrect = sortAnswer([...correctAnswer]);
+    const sortedUser = sortAnswer(nettedUser);
+    const sortedCorrect = sortAnswer(nettedCorrect);
 
     for (let i = 0; i < sortedUser.length; i++) {
         if (sortedUser[i].account !== sortedCorrect[i].account ||
             sortedUser[i].side !== sortedCorrect[i].side ||
-            Math.abs(parseFloat(sortedUser[i].amount) - sortedCorrect[i].amount) > 0.01) {
+            Math.abs(sortedUser[i].amount - sortedCorrect[i].amount) > 0.01) {
             return false;
         }
     }
@@ -733,6 +793,23 @@ function updateStats() {
     }
     if (bestStreakEl) bestStreakEl.textContent = bestStreak;
     if (totalCorrectEl) totalCorrectEl.textContent = totalCorrect;
+
+    // Uppdatera sessionsstatistik
+    const sessionStatsEl = document.getElementById('session-stats');
+    if (sessionStatsEl) {
+        sessionStatsEl.textContent = `${sessionCorrect}/${sessionCorrect + sessionIncorrect}`;
+    }
+}
+
+// Uppdatera sessionstid
+function updateSessionTime() {
+    const sessionTimeEl = document.getElementById('session-time');
+    if (sessionTimeEl) {
+        const elapsedMs = Date.now() - sessionStartTime;
+        const minutes = Math.floor(elapsedMs / 60000);
+        const seconds = Math.floor((elapsedMs % 60000) / 1000);
+        sessionTimeEl.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+    }
 }
 
 // Nästa händelse
@@ -755,11 +832,19 @@ function nextEvent() {
         }
 
         // Spelet är slut
+        const elapsedMs = Date.now() - levelStartTime;
+        const elapsedMinutes = Math.floor(elapsedMs / 60000);
+        const elapsedSeconds = Math.floor((elapsedMs % 60000) / 1000);
+        const timeString = elapsedMinutes > 0
+            ? `${elapsedMinutes} min ${elapsedSeconds} sek`
+            : `${elapsedSeconds} sek`;
+
         let endMessage = `🎊 Grattis! Du har klarat alla övningar!\n\n`;
         endMessage += `📊 Resultat:\n`;
         endMessage += `Poäng: ${score}\n`;
         endMessage += `Rätt: ${correctCount} | Fel: ${incorrectCount}\n`;
         endMessage += `Bästa streak: ${bestStreak}\n`;
+        endMessage += `⏱️ Tid: ${timeString}\n`;
         if (score >= highScore && score > 0) {
             endMessage += `\n🏆 NYTT HIGHSCORE!`;
         }
@@ -841,10 +926,12 @@ async function loadLevel(levelNumber) {
 // Återställ spelet
 function resetGame() {
     currentEventIndex = 0;
-    score = 0;
+    // score behålls mellan nivåer
     level = 1;
     correctCount = 0;
     incorrectCount = 0;
+    streak = 0;
+    levelStartTime = Date.now();
     updateStats();
     loadEvent();
 }
