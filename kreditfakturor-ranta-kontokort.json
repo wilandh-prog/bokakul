@@ -1,0 +1,205 @@
+[
+    {
+        "description": "En kund returnerar varor för 5 000 kr exkl. moms (25%). Du utfärdar en kreditfaktura. Kontera kreditfakturan.",
+        "hint": "Kreditfaktura är motsatsen till en vanlig faktura. Minska kundfordran och minska försäljning + moms.",
+        "correctAnswer": [
+            { "account": "3010", "side": "debet", "amount": 5000 },
+            { "account": "2610", "side": "debet", "amount": 1250 },
+            { "account": "1510", "side": "kredit", "amount": 6250 }
+        ],
+        "level": 6
+    },
+    {
+        "description": "Du får en kreditfaktura från en leverantör på 8 000 kr exkl. moms (25%) för returnerade varor. Kontera kreditfakturan.",
+        "hint": "Kreditfaktura från leverantör minskar din skuld och minskar varuinköp + ingående moms.",
+        "correctAnswer": [
+            { "account": "2440", "side": "debet", "amount": 10000 },
+            { "account": "4010", "side": "kredit", "amount": 8000 },
+            { "account": "2640", "side": "kredit", "amount": 2000 }
+        ],
+        "level": 6
+    },
+    {
+        "description": "En kund betalar en faktura på 12 500 kr med kontokort. Kortföretaget tar 3% i avgift. Kontera försäljningen.",
+        "hint": "Vid kortbetalning får du en fordran på kortföretaget (1580). Avgiften (3% av 12 500 = 375 kr) bokas som kostnad.",
+        "correctAnswer": [
+            { "account": "1580", "side": "debet", "amount": 12125 },
+            { "account": "6040", "side": "debet", "amount": 375 },
+            { "account": "1510", "side": "kredit", "amount": 12500 }
+        ],
+        "level": 6
+    },
+    {
+        "description": "Kortföretaget betalar in 25 000 kr till ditt företagskonto för tidigare kortförsäljningar. Kontera inbetalningen.",
+        "hint": "Pengarna kommer in på banken och fordran på kortföretaget minskar.",
+        "correctAnswer": [
+            { "account": "1930", "side": "debet", "amount": 25000 },
+            { "account": "1580", "side": "kredit", "amount": 25000 }
+        ],
+        "level": 6
+    },
+    {
+        "description": "En kund har betalat 30 dagar för sent. Fakturabeloppet var 20 000 kr. Dröjsmålsräntan är 8% per år. Beräkna räntan för 30 dagar och kontera räntefakturan.",
+        "hint": "Ränta = Belopp × Räntesats × (Dagar/365). 20 000 × 0,08 × (30/365) = ca 131 kr. Ränteintäkten ökar din fordran.",
+        "correctAnswer": [
+            { "account": "1510", "side": "debet", "amount": 131 },
+            { "account": "8320", "side": "kredit", "amount": 131 }
+        ],
+        "level": 6
+    },
+    {
+        "description": "Du har betalat en leverantörsfaktura på 50 000 kr 45 dagar för sent. Leverantören kräver 10% årlig dröjsmålsränta. Beräkna och kontera räntan.",
+        "hint": "Ränta = 50 000 × 0,10 × (45/365) = ca 616 kr. Dröjsmålsränta du betalar är en kostnad.",
+        "correctAnswer": [
+            { "account": "8420", "side": "debet", "amount": 616 },
+            { "account": "2440", "side": "kredit", "amount": 616 }
+        ],
+        "level": 6
+    },
+    {
+        "description": "Du säljer varor för 15 000 kr exkl. moms (25%) och kunden betalar direkt med kontokort. Kortavgiften är 2,5%. Kontera hela händelsen.",
+        "hint": "Total inkl. moms = 18 750 kr. Kortavgift = 18 750 × 2,5% = 469 kr. Du får 18 281 kr som fordran på kortföretaget.",
+        "correctAnswer": [
+            { "account": "1580", "side": "debet", "amount": 18281 },
+            { "account": "6040", "side": "debet", "amount": 469 },
+            { "account": "3010", "side": "kredit", "amount": 15000 },
+            { "account": "2610", "side": "kredit", "amount": 3750 }
+        ],
+        "level": 6
+    },
+    {
+        "description": "En kund returnerar tjänster för 4 000 kr exkl. moms (25%). Kunden hade redan betalat. Kontera kreditfakturan och återbetalningen från företagskontot.",
+        "hint": "Först kreditfaktura (minska intäkt och moms), sedan utbetalning från bank.",
+        "correctAnswer": [
+            { "account": "3030", "side": "debet", "amount": 4000 },
+            { "account": "2610", "side": "debet", "amount": 1000 },
+            { "account": "1930", "side": "kredit", "amount": 5000 }
+        ],
+        "level": 6
+    },
+    {
+        "description": "Du får en kreditfaktura på 2 000 kr exkl. moms (25%) från leverantör för en prisnedsättning. Du hade redan betalat. Kontera kreditfakturan.",
+        "hint": "Du får tillbaka pengar. Skapa en fordran på leverantören eller minska skulden om den finns.",
+        "correctAnswer": [
+            { "account": "1510", "side": "debet", "amount": 2500 },
+            { "account": "4010", "side": "kredit", "amount": 2000 },
+            { "account": "2640", "side": "kredit", "amount": 500 }
+        ],
+        "level": 6
+    },
+    {
+        "description": "Kunden från föregående uppgift betalar tillbaka 2 500 kr till ditt företagskonto. Kontera inbetalningen.",
+        "hint": "Pengarna kommer in och fordran minskar.",
+        "correctAnswer": [
+            { "account": "1930", "side": "debet", "amount": 2500 },
+            { "account": "1510", "side": "kredit", "amount": 2500 }
+        ],
+        "level": 6
+    },
+    {
+        "description": "En kund betalar en förfallen faktura på 10 000 kr plus dröjsmålsränta. Räntan är 12% per år och kunden betalade 60 dagar för sent. Beräkna räntan och kontera betalningen.",
+        "hint": "Ränta = 10 000 × 0,12 × (60/365) = ca 197 kr. Total betalning = 10 197 kr.",
+        "correctAnswer": [
+            { "account": "1930", "side": "debet", "amount": 10197 },
+            { "account": "1510", "side": "kredit", "amount": 10000 },
+            { "account": "8320", "side": "kredit", "amount": 197 }
+        ],
+        "level": 6
+    },
+    {
+        "description": "Du betalar en förfallen leverantörsfaktura på 25 000 kr plus dröjsmålsränta. Räntan är 9% per år och du betalade 20 dagar för sent. Beräkna och kontera.",
+        "hint": "Ränta = 25 000 × 0,09 × (20/365) = ca 123 kr. Total betalning = 25 123 kr.",
+        "correctAnswer": [
+            { "account": "2440", "side": "debet", "amount": 25000 },
+            { "account": "8420", "side": "debet", "amount": 123 },
+            { "account": "1930", "side": "kredit", "amount": 25123 }
+        ],
+        "level": 6
+    },
+    {
+        "description": "Du säljer varor för 30 000 kr exkl. moms (25%) där hälften betalas kontant och hälften med kontokort. Kortavgiften är 2%. Kontera försäljningen.",
+        "hint": "Kontant: 18 750 kr. Kort: 18 750 kr minus 2% avgift (375 kr) = 18 375 kr fordran.",
+        "correctAnswer": [
+            { "account": "1910", "side": "debet", "amount": 18750 },
+            { "account": "1580", "side": "debet", "amount": 18375 },
+            { "account": "6040", "side": "debet", "amount": 375 },
+            { "account": "3010", "side": "kredit", "amount": 30000 },
+            { "account": "2610", "side": "kredit", "amount": 7500 }
+        ],
+        "level": 6
+    },
+    {
+        "description": "En kund returnerar varor för 12 000 kr exkl. moms (25%) som ursprungligen betalades med kontokort. Du återbetalar via kontokort (ingen avgift vid återbetalning). Kontera.",
+        "hint": "Minska försäljning och moms, öka skuld till kortföretaget (eller minska fordran).",
+        "correctAnswer": [
+            { "account": "3010", "side": "debet", "amount": 12000 },
+            { "account": "2610", "side": "debet", "amount": 3000 },
+            { "account": "1580", "side": "kredit", "amount": 15000 }
+        ],
+        "level": 6
+    },
+    {
+        "description": "Du skickar en räntefaktura till en kund som betalat 90 dagar för sent på en faktura på 80 000 kr. Dröjsmålsräntan är 8% per år. Beräkna och kontera.",
+        "hint": "Ränta = 80 000 × 0,08 × (90/365) = ca 1 578 kr.",
+        "correctAnswer": [
+            { "account": "1510", "side": "debet", "amount": 1578 },
+            { "account": "8320", "side": "kredit", "amount": 1578 }
+        ],
+        "level": 6
+    },
+    {
+        "description": "En leverantör skickar en räntefaktura på dröjsmålsränta. Du betalade 40 000 kr 15 dagar för sent. Räntan är 10% per år. Beräkna och kontera när du får fakturan.",
+        "hint": "Ränta = 40 000 × 0,10 × (15/365) = ca 164 kr. Du får en skuld till leverantören.",
+        "correctAnswer": [
+            { "account": "8420", "side": "debet", "amount": 164 },
+            { "account": "2440", "side": "kredit", "amount": 164 }
+        ],
+        "level": 6
+    },
+    {
+        "description": "Du utför ett uppdrag för 20 000 kr exkl. moms (25%) och kunden betalar med kontokort. Kortavgiften är 1,5%. Kontera.",
+        "hint": "Total inkl. moms = 25 000 kr. Kortavgift = 25 000 × 1,5% = 375 kr. Fordran = 24 625 kr.",
+        "correctAnswer": [
+            { "account": "1580", "side": "debet", "amount": 24625 },
+            { "account": "6040", "side": "debet", "amount": 375 },
+            { "account": "3030", "side": "kredit", "amount": 20000 },
+            { "account": "2610", "side": "kredit", "amount": 5000 }
+        ],
+        "level": 6
+    },
+    {
+        "description": "En kund som betalat kontant returnerar varor för 3 000 kr exkl. moms (25%). Du betalar tillbaka kontant. Kontera.",
+        "hint": "Kreditfaktura med kontant återbetalning - minska försäljning, moms och kassa.",
+        "correctAnswer": [
+            { "account": "3010", "side": "debet", "amount": 3000 },
+            { "account": "2610", "side": "debet", "amount": 750 },
+            { "account": "1910", "side": "kredit", "amount": 3750 }
+        ],
+        "level": 6
+    },
+    {
+        "description": "Du får delvis kredit från en leverantör på 6 000 kr exkl. moms (25%) för defekta varor. Resten av fakturan på 14 000 kr exkl. moms betalar du från företagskontot. Kontera allt.",
+        "hint": "Ursprunglig skuld var 20 000 + 5 000 moms = 25 000 kr. Kredit 7 500 kr, betalning 17 500 kr.",
+        "correctAnswer": [
+            { "account": "2440", "side": "debet", "amount": 25000 },
+            { "account": "4010", "side": "kredit", "amount": 6000 },
+            { "account": "2640", "side": "kredit", "amount": 1500 },
+            { "account": "1930", "side": "kredit", "amount": 17500 }
+        ],
+        "level": 6
+    },
+    {
+        "description": "Hela kedjan: Du säljer för 10 000 kr exkl. moms (25%) på kredit. Kunden betalar 45 dagar för sent. Du fakturerar 8% årlig dröjsmålsränta. Kunden betalar allt. Kontera alla tre händelserna.",
+        "hint": "1) Försäljning: 12 500 kr fordran. 2) Räntefaktura: 10 000 × 0,08 × 45/365 = 99 kr. 3) Betalning: 12 599 kr.",
+        "correctAnswer": [
+            { "account": "1510", "side": "debet", "amount": 12500 },
+            { "account": "3010", "side": "kredit", "amount": 10000 },
+            { "account": "2610", "side": "kredit", "amount": 2500 },
+            { "account": "1510", "side": "debet", "amount": 99 },
+            { "account": "8320", "side": "kredit", "amount": 99 },
+            { "account": "1930", "side": "debet", "amount": 12599 },
+            { "account": "1510", "side": "kredit", "amount": 12599 }
+        ],
+        "level": 6
+    }
+]

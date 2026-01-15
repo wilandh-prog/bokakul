@@ -49,10 +49,12 @@ const accounts = {
     "Intäkter": [
         { number: "3010", name: "Varuförsäljning" },
         { number: "3030", name: "Utförda uppdrag" },
+        { number: "3730", name: "Lämnade rabatter" },
         { number: "3960", name: "Kursvinster" }
     ],
     "Kostnader": [
         { number: "4010", name: "Varuinköp" },
+        { number: "4730", name: "Erhållna rabatter" },
         { number: "4900", name: "Varulagerforandring" },
         { number: "5010", name: "Lokalhyra" },
         { number: "5060", name: "Städning" },
@@ -74,7 +76,7 @@ const accounts = {
     ],
     "Finansiella poster": [
         { number: "8310", name: "Ränteintäkter" },
-        { number: "8320", name: "Erhållen drojmålsranta." },
+        { number: "8320", name: "Erhållen dröjsmålsränta" },
         { number: "8410", name: "Räntekostnader" },
         { number: "8420", name: "Erlagd dröjmålsränta" },
         { number: "8999", name: "Årets resultat" }
@@ -863,7 +865,8 @@ const levelFiles = {
     2: 'forsaljning-inkop-utan-moms.json',
     3: 'transaktioner.json',
     4: 'momsredovisning.json',
-    5: 'resultatrakning.json'
+    5: 'resultatrakning.json',
+    6: 'kreditfakturor-ranta-kontokort.json'
 };
 
 // Aktuell vald nivå
