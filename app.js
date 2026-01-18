@@ -50,7 +50,8 @@ const accounts = {
         { number: "3010", name: "Varuförsäljning" },
         { number: "3030", name: "Utförda uppdrag" },
         { number: "3730", name: "Lämnade rabatter" },
-        { number: "3960", name: "Kursvinster" }
+        { number: "3960", name: "Kursvinster" },
+        { number: "3973", name: "Vinst vid avyttring" }
     ],
     "Kostnader": [
         { number: "4010", name: "Varuinköp" },
@@ -72,6 +73,7 @@ const accounts = {
         { number: "7510", name: "Arbetsgivaravgifter" },
         { number: "7832", name: "Avskrivning mask/inve" },
         { number: "7834", name: "Avskrivning bilar" },
+        { number: "7973", name: "Förlust vid avyttring" },
         { number: "7960", name: "Kursförlust" }
     ],
     "Finansiella poster": [
@@ -421,6 +423,7 @@ function loadEvent() {
     document.getElementById('hint').style.display = 'none';
     document.getElementById('next-event').style.display = 'none';
     document.getElementById('check-answer').style.display = 'block';
+    document.getElementById('skip-event').style.display = 'block';
 
     // Rensa bokföringsrader
     bookingRows = [];
@@ -680,6 +683,35 @@ function checkAnswer() {
     }
 
     document.getElementById('check-answer').style.display = 'none';
+    document.getElementById('skip-event').style.display = 'none';
+    document.getElementById('next-event').style.display = 'block';
+}
+
+// Hoppa över uppgift (räknas som fel)
+function skipEvent() {
+    const event = events[currentEventIndex];
+
+    // Räkna som fel
+    incorrectCount++;
+    totalIncorrect++;
+    sessionIncorrect++;
+    streak = 0;
+
+    saveProgress();
+    updateStats();
+
+    // Visa rätt svar
+    let explanation = "Hoppade över. Rätt kontering är:\n\n";
+    event.correctAnswer.forEach(entry => {
+        const accountInfo = findAccountByNumber(entry.account);
+        const accountName = accountInfo ? accountInfo.name : 'Okänt konto';
+        explanation += `${entry.account} ${accountName} - ${entry.side}: ${entry.amount} kr\n`;
+    });
+
+    showFeedback(false, explanation);
+
+    document.getElementById('check-answer').style.display = 'none';
+    document.getElementById('skip-event').style.display = 'none';
     document.getElementById('next-event').style.display = 'block';
 }
 
@@ -903,6 +935,7 @@ function nextEvent() {
         showFeedback(true, endMessage);
         document.getElementById('next-event').style.display = 'none';
         document.getElementById('check-answer').style.display = 'none';
+        document.getElementById('skip-event').style.display = 'none';
         document.getElementById('show-hint').style.display = 'none';
         document.getElementById('add-row').style.display = 'none';
         document.getElementById('event-description').textContent = 'Nivån är klar! Välj en annan nivå eller ladda om sidan.';
@@ -919,7 +952,8 @@ const levelFiles = {
     4: 'momsredovisning.json',
     5: 'resultatrakning.json',
     6: 'kreditfakturor-ranta-kontokort.json',
-    7: 'loner.json'
+    7: 'loner.json',
+    8: 'periodiseringar.json'
 };
 
 // Aktuell vald nivå
@@ -994,6 +1028,7 @@ function setupEventListeners() {
     document.getElementById('add-row').addEventListener('click', addBookingRow);
     document.getElementById('check-answer').addEventListener('click', checkAnswer);
     document.getElementById('next-event').addEventListener('click', nextEvent);
+    document.getElementById('skip-event').addEventListener('click', skipEvent);
     document.getElementById('show-hint').addEventListener('click', showHint);
 
     // Nivåval via dropdown

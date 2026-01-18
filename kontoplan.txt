@@ -94,6 +94,8 @@ Kontoklass 3
 
 3960 Kursvinster
 
+3973 Vinst vid avyttring
+
 Kontoklass 4
 
 4010 Varuinköp
@@ -139,6 +141,8 @@ Kontoklass 7
 7832 Avskrivning mask/inve
 
 7834 Avskrivning bilar
+
+7973 Förlust vid avyttring
 
 7960 Kursförlust
 

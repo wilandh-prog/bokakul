@@ -1,0 +1,184 @@
+[
+    {
+        "description": "Vid årsbokslutet inventerar du varulagret till 80 000 kr. Ingående lager var 0 kr. Kontera lagerökningen.",
+        "hint": "Lagret har ökat med 80 000 kr. Debet 1400 (Varulager), Kredit 4900 (Varulagerförändring).",
+        "correctAnswer": [
+            { "account": "1400", "side": "debet", "amount": 80000 },
+            { "account": "4900", "side": "kredit", "amount": 80000 }
+        ],
+        "level": 8
+    },
+    {
+        "description": "Vid årsbokslutet inventerar du varulagret till 120 000 kr. Ingående lager var 100 000 kr. Kontera lagerförändringen.",
+        "hint": "Lagret har ökat med 20 000 kr. Ökning = Debet 1400, Kredit 4900.",
+        "correctAnswer": [
+            { "account": "1400", "side": "debet", "amount": 20000 },
+            { "account": "4900", "side": "kredit", "amount": 20000 }
+        ],
+        "level": 8
+    },
+    {
+        "description": "Vid årsbokslutet inventerar du varulagret till 65 000 kr. Ingående lager var 90 000 kr. Kontera lagerförändringen.",
+        "hint": "Lagret har minskat med 25 000 kr. Minskning = Debet 4900, Kredit 1400.",
+        "correctAnswer": [
+            { "account": "4900", "side": "debet", "amount": 25000 },
+            { "account": "1400", "side": "kredit", "amount": 25000 }
+        ],
+        "level": 8
+    },
+    {
+        "description": "Du ska skriva av maskiner med 20 000 kr. Kontera avskrivningen.",
+        "hint": "Avskrivning är en kostnad (7832). Ackumulerade avskrivningar ökar (1219).",
+        "correctAnswer": [
+            { "account": "7832", "side": "debet", "amount": 20000 },
+            { "account": "1219", "side": "kredit", "amount": 20000 }
+        ],
+        "level": 8
+    },
+    {
+        "description": "Du ska skriva av bilar med 40 000 kr. Kontera avskrivningen.",
+        "hint": "Avskrivning bilar är kostnad (7834). Ackumulerade avskrivningar bilar (1249).",
+        "correctAnswer": [
+            { "account": "7834", "side": "debet", "amount": 40000 },
+            { "account": "1249", "side": "kredit", "amount": 40000 }
+        ],
+        "level": 8
+    },
+    {
+        "description": "Maskiner anskaffades för 100 000 kr. Avskrivningstiden är 5 år (linjär). Beräkna och kontera årets avskrivning.",
+        "hint": "Årlig avskrivning = 100 000 / 5 = 20 000 kr.",
+        "correctAnswer": [
+            { "account": "7832", "side": "debet", "amount": 20000 },
+            { "account": "1219", "side": "kredit", "amount": 20000 }
+        ],
+        "level": 8
+    },
+    {
+        "description": "En bil anskaffades för 240 000 kr. Avskrivningstiden är 6 år (linjär). Beräkna och kontera årets avskrivning.",
+        "hint": "Årlig avskrivning = 240 000 / 6 = 40 000 kr.",
+        "correctAnswer": [
+            { "account": "7834", "side": "debet", "amount": 40000 },
+            { "account": "1249", "side": "kredit", "amount": 40000 }
+        ],
+        "level": 8
+    },
+    {
+        "description": "Du säljer en maskin för 50 000 kr kontant. Anskaffningsvärde 100 000 kr, ackumulerade avskrivningar 60 000 kr. Kontera försäljningen.",
+        "hint": "Bokfört värde = 100 000 - 60 000 = 40 000 kr. Vinst = 50 000 - 40 000 = 10 000 kr.",
+        "correctAnswer": [
+            { "account": "1910", "side": "debet", "amount": 50000 },
+            { "account": "1219", "side": "debet", "amount": 60000 },
+            { "account": "1210", "side": "kredit", "amount": 100000 },
+            { "account": "3973", "side": "kredit", "amount": 10000 }
+        ],
+        "level": 8
+    },
+    {
+        "description": "Du säljer en bil för 80 000 kr till företagskontot. Anskaffningsvärde 300 000 kr, ackumulerade avskrivningar 200 000 kr. Kontera försäljningen.",
+        "hint": "Bokfört värde = 100 000 kr. Försäljning 80 000 kr. Förlust = 20 000 kr.",
+        "correctAnswer": [
+            { "account": "1930", "side": "debet", "amount": 80000 },
+            { "account": "1249", "side": "debet", "amount": 200000 },
+            { "account": "7973", "side": "debet", "amount": 20000 },
+            { "account": "1240", "side": "kredit", "amount": 300000 }
+        ],
+        "level": 8
+    },
+    {
+        "description": "Du säljer en maskin för 30 000 kr kontant. Anskaffningsvärde 80 000 kr, ackumulerade avskrivningar 40 000 kr. Kontera försäljningen.",
+        "hint": "Bokfört värde = 40 000 kr. Försäljning 30 000 kr. Förlust = 10 000 kr.",
+        "correctAnswer": [
+            { "account": "1910", "side": "debet", "amount": 30000 },
+            { "account": "1219", "side": "debet", "amount": 40000 },
+            { "account": "7973", "side": "debet", "amount": 10000 },
+            { "account": "1210", "side": "kredit", "amount": 80000 }
+        ],
+        "level": 8
+    },
+    {
+        "description": "Du säljer en bil för 120 000 kr till företagskontot. Anskaffningsvärde 200 000 kr, ackumulerade avskrivningar 100 000 kr. Kontera försäljningen.",
+        "hint": "Bokfört värde = 100 000 kr. Försäljning 120 000 kr. Vinst = 20 000 kr.",
+        "correctAnswer": [
+            { "account": "1930", "side": "debet", "amount": 120000 },
+            { "account": "1249", "side": "debet", "amount": 100000 },
+            { "account": "1240", "side": "kredit", "amount": 200000 },
+            { "account": "3973", "side": "kredit", "amount": 20000 }
+        ],
+        "level": 8
+    },
+    {
+        "description": "Du säljer inventarier för 15 000 kr kontant. Anskaffningsvärde 50 000 kr, ackumulerade avskrivningar 35 000 kr. Kontera försäljningen.",
+        "hint": "Bokfört värde = 15 000 kr. Försäljning 15 000 kr. Varken vinst eller förlust.",
+        "correctAnswer": [
+            { "account": "1910", "side": "debet", "amount": 15000 },
+            { "account": "1229", "side": "debet", "amount": 35000 },
+            { "account": "1220", "side": "kredit", "amount": 50000 }
+        ],
+        "level": 8
+    },
+    {
+        "description": "Du säljer en maskin för 75 000 kr till företagskontot. Anskaffningsvärde 150 000 kr, ackumulerade avskrivningar 90 000 kr. Kontera försäljningen.",
+        "hint": "Bokfört värde = 60 000 kr. Vinst = 75 000 - 60 000 = 15 000 kr.",
+        "correctAnswer": [
+            { "account": "1930", "side": "debet", "amount": 75000 },
+            { "account": "1219", "side": "debet", "amount": 90000 },
+            { "account": "1210", "side": "kredit", "amount": 150000 },
+            { "account": "3973", "side": "kredit", "amount": 15000 }
+        ],
+        "level": 8
+    },
+    {
+        "description": "Du skrotar en helt avskriven bil. Anskaffningsvärde 180 000 kr. Kontera bortskrivningen.",
+        "hint": "Bilen är helt avskriven, dvs ackumulerade avskrivningar = anskaffningsvärdet. Ingen vinst/förlust.",
+        "correctAnswer": [
+            { "account": "1249", "side": "debet", "amount": 180000 },
+            { "account": "1240", "side": "kredit", "amount": 180000 }
+        ],
+        "level": 8
+    },
+    {
+        "description": "Du säljer en bil för 25 000 kr kontant. Anskaffningsvärde 250 000 kr, ackumulerade avskrivningar 210 000 kr. Kontera försäljningen.",
+        "hint": "Bokfört värde = 40 000 kr. Förlust = 40 000 - 25 000 = 15 000 kr.",
+        "correctAnswer": [
+            { "account": "1910", "side": "debet", "amount": 25000 },
+            { "account": "1249", "side": "debet", "amount": 210000 },
+            { "account": "7973", "side": "debet", "amount": 15000 },
+            { "account": "1240", "side": "kredit", "amount": 250000 }
+        ],
+        "level": 8
+    },
+    {
+        "description": "Hela bokslutet: Varulager har ökat från 50 000 kr till 70 000 kr. Maskiner ska skrivas av med 30 000 kr. Kontera båda.",
+        "hint": "Lagerökning 20 000 kr (Debet 1400, Kredit 4900). Avskrivning (Debet 7832, Kredit 1219).",
+        "correctAnswer": [
+            { "account": "1400", "side": "debet", "amount": 20000 },
+            { "account": "4900", "side": "kredit", "amount": 20000 },
+            { "account": "7832", "side": "debet", "amount": 30000 },
+            { "account": "1219", "side": "kredit", "amount": 30000 }
+        ],
+        "level": 8
+    },
+    {
+        "description": "Du säljer datorer för 8 000 kr till företagskontot. Anskaffningsvärde 45 000 kr, ackumulerade avskrivningar 42 000 kr. Kontera försäljningen.",
+        "hint": "Bokfört värde = 3 000 kr. Vinst = 8 000 - 3 000 = 5 000 kr.",
+        "correctAnswer": [
+            { "account": "1930", "side": "debet", "amount": 8000 },
+            { "account": "1259", "side": "debet", "amount": 42000 },
+            { "account": "1250", "side": "kredit", "amount": 45000 },
+            { "account": "3973", "side": "kredit", "amount": 5000 }
+        ],
+        "level": 8
+    },
+    {
+        "description": "Du byter in en gammal bil mot en ny. Gamla bilen: anskaffning 200 000 kr, ack avskr 150 000 kr, inbytesvärde 40 000 kr. Nya bilen kostar 280 000 kr. Du betalar mellanskillnaden från företagskontot. Kontera allt.",
+        "hint": "Bokfört värde gamla = 50 000 kr. Förlust = 10 000 kr. Mellanskillnad = 280 000 - 40 000 = 240 000 kr.",
+        "correctAnswer": [
+            { "account": "1240", "side": "debet", "amount": 280000 },
+            { "account": "1249", "side": "debet", "amount": 150000 },
+            { "account": "7973", "side": "debet", "amount": 10000 },
+            { "account": "1240", "side": "kredit", "amount": 200000 },
+            { "account": "1930", "side": "kredit", "amount": 240000 }
+        ],
+        "level": 8
+    }
+]
