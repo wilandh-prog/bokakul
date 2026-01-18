@@ -24,6 +24,8 @@ Kontoklass 1
 
 1580 Fordran kontokort
 
+1630 Skattekonto
+
 1710 Förutbetald hyra
 
 1730 Förutbetald försäkring

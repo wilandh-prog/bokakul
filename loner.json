@@ -1,0 +1,237 @@
+[
+    {
+        "description": "Du betalar ut lön på 25 000 kr brutto. Personalskatt är 30%. Kontera löneutbetalningen.",
+        "hint": "Skatt = 25 000 × 30% = 7 500 kr. Nettolön = 17 500 kr. Lönekostnad (7010), skatteskuld (2710), utbetalning från bank.",
+        "correctAnswer": [
+            { "account": "7010", "side": "debet", "amount": 25000 },
+            { "account": "2710", "side": "kredit", "amount": 7500 },
+            { "account": "1930", "side": "kredit", "amount": 17500 }
+        ],
+        "level": 7
+    },
+    {
+        "description": "Du betalar ut lön på 30 000 kr brutto. Personalskatt är 32%. Kontera löneutbetalningen.",
+        "hint": "Skatt = 30 000 × 32% = 9 600 kr. Nettolön = 20 400 kr.",
+        "correctAnswer": [
+            { "account": "7010", "side": "debet", "amount": 30000 },
+            { "account": "2710", "side": "kredit", "amount": 9600 },
+            { "account": "1930", "side": "kredit", "amount": 20400 }
+        ],
+        "level": 7
+    },
+    {
+        "description": "Du ska bokföra arbetsgivaravgifter på en bruttolön på 25 000 kr. Arbetsgivaravgiften är 31,42%. Kontera.",
+        "hint": "Arbetsgivaravgift = 25 000 × 31,42% = 7 855 kr. Kostnad (7510), skuld (2730).",
+        "correctAnswer": [
+            { "account": "7510", "side": "debet", "amount": 7855 },
+            { "account": "2730", "side": "kredit", "amount": 7855 }
+        ],
+        "level": 7
+    },
+    {
+        "description": "Du ska bokföra arbetsgivaravgifter på en bruttolön på 40 000 kr. Arbetsgivaravgiften är 31,42%. Kontera.",
+        "hint": "Arbetsgivaravgift = 40 000 × 31,42% = 12 568 kr.",
+        "correctAnswer": [
+            { "account": "7510", "side": "debet", "amount": 12568 },
+            { "account": "2730", "side": "kredit", "amount": 12568 }
+        ],
+        "level": 7
+    },
+    {
+        "description": "Du ska överföra personalskatt på 8 000 kr till skattekontot (1630). Kontera.",
+        "hint": "Skatteskulden (2710) minskar, skuld på skattekontot (1630) ökar.",
+        "correctAnswer": [
+            { "account": "2710", "side": "debet", "amount": 8000 },
+            { "account": "1630", "side": "kredit", "amount": 8000 }
+        ],
+        "level": 7
+    },
+    {
+        "description": "Du ska överföra arbetsgivaravgifter på 10 000 kr till skattekontot (1630). Kontera.",
+        "hint": "Skuld för sociala avgifter (2730) minskar, skuld på skattekontot (1630) ökar.",
+        "correctAnswer": [
+            { "account": "2730", "side": "debet", "amount": 10000 },
+            { "account": "1630", "side": "kredit", "amount": 10000 }
+        ],
+        "level": 7
+    },
+    {
+        "description": "Du betalar 15 000 kr från företagskontot till Skatteverket via skattekontot (1630). Kontera.",
+        "hint": "Skulden på skattekontot minskar, bankkontot minskar.",
+        "correctAnswer": [
+            { "account": "1630", "side": "debet", "amount": 15000 },
+            { "account": "1930", "side": "kredit", "amount": 15000 }
+        ],
+        "level": 7
+    },
+    {
+        "description": "Du betalar ut lön på 20 000 kr brutto kontant. Personalskatt är 25%. Kontera löneutbetalningen.",
+        "hint": "Skatt = 5 000 kr. Nettolön = 15 000 kr. Utbetalning från kassan (1910).",
+        "correctAnswer": [
+            { "account": "7010", "side": "debet", "amount": 20000 },
+            { "account": "2710", "side": "kredit", "amount": 5000 },
+            { "account": "1910", "side": "kredit", "amount": 15000 }
+        ],
+        "level": 7
+    },
+    {
+        "description": "Lön och arbetsgivaravgifter: Bruttolön 32 000 kr, skatt 30%, arbetsgivaravgift 31,42%. Kontera löneutbetalning och arbetsgivaravgifter.",
+        "hint": "Skatt = 9 600 kr, netto = 22 400 kr. Arbetsgivaravgift = 32 000 × 31,42% = 10 054 kr.",
+        "correctAnswer": [
+            { "account": "7010", "side": "debet", "amount": 32000 },
+            { "account": "2710", "side": "kredit", "amount": 9600 },
+            { "account": "1930", "side": "kredit", "amount": 22400 },
+            { "account": "7510", "side": "debet", "amount": 10054 },
+            { "account": "2730", "side": "kredit", "amount": 10054 }
+        ],
+        "level": 7
+    },
+    {
+        "description": "Lön och arbetsgivaravgifter: Bruttolön 28 000 kr, skatt 32%, arbetsgivaravgift 31,42%. Kontera löneutbetalning och arbetsgivaravgifter.",
+        "hint": "Skatt = 8 960 kr, netto = 19 040 kr. Arbetsgivaravgift = 28 000 × 31,42% = 8 798 kr.",
+        "correctAnswer": [
+            { "account": "7010", "side": "debet", "amount": 28000 },
+            { "account": "2710", "side": "kredit", "amount": 8960 },
+            { "account": "1930", "side": "kredit", "amount": 19040 },
+            { "account": "7510", "side": "debet", "amount": 8798 },
+            { "account": "2730", "side": "kredit", "amount": 8798 }
+        ],
+        "level": 7
+    },
+    {
+        "description": "Överför personalskatt 12 000 kr och arbetsgivaravgifter 9 500 kr till skattekontot (1630). Kontera.",
+        "hint": "Båda skulderna överförs till skattekontot. Total skuld = 21 500 kr.",
+        "correctAnswer": [
+            { "account": "2710", "side": "debet", "amount": 12000 },
+            { "account": "2730", "side": "debet", "amount": 9500 },
+            { "account": "1630", "side": "kredit", "amount": 21500 }
+        ],
+        "level": 7
+    },
+    {
+        "description": "Hela kedjan: Bruttolön 25 000 kr, skatt 30%, arbetsgivaravgift 31,42%. Kontera lön, avgifter, överför till skattekonto och betala till Skatteverket.",
+        "hint": "Skatt = 7 500 kr, netto = 17 500 kr. Avgift = 7 855 kr. Överför 15 355 kr till skattekonto och betala.",
+        "correctAnswer": [
+            { "account": "7010", "side": "debet", "amount": 25000 },
+            { "account": "2710", "side": "kredit", "amount": 7500 },
+            { "account": "1930", "side": "kredit", "amount": 17500 },
+            { "account": "7510", "side": "debet", "amount": 7855 },
+            { "account": "2730", "side": "kredit", "amount": 7855 },
+            { "account": "2710", "side": "debet", "amount": 7500 },
+            { "account": "2730", "side": "debet", "amount": 7855 },
+            { "account": "1630", "side": "kredit", "amount": 15355 },
+            { "account": "1630", "side": "debet", "amount": 15355 },
+            { "account": "1930", "side": "kredit", "amount": 15355 }
+        ],
+        "level": 7
+    },
+    {
+        "description": "Hela kedjan: Bruttolön 40 000 kr, skatt 32%, arbetsgivaravgift 31,42%. Kontera lön, avgifter, överför till skattekonto och betala till Skatteverket.",
+        "hint": "Skatt = 12 800 kr, netto = 27 200 kr. Avgift = 12 568 kr. Överför 25 368 kr till skattekonto och betala.",
+        "correctAnswer": [
+            { "account": "7010", "side": "debet", "amount": 40000 },
+            { "account": "2710", "side": "kredit", "amount": 12800 },
+            { "account": "1930", "side": "kredit", "amount": 27200 },
+            { "account": "7510", "side": "debet", "amount": 12568 },
+            { "account": "2730", "side": "kredit", "amount": 12568 },
+            { "account": "2710", "side": "debet", "amount": 12800 },
+            { "account": "2730", "side": "debet", "amount": 12568 },
+            { "account": "1630", "side": "kredit", "amount": 25368 },
+            { "account": "1630", "side": "debet", "amount": 25368 },
+            { "account": "1930", "side": "kredit", "amount": 25368 }
+        ],
+        "level": 7
+    },
+    {
+        "description": "Hela kedjan: Bruttolön 35 000 kr, skatt 28%, arbetsgivaravgift 31,42%. Kontera lön, avgifter, överför till skattekonto och betala till Skatteverket.",
+        "hint": "Skatt = 9 800 kr, netto = 25 200 kr. Avgift = 10 997 kr. Överför 20 797 kr till skattekonto och betala.",
+        "correctAnswer": [
+            { "account": "7010", "side": "debet", "amount": 35000 },
+            { "account": "2710", "side": "kredit", "amount": 9800 },
+            { "account": "1930", "side": "kredit", "amount": 25200 },
+            { "account": "7510", "side": "debet", "amount": 10997 },
+            { "account": "2730", "side": "kredit", "amount": 10997 },
+            { "account": "2710", "side": "debet", "amount": 9800 },
+            { "account": "2730", "side": "debet", "amount": 10997 },
+            { "account": "1630", "side": "kredit", "amount": 20797 },
+            { "account": "1630", "side": "debet", "amount": 20797 },
+            { "account": "1930", "side": "kredit", "amount": 20797 }
+        ],
+        "level": 7
+    },
+    {
+        "description": "Du betalar ut lön på 50 000 kr brutto. Personalskatt är 35%. Kontera löneutbetalningen.",
+        "hint": "Skatt = 17 500 kr. Nettolön = 32 500 kr.",
+        "correctAnswer": [
+            { "account": "7010", "side": "debet", "amount": 50000 },
+            { "account": "2710", "side": "kredit", "amount": 17500 },
+            { "account": "1930", "side": "kredit", "amount": 32500 }
+        ],
+        "level": 7
+    },
+    {
+        "description": "Du ska bokföra arbetsgivaravgifter på en bruttolön på 50 000 kr. Arbetsgivaravgiften är 31,42%. Kontera.",
+        "hint": "Arbetsgivaravgift = 50 000 × 31,42% = 15 710 kr.",
+        "correctAnswer": [
+            { "account": "7510", "side": "debet", "amount": 15710 },
+            { "account": "2730", "side": "kredit", "amount": 15710 }
+        ],
+        "level": 7
+    },
+    {
+        "description": "Lön och arbetsgivaravgifter: Bruttolön 45 000 kr, skatt 33%, arbetsgivaravgift 31,42%. Kontera löneutbetalning och arbetsgivaravgifter.",
+        "hint": "Skatt = 14 850 kr, netto = 30 150 kr. Arbetsgivaravgift = 14 139 kr.",
+        "correctAnswer": [
+            { "account": "7010", "side": "debet", "amount": 45000 },
+            { "account": "2710", "side": "kredit", "amount": 14850 },
+            { "account": "1930", "side": "kredit", "amount": 30150 },
+            { "account": "7510", "side": "debet", "amount": 14139 },
+            { "account": "2730", "side": "kredit", "amount": 14139 }
+        ],
+        "level": 7
+    },
+    {
+        "description": "Hela kedjan: Bruttolön 30 000 kr, skatt 30%, arbetsgivaravgift 31,42%. Kontera lön, avgifter, överför till skattekonto och betala till Skatteverket.",
+        "hint": "Skatt = 9 000 kr, netto = 21 000 kr. Avgift = 9 426 kr. Överför 18 426 kr till skattekonto och betala.",
+        "correctAnswer": [
+            { "account": "7010", "side": "debet", "amount": 30000 },
+            { "account": "2710", "side": "kredit", "amount": 9000 },
+            { "account": "1930", "side": "kredit", "amount": 21000 },
+            { "account": "7510", "side": "debet", "amount": 9426 },
+            { "account": "2730", "side": "kredit", "amount": 9426 },
+            { "account": "2710", "side": "debet", "amount": 9000 },
+            { "account": "2730", "side": "debet", "amount": 9426 },
+            { "account": "1630", "side": "kredit", "amount": 18426 },
+            { "account": "1630", "side": "debet", "amount": 18426 },
+            { "account": "1930", "side": "kredit", "amount": 18426 }
+        ],
+        "level": 7
+    },
+    {
+        "description": "Två anställda: Lön 25 000 kr (skatt 30%) och 35 000 kr (skatt 32%). Kontera båda löneutbetalningarna.",
+        "hint": "Anställd 1: skatt 7 500 kr, netto 17 500 kr. Anställd 2: skatt 11 200 kr, netto 23 800 kr. Total bruttolön 60 000 kr.",
+        "correctAnswer": [
+            { "account": "7010", "side": "debet", "amount": 60000 },
+            { "account": "2710", "side": "kredit", "amount": 18700 },
+            { "account": "1930", "side": "kredit", "amount": 41300 }
+        ],
+        "level": 7
+    },
+    {
+        "description": "Hela kedjan: Bruttolön 24 000 kr, skatt 25%, arbetsgivaravgift 31,42%. Kontera lön, avgifter, överför till skattekonto och betala till Skatteverket.",
+        "hint": "Skatt = 6 000 kr, netto = 18 000 kr. Avgift = 7 541 kr. Överför 13 541 kr till skattekonto och betala.",
+        "correctAnswer": [
+            { "account": "7010", "side": "debet", "amount": 24000 },
+            { "account": "2710", "side": "kredit", "amount": 6000 },
+            { "account": "1930", "side": "kredit", "amount": 18000 },
+            { "account": "7510", "side": "debet", "amount": 7541 },
+            { "account": "2730", "side": "kredit", "amount": 7541 },
+            { "account": "2710", "side": "debet", "amount": 6000 },
+            { "account": "2730", "side": "debet", "amount": 7541 },
+            { "account": "1630", "side": "kredit", "amount": 13541 },
+            { "account": "1630", "side": "debet", "amount": 13541 },
+            { "account": "1930", "side": "kredit", "amount": 13541 }
+        ],
+        "level": 7
+    }
+]

@@ -66,6 +66,28 @@ header h1 {
     color: #667eea;
 }
 
+.best-badge {
+    font-size: 1.8em;
+    transition: transform 0.2s ease;
+}
+
+.best-badge:hover {
+    transform: scale(1.2);
+}
+
+.best-badge-name {
+    font-size: 0.9em;
+    font-weight: 600;
+    color: #667eea;
+}
+
+#best-badge-container {
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
 main {
     grid-area: main;
     background: white;

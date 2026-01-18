@@ -206,17 +206,20 @@ const sessionStartTime = Date.now();
 // Achievements
 const achievements = {
     firstCorrect: { id: 'firstCorrect', name: 'Första steget', description: 'Svara rätt på din första fråga', icon: '🌟', unlocked: false },
-    streak3: { id: 'streak3', name: 'Trepoängare', description: '3 rätt i rad', icon: '🔥', unlocked: false },
-    streak5: { id: 'streak5', name: 'Het svit', description: '5 rätt i rad', icon: '💥', unlocked: false },
-    streak10: { id: 'streak10', name: 'Ostoppbar', description: '10 rätt i rad', icon: '⚡', unlocked: false },
-    score1000: { id: 'score1000', name: 'Tusingen', description: 'Nå 1000 poäng', icon: '💰', unlocked: false },
-    score5000: { id: 'score5000', name: 'Poängproffs', description: 'Nå 5000 poäng', icon: '💎', unlocked: false },
-    score10000: { id: 'score10000', name: 'Bokföringslegend', description: 'Nå 10000 poäng', icon: '👑', unlocked: false },
-    level2: { id: 'level2', name: 'Nivå 2 mästare', description: 'Klara alla övningar på nivå 2', icon: '📈', unlocked: false },
-    level3: { id: 'level3', name: 'Momsmästare', description: 'Klara alla övningar på nivå 3 (med 25% moms)', icon: '🏆', unlocked: false },
-    perfect10: { id: 'perfect10', name: 'Perfektionist', description: '10 rätt utan fel', icon: '✨', unlocked: false },
-    total50: { id: 'total50', name: 'Flitig student', description: '50 rätta svar totalt', icon: '📚', unlocked: false },
-    total100: { id: 'total100', name: 'Expert', description: '100 rätta svar totalt', icon: '🎓', unlocked: false }
+    streak5: { id: 'streak5', name: 'Uppvärmd', description: '5 rätt i rad', icon: '🔥', unlocked: false },
+    streak10: { id: 'streak10', name: 'Het svit', description: '10 rätt i rad', icon: '💥', unlocked: false },
+    streak25: { id: 'streak25', name: 'Ostoppbar', description: '25 rätt i rad', icon: '⚡', unlocked: false },
+    streak50: { id: 'streak50', name: 'Maskin', description: '50 rätt i rad', icon: '🤖', unlocked: false },
+    score5000: { id: 'score5000', name: 'Tusingen', description: 'Nå 5 000 poäng', icon: '💰', unlocked: false },
+    score25000: { id: 'score25000', name: 'Poängproffs', description: 'Nå 25 000 poäng', icon: '💎', unlocked: false },
+    score100000: { id: 'score100000', name: 'Bokföringslegend', description: 'Nå 100 000 poäng', icon: '👑', unlocked: false },
+    level2: { id: 'level2', name: 'Nivå 2 klar', description: 'Klara alla övningar på nivå 2', icon: '📈', unlocked: false },
+    level3: { id: 'level3', name: 'Momsmästare', description: 'Klara alla övningar på nivå 3', icon: '🏆', unlocked: false },
+    perfect15: { id: 'perfect15', name: 'Noggrann', description: '15 rätt utan fel i session', icon: '✨', unlocked: false },
+    perfect50: { id: 'perfect50', name: 'Perfektionist', description: '50 rätt utan fel i session', icon: '💫', unlocked: false },
+    total100: { id: 'total100', name: 'Flitig student', description: '100 rätta svar totalt', icon: '📚', unlocked: false },
+    total500: { id: 'total500', name: 'Expert', description: '500 rätta svar totalt', icon: '🎓', unlocked: false },
+    total1000: { id: 'total1000', name: 'Mästare', description: '1000 rätta svar totalt', icon: '🏅', unlocked: false }
 };
 
 // Spara till localStorage
@@ -265,10 +268,6 @@ function checkAchievements() {
     }
 
     // Streak achievements
-    if (!achievements.streak3.unlocked && streak >= 3) {
-        achievements.streak3.unlocked = true;
-        newAchievements.push(achievements.streak3);
-    }
     if (!achievements.streak5.unlocked && streak >= 5) {
         achievements.streak5.unlocked = true;
         newAchievements.push(achievements.streak5);
@@ -277,35 +276,51 @@ function checkAchievements() {
         achievements.streak10.unlocked = true;
         newAchievements.push(achievements.streak10);
     }
+    if (!achievements.streak25.unlocked && streak >= 25) {
+        achievements.streak25.unlocked = true;
+        newAchievements.push(achievements.streak25);
+    }
+    if (!achievements.streak50.unlocked && streak >= 50) {
+        achievements.streak50.unlocked = true;
+        newAchievements.push(achievements.streak50);
+    }
 
     // Poäng achievements
-    if (!achievements.score1000.unlocked && score >= 1000) {
-        achievements.score1000.unlocked = true;
-        newAchievements.push(achievements.score1000);
-    }
     if (!achievements.score5000.unlocked && score >= 5000) {
         achievements.score5000.unlocked = true;
         newAchievements.push(achievements.score5000);
     }
-    if (!achievements.score10000.unlocked && score >= 10000) {
-        achievements.score10000.unlocked = true;
-        newAchievements.push(achievements.score10000);
+    if (!achievements.score25000.unlocked && score >= 25000) {
+        achievements.score25000.unlocked = true;
+        newAchievements.push(achievements.score25000);
+    }
+    if (!achievements.score100000.unlocked && score >= 100000) {
+        achievements.score100000.unlocked = true;
+        newAchievements.push(achievements.score100000);
     }
 
     // Totalt rätt
-    if (!achievements.total50.unlocked && totalCorrect >= 50) {
-        achievements.total50.unlocked = true;
-        newAchievements.push(achievements.total50);
-    }
     if (!achievements.total100.unlocked && totalCorrect >= 100) {
         achievements.total100.unlocked = true;
         newAchievements.push(achievements.total100);
     }
+    if (!achievements.total500.unlocked && totalCorrect >= 500) {
+        achievements.total500.unlocked = true;
+        newAchievements.push(achievements.total500);
+    }
+    if (!achievements.total1000.unlocked && totalCorrect >= 1000) {
+        achievements.total1000.unlocked = true;
+        newAchievements.push(achievements.total1000);
+    }
 
-    // Perfektionist (10 rätt utan fel i en session)
-    if (!achievements.perfect10.unlocked && correctCount >= 10 && incorrectCount === 0) {
-        achievements.perfect10.unlocked = true;
-        newAchievements.push(achievements.perfect10);
+    // Perfektionist (rätt utan fel i en session)
+    if (!achievements.perfect15.unlocked && correctCount >= 15 && incorrectCount === 0) {
+        achievements.perfect15.unlocked = true;
+        newAchievements.push(achievements.perfect15);
+    }
+    if (!achievements.perfect50.unlocked && correctCount >= 50 && incorrectCount === 0) {
+        achievements.perfect50.unlocked = true;
+        newAchievements.push(achievements.perfect50);
     }
 
     // Visa nya achievements
@@ -765,18 +780,43 @@ function showHint() {
     hint.style.display = 'block';
 }
 
+// Rangordning av achievements (högst till lägst)
+const achievementRank = [
+    'score100000', // 👑 Bokföringslegend (100 000 poäng)
+    'total1000',   // 🏅 Mästare (1000 rätt totalt)
+    'streak50',    // 🤖 Maskin (50 i rad)
+    'perfect50',   // 💫 Perfektionist (50 utan fel)
+    'score25000',  // 💎 Poängproffs (25 000 poäng)
+    'total500',    // 🎓 Expert (500 rätt totalt)
+    'streak25',    // ⚡ Ostoppbar (25 i rad)
+    'perfect15',   // ✨ Noggrann (15 utan fel)
+    'level3',      // 🏆 Momsmästare
+    'total100',    // 📚 Flitig student (100 rätt totalt)
+    'score5000',   // 💰 Tusingen (5 000 poäng)
+    'streak10',    // 💥 Het svit (10 i rad)
+    'level2',      // 📈 Nivå 2 klar
+    'streak5',     // 🔥 Uppvärmd (5 i rad)
+    'firstCorrect' // 🌟 Första steget
+];
+
+// Hitta bästa upplåsta badge
+function getBestBadge() {
+    for (const id of achievementRank) {
+        if (achievements[id] && achievements[id].unlocked) {
+            return achievements[id];
+        }
+    }
+    return null;
+}
+
 // Uppdatera statistik
 function updateStats() {
     document.getElementById('score').textContent = score;
     document.getElementById('level').textContent = level;
-    document.getElementById('correct').textContent = correctCount;
-    document.getElementById('incorrect').textContent = incorrectCount;
 
     // Uppdatera utökad statistik
     const highScoreEl = document.getElementById('high-score');
     const streakEl = document.getElementById('streak');
-    const bestStreakEl = document.getElementById('best-streak');
-    const totalCorrectEl = document.getElementById('total-correct');
 
     if (highScoreEl) highScoreEl.textContent = highScore;
     if (streakEl) {
@@ -790,8 +830,20 @@ function updateStats() {
             streakEl.classList.remove('hot-streak', 'on-fire');
         }
     }
-    if (bestStreakEl) bestStreakEl.textContent = bestStreak;
-    if (totalCorrectEl) totalCorrectEl.textContent = totalCorrect;
+
+    // Uppdatera bästa badge
+    const bestBadgeEl = document.getElementById('best-badge');
+    const bestBadgeNameEl = document.getElementById('best-badge-name');
+    if (bestBadgeEl) {
+        const best = getBestBadge();
+        if (best) {
+            bestBadgeEl.textContent = best.icon;
+            if (bestBadgeNameEl) bestBadgeNameEl.textContent = best.name;
+        } else {
+            bestBadgeEl.textContent = '🔒';
+            if (bestBadgeNameEl) bestBadgeNameEl.textContent = 'Ingen ännu';
+        }
+    }
 
     // Uppdatera sessionsstatistik
     const sessionStatsEl = document.getElementById('session-stats');
@@ -866,7 +918,8 @@ const levelFiles = {
     3: 'transaktioner.json',
     4: 'momsredovisning.json',
     5: 'resultatrakning.json',
-    6: 'kreditfakturor-ranta-kontokort.json'
+    6: 'kreditfakturor-ranta-kontokort.json',
+    7: 'loner.json'
 };
 
 // Aktuell vald nivå
