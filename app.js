@@ -425,6 +425,9 @@ function loadEvent() {
     document.getElementById('check-answer').style.display = 'block';
     document.getElementById('skip-event').style.display = 'block';
 
+    // Dölj mini-balansräkningen vid ny uppgift
+    hideMiniBalance();
+
     // Rensa bokföringsrader
     bookingRows = [];
     renderBookingRows();
@@ -476,7 +479,8 @@ function renderBookingRows() {
         return `
         <tr>
             <td colspan="2">
-                <select class="account-select" data-index="${index}" data-field="account">
+                <select class="account-select" data-index="${index}" data-field="account"
+                        aria-label="Välj konto för rad ${index + 1}">
                     <option value="">Välj konto...</option>
                     ${relevantAccounts.map(acc => `
                         <option value="${acc.number}" ${row.account === acc.number ? 'selected' : ''}>
@@ -492,7 +496,8 @@ function renderBookingRows() {
                        value="${row.debetAmount}"
                        placeholder="0"
                        min="0"
-                       step="0.01">
+                       step="0.01"
+                       aria-label="Debetbelopp för rad ${index + 1}">
             </td>
             <td>
                 <input type="number"
@@ -501,10 +506,11 @@ function renderBookingRows() {
                        value="${row.kreditAmount}"
                        placeholder="0"
                        min="0"
-                       step="0.01">
+                       step="0.01"
+                       aria-label="Kreditbelopp för rad ${index + 1}">
             </td>
             <td>
-                <button class="btn-remove" data-index="${index}">X</button>
+                <button class="btn-remove" data-index="${index}" aria-label="Ta bort rad ${index + 1}">✕</button>
             </td>
         </tr>
     `}).join('');
@@ -593,13 +599,13 @@ function checkAnswer() {
         !row.account && (row.debetAmount || row.kreditAmount)
     );
     if (rowsWithoutAccount.length > 0) {
-        showFeedback(false, "Du har fyllt i belopp utan att välja konto. Välj konto i dropdown-menyn!");
+        showFeedback(false, "Välj konto först!\n\nDu har fyllt i belopp men inte valt vilket konto det gäller. Använd dropdown-menyn för att välja rätt konto.");
         return;
     }
 
     // Validera att det finns svar
     if (userAnswer.length === 0) {
-        showFeedback(false, "Du måste fylla i minst en bokföringsrad!");
+        showFeedback(false, "Ingen kontering gjord\n\nFyll i minst en bokföringspost genom att:\n1. Välja ett konto i dropdown-menyn\n2. Ange belopp i Debet eller Kredit");
         return;
     }
 
@@ -613,7 +619,8 @@ function checkAnswer() {
         .reduce((sum, row) => sum + row.amount, 0);
 
     if (Math.abs(debetSum - kreditSum) > 0.01) {
-        showFeedback(false, `Debet (${debetSum} kr) måste vara lika med kredit (${kreditSum} kr)!`);
+        const diff = Math.abs(debetSum - kreditSum);
+        showFeedback(false, `Bokföringen balanserar inte!\n\nDebet: ${debetSum.toLocaleString('sv-SE')} kr\nKredit: ${kreditSum.toLocaleString('sv-SE')} kr\nDifferens: ${diff.toLocaleString('sv-SE')} kr\n\n💡 Tips: I bokföring måste summa debet alltid vara lika med summa kredit.`);
         return;
     }
 
@@ -663,6 +670,9 @@ function checkAnswer() {
             message += `\n🔥 ${streak} rätt i rad!`;
         }
         showFeedback(true, message);
+
+        // Visa mini-balansräkning med animation
+        showMiniBalance(event.correctAnswer);
     } else {
         incorrectCount++;
         totalIncorrect++;
@@ -672,12 +682,15 @@ function checkAnswer() {
         saveProgress();
         updateStats();
 
-        let explanation = "Fel svar. Rätt kontering är:\n\n";
+        let explanation = "Inte riktigt rätt. Så här ska det konteras:\n\n";
         event.correctAnswer.forEach(entry => {
             const accountInfo = findAccountByNumber(entry.account);
             const accountName = accountInfo ? accountInfo.name : 'Okänt konto';
-            explanation += `${entry.account} ${accountName} - ${entry.side}: ${entry.amount} kr\n`;
+            const side = entry.side === 'debet' ? 'Debet' : 'Kredit';
+            explanation += `📌 ${entry.account} ${accountName}\n     ${side}: ${entry.amount.toLocaleString('sv-SE')} kr\n\n`;
         });
+
+        explanation += "💡 Tips: Läs igenom händelsen igen och tänk på vilka konton som påverkas.";
 
         showFeedback(false, explanation);
     }
@@ -701,12 +714,15 @@ function skipEvent() {
     updateStats();
 
     // Visa rätt svar
-    let explanation = "Hoppade över. Rätt kontering är:\n\n";
+    let explanation = "Hoppade över uppgiften. Så här ska det konteras:\n\n";
     event.correctAnswer.forEach(entry => {
         const accountInfo = findAccountByNumber(entry.account);
         const accountName = accountInfo ? accountInfo.name : 'Okänt konto';
-        explanation += `${entry.account} ${accountName} - ${entry.side}: ${entry.amount} kr\n`;
+        const side = entry.side === 'debet' ? 'Debet' : 'Kredit';
+        explanation += `📌 ${entry.account} ${accountName}\n     ${side}: ${entry.amount.toLocaleString('sv-SE')} kr\n\n`;
     });
+
+    explanation += "📖 Studera svaret ovan innan du går vidare!";
 
     showFeedback(false, explanation);
 
@@ -959,6 +975,30 @@ const levelFiles = {
 // Aktuell vald nivå
 let selectedLevel = 1;
 
+// Visa/dölj laddningsindikator
+function showLoading(message = 'Laddar...') {
+    const eventCard = document.querySelector('.event-card');
+    if (!eventCard) return;
+
+    // Ta bort befintlig overlay om den finns
+    hideLoading();
+
+    const overlay = document.createElement('div');
+    overlay.className = 'loading-overlay';
+    overlay.innerHTML = `
+        <div class="loading-spinner"></div>
+        <div class="loading-text">${message}</div>
+    `;
+    eventCard.appendChild(overlay);
+}
+
+function hideLoading() {
+    const overlay = document.querySelector('.loading-overlay');
+    if (overlay) {
+        overlay.remove();
+    }
+}
+
 // Ladda händelser från nivå
 async function loadLevel(levelNumber) {
     selectedLevel = levelNumber;
@@ -970,6 +1010,9 @@ async function loadLevel(levelNumber) {
     }
 
     const fileName = levelFiles[levelNumber];
+
+    // Visa laddningsindikator
+    showLoading('Laddar nivå...');
 
     try {
         const response = await fetch(fileName);
@@ -1001,10 +1044,14 @@ async function loadLevel(levelNumber) {
         // Ladda händelserna
         events = loadedEvents;
 
+        // Dölj laddningsindikator
+        hideLoading();
+
         // Återställ spelet
         resetGame();
 
     } catch (error) {
+        hideLoading();
         alert('Fel vid laddning av nivå: ' + error.message);
         console.error(error);
     }
@@ -1031,14 +1078,287 @@ function setupEventListeners() {
     document.getElementById('skip-event').addEventListener('click', skipEvent);
     document.getElementById('show-hint').addEventListener('click', showHint);
 
-    // Nivåval via dropdown
+    // Enter-tangent för att skicka svar
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            const checkBtn = document.getElementById('check-answer');
+            const nextBtn = document.getElementById('next-event');
+
+            // Om "Kontrollera svar" är synlig, klicka på den
+            if (checkBtn && checkBtn.style.display !== 'none') {
+                e.preventDefault();
+                checkAnswer();
+            }
+            // Om "Nästa händelse" är synlig, klicka på den
+            else if (nextBtn && nextBtn.style.display !== 'none') {
+                e.preventDefault();
+                nextEvent();
+            }
+        }
+    });
+
+    // Nivåval via dropdown med bekräftelse
     const levelSelect = document.getElementById('level-select');
     if (levelSelect) {
         levelSelect.addEventListener('change', (e) => {
-            const level = parseInt(e.target.value);
-            loadLevel(level);
+            const newLevel = parseInt(e.target.value);
+
+            // Kolla om användaren har påbörjat en uppgift eller har poäng i sessionen
+            const hasInput = bookingRows.some(row => row.account || row.debetAmount || row.kreditAmount);
+            const hasProgress = currentEventIndex > 0 || hasInput;
+
+            if (hasProgress) {
+                const confirmed = confirm('Vill du byta nivå? Din nuvarande progress på denna nivå nollställs.');
+                if (!confirmed) {
+                    // Återställ dropdown till nuvarande nivå
+                    e.target.value = selectedLevel;
+                    return;
+                }
+            }
+
+            loadLevel(newLevel);
         });
     }
+}
+
+// ==========================================
+// MINI-BALANSRÄKNING MED ANIMERADE SIFFROR
+// ==========================================
+
+// Dölj mini-balansräkningen
+function hideMiniBalance() {
+    const miniBalance = document.getElementById('mini-balance');
+    if (miniBalance) {
+        miniBalance.style.display = 'none';
+    }
+}
+
+// Beräkna balanseffekt från bokföringsposter
+function calculateBalanceEffect(entries) {
+    const assets = [];      // Tillgångar (1xxx)
+    const liabilities = []; // Skulder och EK (2xxx)
+    let yearResult = 0;     // Beräknat årets resultat
+
+    entries.forEach(entry => {
+        const accountNum = parseInt(entry.account);
+        const accountInfo = findAccountByNumber(entry.account);
+        const accountName = accountInfo ? accountInfo.name : `Konto ${entry.account}`;
+        const amount = parseFloat(entry.amount);
+        const isDebet = entry.side === 'debet';
+
+        if (accountNum >= 1000 && accountNum < 2000) {
+            // Tillgångar: Debet ökar, Kredit minskar
+            const effect = isDebet ? amount : -amount;
+            assets.push({ account: entry.account, name: accountName, amount: effect });
+        } else if (accountNum >= 2000 && accountNum < 3000) {
+            // Skulder/EK: Kredit ökar, Debet minskar
+            const effect = isDebet ? -amount : amount;
+            liabilities.push({ account: entry.account, name: accountName, amount: effect });
+        } else if (accountNum >= 3000 && accountNum < 4000) {
+            // Intäkter: Kredit ökar resultatet
+            yearResult += isDebet ? -amount : amount;
+        } else if (accountNum >= 4000 && accountNum < 9000) {
+            // Kostnader (inkl finansiella): Debet minskar resultatet
+            yearResult += isDebet ? -amount : amount;
+        }
+    });
+
+    // Konsolidera poster på samma konto
+    const consolidate = (items) => {
+        const map = {};
+        items.forEach(item => {
+            if (!map[item.account]) {
+                map[item.account] = { ...item };
+            } else {
+                map[item.account].amount += item.amount;
+            }
+        });
+        return Object.values(map).filter(item => Math.abs(item.amount) > 0.01);
+    };
+
+    return {
+        assets: consolidate(assets),
+        liabilities: consolidate(liabilities),
+        yearResult: yearResult
+    };
+}
+
+// Visa mini-balansräkningen med animation
+function showMiniBalance(entries) {
+    const miniBalance = document.getElementById('mini-balance');
+    const assetsContainer = document.getElementById('balance-assets');
+    const liabilitiesContainer = document.getElementById('balance-liabilities');
+    const sumAssets = document.getElementById('sum-assets');
+    const sumLiabilities = document.getElementById('sum-liabilities');
+
+    if (!miniBalance) return;
+
+    // Rensa tidigare innehåll
+    assetsContainer.innerHTML = '';
+    liabilitiesContainer.innerHTML = '';
+
+    // Beräkna balanseffekten
+    const balance = calculateBalanceEffect(entries);
+
+    // Visa balansräkningen (initialt tom)
+    miniBalance.style.display = 'block';
+
+    // Hämta positioner för animation
+    const bookingTable = document.querySelector('.booking-table');
+    const tableRect = bookingTable.getBoundingClientRect();
+
+    let delay = 0;
+    const delayIncrement = 200;
+
+    // Animera tillgångar
+    balance.assets.forEach((item, index) => {
+        const balanceItem = createBalanceItem(item);
+        assetsContainer.appendChild(balanceItem);
+
+        // Hitta källelement i tabellen
+        const sourceRow = findSourceRowForAccount(item.account);
+        if (sourceRow) {
+            animateToBalance(item, sourceRow, balanceItem, delay);
+        }
+        delay += delayIncrement;
+
+        // Visa posten efter delay
+        setTimeout(() => {
+            balanceItem.classList.add('visible');
+        }, delay + 400);
+    });
+
+    // Animera skulder
+    balance.liabilities.forEach((item, index) => {
+        const balanceItem = createBalanceItem(item);
+        liabilitiesContainer.appendChild(balanceItem);
+
+        const sourceRow = findSourceRowForAccount(item.account);
+        if (sourceRow) {
+            animateToBalance(item, sourceRow, balanceItem, delay);
+        }
+        delay += delayIncrement;
+
+        setTimeout(() => {
+            balanceItem.classList.add('visible');
+        }, delay + 400);
+    });
+
+    // Lägg till årets resultat om det finns resultatpåverkan
+    if (Math.abs(balance.yearResult) > 0.01) {
+        const resultItem = createBalanceItem({
+            account: 'result',
+            name: 'Beräknat årets resultat',
+            amount: balance.yearResult
+        }, true);
+        liabilitiesContainer.appendChild(resultItem);
+
+        // Hitta källa för resultatposter (första intäkts-/kostnadskontot)
+        const resultEntry = entries.find(e => {
+            const num = parseInt(e.account);
+            return num >= 3000 && num < 9000;
+        });
+        if (resultEntry) {
+            const sourceRow = findSourceRowForAccount(resultEntry.account);
+            if (sourceRow) {
+                animateToBalance({ amount: balance.yearResult }, sourceRow, resultItem, delay);
+            }
+        }
+        delay += delayIncrement;
+
+        setTimeout(() => {
+            resultItem.classList.add('visible');
+        }, delay + 400);
+    }
+
+    // Beräkna och visa summor efter alla animationer
+    setTimeout(() => {
+        const totalAssets = balance.assets.reduce((sum, item) => sum + item.amount, 0);
+        const totalLiabilities = balance.liabilities.reduce((sum, item) => sum + item.amount, 0) + balance.yearResult;
+
+        sumAssets.textContent = formatAmount(totalAssets);
+        sumLiabilities.textContent = formatAmount(totalLiabilities);
+    }, delay + 500);
+}
+
+// Skapa ett balansräkningselement
+function createBalanceItem(item, isResult = false) {
+    const div = document.createElement('div');
+    div.className = 'balance-item' + (isResult ? ' result-item' : '');
+    div.dataset.account = item.account;
+
+    const nameSpan = document.createElement('span');
+    nameSpan.className = 'account-name';
+    nameSpan.textContent = item.name;
+
+    const amountSpan = document.createElement('span');
+    amountSpan.className = 'amount';
+    amountSpan.textContent = formatAmount(item.amount);
+
+    div.appendChild(nameSpan);
+    div.appendChild(amountSpan);
+
+    return div;
+}
+
+// Formatera belopp
+function formatAmount(amount) {
+    const sign = amount >= 0 ? '+' : '';
+    return sign + amount.toLocaleString('sv-SE') + ' kr';
+}
+
+// Hitta tabellrad för ett visst konto
+function findSourceRowForAccount(accountNumber) {
+    const rows = document.querySelectorAll('#booking-entries tr');
+    for (const row of rows) {
+        const select = row.querySelector('select');
+        if (select && select.value === accountNumber) {
+            return row;
+        }
+    }
+    return null;
+}
+
+// Animera flygande siffra från källa till mål
+function animateToBalance(item, sourceElement, targetElement, delay) {
+    setTimeout(() => {
+        const sourceRect = sourceElement.getBoundingClientRect();
+        const targetRect = targetElement.getBoundingClientRect();
+
+        // Skapa flygande element
+        const flyingEl = document.createElement('div');
+        flyingEl.className = 'flying-number';
+        flyingEl.textContent = Math.abs(item.amount).toLocaleString('sv-SE') + ' kr';
+
+        // Startposition (mitt av källraden)
+        const startX = sourceRect.left + sourceRect.width / 2;
+        const startY = sourceRect.top + sourceRect.height / 2;
+
+        flyingEl.style.left = startX + 'px';
+        flyingEl.style.top = startY + 'px';
+        flyingEl.style.transform = 'translate(-50%, -50%)';
+
+        document.body.appendChild(flyingEl);
+
+        // Animera till målet
+        const targetX = targetRect.left + targetRect.width / 2;
+        const targetY = targetRect.top + targetRect.height / 2;
+
+        // Använd requestAnimationFrame för smidig animation
+        requestAnimationFrame(() => {
+            flyingEl.style.transition = 'all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            flyingEl.style.left = targetX + 'px';
+            flyingEl.style.top = targetY + 'px';
+
+            // Ta bort elementet efter animationen
+            setTimeout(() => {
+                flyingEl.style.animation = 'flyToBalance 0.3s ease-out forwards';
+                setTimeout(() => {
+                    flyingEl.remove();
+                }, 300);
+            }, 600);
+        });
+    }, delay);
 }
 
 // Starta spelet när sidan laddas

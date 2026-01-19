@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BokaKul - Öva Bokföring</title>
+    <meta name="description" content="Öva bokföring på ett roligt sätt. Lär dig kontera affärshändelser med direkt feedback.">
+    <meta name="theme-color" content="#667eea">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
     <link rel="stylesheet" href="style.css">
     <!-- Google Analytics - laddas endast efter samtycke -->
     <script>
@@ -26,38 +29,41 @@
     </script>
 </head>
 <body>
-    <div class="container">
+    <a href="#main-content" class="skip-link">Hoppa till huvudinnehåll</a>
+    <div class="container" role="application" aria-label="BokaKul bokföringsövning">
         <header>
-            <h1>📚 BokaKul</h1>
-            <div class="stats">
-                <div class="stat">
-                    <span class="label">Poäng:</span>
-                    <span id="score" class="value">0</span>
-                </div>
-                <div class="stat">
-                    <span class="label">Nivå:</span>
-                    <span id="level" class="value">1</span>
-                </div>
-                <div class="stat highlight">
-                    <span class="label">🏆 Highscore:</span>
-                    <span id="high-score" class="value">0</span>
-                </div>
-                <div class="stat">
-                    <span class="label">🔥 Streak:</span>
-                    <span id="streak" class="value streak-value">0</span>
-                </div>
-                <div class="stat" id="best-badge-container">
-                    <span id="best-badge" class="best-badge">🔒</span>
+            <div class="header-top">
+                <h1>📚 BokaKul</h1>
+                <div class="header-badge" id="best-badge-container" aria-label="Din bästa utmärkelse">
+                    <span id="best-badge" class="best-badge" aria-hidden="true">🔒</span>
                     <span id="best-badge-name" class="best-badge-name">Ingen ännu</span>
                 </div>
+            </div>
+            <div class="stats" role="status" aria-live="polite" aria-label="Spelstatistik">
+                <div class="stat primary">
+                    <span class="label">Poäng</span>
+                    <span id="score" class="value">0</span>
+                </div>
+                <div class="stat primary">
+                    <span class="label">Nivå</span>
+                    <span id="level" class="value">1</span>
+                </div>
+                <div class="stat">
+                    <span class="label">🔥 Streak</span>
+                    <span id="streak" class="value streak-value">0</span>
+                </div>
+                <div class="stat highlight">
+                    <span class="label">🏆 Highscore</span>
+                    <span id="high-score" class="value">0</span>
+                </div>
                 <div class="stat session-stat">
-                    <span class="label">📅 Session:</span>
+                    <span class="label">Session</span>
                     <span id="session-stats" class="value">0/0</span>
                 </div>
             </div>
         </header>
 
-        <main>
+        <main id="main-content" aria-label="Övningsområde">
             <div class="level-selector">
                 <label for="level-select" class="level-label">Välj nivå</label>
                 <select id="level-select" class="level-dropdown">
@@ -107,14 +113,30 @@
                     </table>
                 </div>
 
+                <div id="mini-balance" class="mini-balance" style="display: none;">
+                    <div class="balance-title">Balansräkning</div>
+                    <div class="balance-columns">
+                        <div class="balance-column tillgangar">
+                            <h4>Tillgångar</h4>
+                            <div id="balance-assets"></div>
+                            <div class="balance-sum" id="sum-assets">0</div>
+                        </div>
+                        <div class="balance-column skulder">
+                            <h4>Skulder + EK</h4>
+                            <div id="balance-liabilities"></div>
+                            <div class="balance-sum" id="sum-liabilities">0</div>
+                        </div>
+                    </div>
+                </div>
+
                 <button id="add-row" class="btn btn-secondary">+ Lägg till rad</button>
             </div>
 
-            <div class="controls">
-                <button id="check-answer" class="btn btn-primary">Kontrollera svar</button>
-                <button id="next-event" class="btn btn-primary" style="display: none;">Nästa händelse →</button>
-                <button id="skip-event" class="btn btn-skip">Hoppa över</button>
-                <button id="show-hint" class="btn btn-hint">💡 Ledtråd</button>
+            <div class="controls" role="group" aria-label="Åtgärder">
+                <button id="check-answer" class="btn btn-primary" aria-label="Kontrollera ditt svar (Enter)">Kontrollera svar</button>
+                <button id="next-event" class="btn btn-primary" style="display: none;" aria-label="Gå till nästa händelse (Enter)">Nästa händelse →</button>
+                <button id="skip-event" class="btn btn-skip" aria-label="Hoppa över uppgiften (räknas som fel)">Hoppa över</button>
+                <button id="show-hint" class="btn btn-hint" aria-label="Visa ledtråd">💡 Ledtråd</button>
             </div>
 
             <div id="feedback" class="feedback" style="display: none;"></div>
