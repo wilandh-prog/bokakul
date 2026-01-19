@@ -686,21 +686,22 @@ main {
     /* Bättre touchmål på mobil */
     .booking-table .account-select {
         padding: 12px 8px;
-        font-size: 1em;
+        font-size: 0.95em;
         min-height: 44px;
+        min-width: 180px;
     }
 
     .booking-table input[type="number"] {
-        padding: 12px 8px;
+        padding: 10px 6px;
         font-size: 1em;
-        width: 80px;
+        width: 65px;
         min-height: 44px;
     }
 
     .booking-table .btn-remove {
-        padding: 10px 12px;
-        font-size: 0.9em;
-        min-width: 44px;
+        padding: 8px 10px;
+        font-size: 0.85em;
+        min-width: 36px;
         min-height: 44px;
     }
 
