@@ -528,6 +528,16 @@ function renderBookingRows() {
         });
     });
 
+    // Sätt upp mobil picker för alla select-element
+    if (window.innerWidth <= 768) {
+        container.querySelectorAll('.account-select').forEach(select => {
+            // Kolla om den redan har en wrapper
+            if (!select.parentElement.classList.contains('account-select-wrapper')) {
+                setupMobilePickerForSelect(select);
+            }
+        });
+    }
+
     updateTotals();
 }
 
@@ -1411,6 +1421,146 @@ function animateToBalance(item, sourceElement, targetElement, delay) {
             }, 600);
         });
     }, delay);
+}
+
+// ==========================================
+// MOBIL KONTO-PICKER (BOTTOM SHEET)
+// ==========================================
+
+let mobilePickerOverlay = null;
+let currentSelectTarget = null;
+
+function isMobileDevice() {
+    return window.innerWidth <= 768;
+}
+
+function createMobilePickerOverlay() {
+    if (mobilePickerOverlay) return;
+
+    mobilePickerOverlay = document.createElement('div');
+    mobilePickerOverlay.className = 'mobile-picker-overlay';
+    mobilePickerOverlay.innerHTML = `
+        <div class="mobile-picker">
+            <div class="mobile-picker-header">
+                <span class="mobile-picker-title">Välj konto</span>
+                <button class="mobile-picker-close" aria-label="Stäng">✕</button>
+            </div>
+            <div class="mobile-picker-list"></div>
+        </div>
+    `;
+
+    document.body.appendChild(mobilePickerOverlay);
+
+    // Stäng vid klick på overlay
+    mobilePickerOverlay.addEventListener('click', (e) => {
+        if (e.target === mobilePickerOverlay) {
+            closeMobilePicker();
+        }
+    });
+
+    // Stäng-knapp
+    mobilePickerOverlay.querySelector('.mobile-picker-close').addEventListener('click', closeMobilePicker);
+}
+
+function openMobilePicker(selectElement) {
+    if (!isMobileDevice()) return;
+
+    createMobilePickerOverlay();
+    currentSelectTarget = selectElement;
+
+    const list = mobilePickerOverlay.querySelector('.mobile-picker-list');
+    const options = selectElement.querySelectorAll('option');
+    const currentValue = selectElement.value;
+
+    // Bygg lista med konton
+    let html = '';
+    options.forEach(option => {
+        if (!option.value) {
+            // "Välj konto..." alternativet
+            html += `
+                <div class="mobile-picker-item ${!currentValue ? 'selected' : ''}" data-value="">
+                    <span class="mobile-picker-item-name" style="color: #666; font-style: italic;">Välj konto...</span>
+                    ${!currentValue ? '<span class="mobile-picker-item-check">✓</span>' : ''}
+                </div>
+            `;
+        } else {
+            const isSelected = option.value === currentValue;
+            const parts = option.textContent.split(' - ');
+            const number = parts[0];
+            const name = parts.slice(1).join(' - ');
+
+            html += `
+                <div class="mobile-picker-item ${isSelected ? 'selected' : ''}" data-value="${option.value}">
+                    <span class="mobile-picker-item-number">${number}</span>
+                    <span class="mobile-picker-item-name">${name}</span>
+                    ${isSelected ? '<span class="mobile-picker-item-check">✓</span>' : ''}
+                </div>
+            `;
+        }
+    });
+
+    list.innerHTML = html;
+
+    // Lägg till klick-handlers
+    list.querySelectorAll('.mobile-picker-item').forEach(item => {
+        item.addEventListener('click', () => {
+            const value = item.dataset.value;
+            selectAccountFromPicker(value);
+        });
+    });
+
+    // Visa overlay
+    mobilePickerOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+
+    // Scrolla till valt alternativ
+    const selectedItem = list.querySelector('.selected');
+    if (selectedItem) {
+        setTimeout(() => {
+            selectedItem.scrollIntoView({ block: 'center' });
+        }, 100);
+    }
+}
+
+function selectAccountFromPicker(value) {
+    if (currentSelectTarget) {
+        currentSelectTarget.value = value;
+
+        // Trigga change event
+        const event = new Event('change', { bubbles: true });
+        currentSelectTarget.dispatchEvent(event);
+    }
+
+    closeMobilePicker();
+}
+
+function closeMobilePicker() {
+    if (mobilePickerOverlay) {
+        mobilePickerOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    currentSelectTarget = null;
+}
+
+// Sätt upp mobil picker för select-element
+function setupMobilePickerForSelect(selectElement) {
+    if (!isMobileDevice()) return;
+
+    // Wrappa select i en container
+    const wrapper = document.createElement('div');
+    wrapper.className = 'account-select-wrapper';
+    selectElement.parentNode.insertBefore(wrapper, selectElement);
+    wrapper.appendChild(selectElement);
+
+    // Lägg till klass för att indikera att mobil picker är aktiv
+    selectElement.classList.add('has-mobile-picker');
+
+    // Lyssna på klick på wrapper
+    wrapper.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        openMobilePicker(selectElement);
+    });
 }
 
 // Starta spelet när sidan laddas

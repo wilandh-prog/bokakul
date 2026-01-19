@@ -555,6 +555,143 @@ main {
     }
 }
 
+/* Mobil konto-picker (bottom sheet) */
+.mobile-picker-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 3000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.mobile-picker-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.mobile-picker {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    border-radius: 20px 20px 0 0;
+    max-height: 70vh;
+    z-index: 3001;
+    transform: translateY(100%);
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: flex;
+    flex-direction: column;
+}
+
+.mobile-picker-overlay.active .mobile-picker {
+    transform: translateY(0);
+}
+
+.mobile-picker-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.mobile-picker-title {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #333;
+}
+
+.mobile-picker-close {
+    background: #f0f0f0;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 1.2em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+}
+
+.mobile-picker-list {
+    overflow-y: auto;
+    flex: 1;
+    padding: 10px 0;
+    -webkit-overflow-scrolling: touch;
+}
+
+.mobile-picker-item {
+    padding: 16px 20px;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.mobile-picker-item:active {
+    background: #f0f3ff;
+}
+
+.mobile-picker-item.selected {
+    background: #e8f0fe;
+}
+
+.mobile-picker-item-number {
+    background: #667eea;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9em;
+    min-width: 50px;
+    text-align: center;
+}
+
+.mobile-picker-item-name {
+    flex: 1;
+    font-size: 1em;
+    color: #333;
+}
+
+.mobile-picker-item-check {
+    color: #667eea;
+    font-size: 1.2em;
+}
+
+/* Dölj native select touch på mobil när picker är aktiv */
+@media (max-width: 768px) {
+    .booking-table .account-select.has-mobile-picker {
+        pointer-events: none;
+    }
+
+    .account-select-wrapper {
+        position: relative;
+        cursor: pointer;
+    }
+
+    .account-select-wrapper::after {
+        content: '▼';
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #667eea;
+        font-size: 0.8em;
+        pointer-events: none;
+    }
+}
+
 .hint {
     margin-top: 20px;
     padding: 15px 20px;
