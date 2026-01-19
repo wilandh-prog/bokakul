@@ -816,8 +816,60 @@ function showFeedback(isCorrect, message) {
     `;
     feedback.style.display = 'block';
 
+    // Visa mobil toast för tydligare feedback
+    showMobileToast(isCorrect, message);
+
     // Scrolla till feedbacken på mobil
     feedback.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+// Mobil toast-notifikation
+function showMobileToast(isCorrect, message) {
+    // Ta bort eventuell befintlig toast
+    const existingToast = document.querySelector('.mobile-toast');
+    if (existingToast) {
+        existingToast.remove();
+    }
+
+    // Extrahera första raden/poänginfo för kort meddelande
+    const shortMessage = isCorrect
+        ? message.split('\n')[0]
+        : 'Se rätt svar nedan';
+
+    const toast = document.createElement('div');
+    toast.className = `mobile-toast ${isCorrect ? 'correct' : 'incorrect'}`;
+    toast.innerHTML = `
+        <div class="toast-icon">${isCorrect ? '🎉' : '😕'}</div>
+        <div class="toast-content">
+            <div class="toast-title">${isCorrect ? 'Rätt svar!' : 'Inte riktigt...'}</div>
+            <div class="toast-message">${shortMessage}</div>
+        </div>
+        <button class="toast-close" aria-label="Stäng">✕</button>
+    `;
+
+    document.body.appendChild(toast);
+
+    // Stäng-knapp
+    toast.querySelector('.toast-close').addEventListener('click', () => {
+        closeMobileToast(toast);
+    });
+
+    // Auto-stäng efter 4 sekunder för rätt svar, längre för fel
+    const autoCloseTime = isCorrect ? 4000 : 6000;
+    setTimeout(() => {
+        closeMobileToast(toast);
+    }, autoCloseTime);
+}
+
+function closeMobileToast(toast) {
+    if (toast && toast.parentNode) {
+        toast.style.animation = 'toastSlideUp 0.3s ease-out forwards';
+        setTimeout(() => {
+            if (toast.parentNode) {
+                toast.remove();
+            }
+        }, 300);
+    }
 }
 
 // Visa ledtråd
