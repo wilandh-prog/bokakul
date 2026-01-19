@@ -475,64 +475,6 @@ function renderBookingRows() {
     }
     relevantAccounts.sort((a, b) => a.number.localeCompare(b.number));
 
-    // Förkorta kontonamn på mobil för bättre läsbarhet i dropdown
-    const isMobile = window.innerWidth <= 768;
-    const getDisplayName = (acc) => {
-        if (!isMobile) return acc.name;
-        const shortNames = {
-            'Kundfordringar': 'Kundfdr.',
-            'Leverantörsskulder': 'Lev.skulder',
-            'Varuförsäljning': 'Varuförs.',
-            'Företagskonto': 'Ftg.konto',
-            'Utgående moms, 25%': 'Utg.moms 25%',
-            'Utgående moms, 12%': 'Utg.moms 12%',
-            'Utgående moms, 6%': 'Utg.moms 6%',
-            'Ingående moms': 'Ing.moms',
-            'Momsredovisning': 'Momsredov.',
-            'Arbetsgivaravgifter': 'Arb.giv.avg',
-            'Personalens skatter': 'Pers.skatt',
-            'Skuld for sociala avgifter': 'Soc.avg.skuld',
-            'Ack. avskrivningar maskiner': 'Ack.avskr.mask',
-            'Ack. avskrivningar inventarier': 'Ack.avskr.inv',
-            'Ack. avskrivningar på bilar': 'Ack.avskr.bil',
-            'Ack. avskrivningar på datorer': 'Ack.avskr.dat',
-            'Förutbetald hyra': 'Förbet.hyra',
-            'Förutbetald försäkring': 'Förbet.förs',
-            'Förbrukningsinventarier': 'Förbr.inv',
-            'Forbrukningsmaterial': 'Förbr.mtrl',
-            'Driftkostnader bilar': 'Driftk.bilar',
-            'Kontorsmaterial': 'Kontorsm.',
-            'Avskrivning mask/inve': 'Avskr.m/i',
-            'Avskrivning bilar': 'Avskr.bilar',
-            'Erhållen dröjsmålsränta': 'Erh.dröjsm.r',
-            'Erlagd dröjmålsränta': 'Erl.dröjsm.r',
-            'Upplupna intäkter och förutbetalda kostnader': 'Uppl.int/förbet',
-            'Upplupna kostnader och förutbetalda intakter': 'Uppl.k/förbet',
-            'Beräknad utgående EU-moms': 'Ber.utg.EU-moms',
-            'Beräknad ingående EU-moms': 'Ber.ing.EU-moms',
-            'Balanserad vinst': 'Bal.vinst',
-            'Föregående års vinst': 'Föreg.års vinst',
-            'Vinst vid avyttring': 'Vinst avyttr.',
-            'Förlust vid avyttring': 'Förlust avyttr.',
-            'Fordran kontokort': 'Fordr.kontok',
-            'Kontokortsavgifter': 'Kontok.avg',
-            'Övriga kostnader': 'Övr.kostn',
-            'Övriga skulder': 'Övr.skulder',
-            'Räntekostnader': 'Räntekostn.',
-            'Ränteintäkter': 'Ränteint.',
-            'Upplupen ränta': 'Uppl.ränta',
-            'Eget kapital': 'Eget kap.',
-            'Egen insattning': 'Egen ins.',
-            'Årets resultat': 'Årets res.',
-            'Aktiekapital': 'Aktiekap.',
-            'Varuinköp': 'Varuink.',
-            'Erhållna rabatter': 'Erh.rabatt',
-            'Lämnade rabatter': 'Lämn.rabatt',
-            'Varulagerforandring': 'Varulagerför.'
-        };
-        return shortNames[acc.name] || acc.name;
-    };
-
     container.innerHTML = bookingRows.map((row, index) => {
         return `
         <tr>
@@ -542,7 +484,7 @@ function renderBookingRows() {
                     <option value="">Välj konto...</option>
                     ${relevantAccounts.map(acc => `
                         <option value="${acc.number}" ${row.account === acc.number ? 'selected' : ''}>
-                            ${acc.number} ${getDisplayName(acc)}
+                            ${acc.number} - ${acc.name}
                         </option>
                     `).join('')}
                 </select>
