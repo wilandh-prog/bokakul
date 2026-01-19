@@ -688,7 +688,7 @@ main {
         padding: 12px 8px;
         font-size: 0.95em;
         min-height: 44px;
-        min-width: 160px;
+        min-width: 120px;
     }
 
     .booking-table input[type="number"] {
