@@ -457,6 +457,27 @@ function removeBookingRow(index) {
 }
 
 // Rendera bokföringsrader
+// Hitta liknande konton baserat på kontoklass (första siffran)
+function getSimilarAccounts(correctAccountNumbers, count = 7) {
+    const allAccounts = [];
+    for (const accountArray of Object.values(accounts)) {
+        allAccounts.push(...accountArray);
+    }
+
+    // Hitta alla kontoklasser som används i rätt svar
+    const usedClasses = new Set(correctAccountNumbers.map(num => num.charAt(0)));
+
+    // Samla alla konton i samma klasser som inte är rätt svar
+    const similarAccounts = allAccounts.filter(acc =>
+        usedClasses.has(acc.number.charAt(0)) &&
+        !correctAccountNumbers.includes(acc.number)
+    );
+
+    // Blanda och returnera önskat antal
+    const shuffled = similarAccounts.sort(() => Math.random() - 0.5);
+    return shuffled.slice(0, count);
+}
+
 function renderBookingRows() {
     const container = document.getElementById('booking-entries');
     const event = events[currentEventIndex];
@@ -464,15 +485,21 @@ function renderBookingRows() {
     // Hämta konton som används i uppgiften
     const usedAccountNumbers = event.correctAnswer.map(entry => entry.account);
 
-    // Filtrera till bara relevanta konton
-    const relevantAccounts = [];
+    // Filtrera till rätta konton
+    const correctAccounts = [];
     for (const accountArray of Object.values(accounts)) {
         for (const acc of accountArray) {
             if (usedAccountNumbers.includes(acc.number)) {
-                relevantAccounts.push(acc);
+                correctAccounts.push(acc);
             }
         }
     }
+
+    // Lägg till 7 liknande konton som distraktorer
+    const distractorAccounts = getSimilarAccounts(usedAccountNumbers, 7);
+
+    // Kombinera och sortera
+    const relevantAccounts = [...correctAccounts, ...distractorAccounts];
     relevantAccounts.sort((a, b) => a.number.localeCompare(b.number));
 
     container.innerHTML = bookingRows.map((row, index) => {
