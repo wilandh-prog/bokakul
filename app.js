@@ -55,6 +55,9 @@ const accounts = {
     ],
     "Kostnader": [
         { number: "4010", name: "Varuinköp" },
+        { number: "4015", name: "Varuinköp EU" },
+        { number: "4016", name: "Varuinköp utanför EU" },
+        { number: "4018", name: "Tull" },
         { number: "4730", name: "Erhållna rabatter" },
         { number: "4900", name: "Varulagerforandring" },
         { number: "5010", name: "Lokalhyra" },
@@ -79,8 +82,10 @@ const accounts = {
     "Finansiella poster": [
         { number: "8310", name: "Ränteintäkter" },
         { number: "8320", name: "Erhållen dröjsmålsränta" },
+        { number: "8330", name: "Valutakursvinster" },
         { number: "8410", name: "Räntekostnader" },
         { number: "8420", name: "Erlagd dröjmålsränta" },
+        { number: "8430", name: "Valutakursförluster" },
         { number: "8999", name: "Årets resultat" }
     ]
 };
@@ -1845,7 +1850,7 @@ const levelFiles = {
     7: 'loner.json',
     8: 'periodiseringar.json',
     9: 'mer-periodiseringar.json',
-    10: 'interaktiva-ovningar.json'
+    10: 'eu-import-valuta.json'
 };
 
 // Aktuell vald nivå

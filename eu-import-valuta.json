@@ -1,0 +1,230 @@
+[
+    {
+        "type": "true-false",
+        "description": "Bedöm om påståendet är sant eller falskt.",
+        "statement": "Vid köp av varor från EU-land med omvänd skattskyldighet bokförs utgående moms på konto 2615.",
+        "hint": "Tänk på att köparen redovisar både utgående och ingående moms vid EU-förvärv.",
+        "correctAnswer": true,
+        "explanation": "Vid omvänd skattskyldighet (reverse charge) från EU redovisar köparen utgående moms på 2615 och ingående moms på 2645.",
+        "level": 10
+    },
+    {
+        "description": "Du köper varor för 100 000 kr från Tyskland (EU). Omvänd skattskyldighet gäller (25% moms). Fakturan är ännu inte betald. Kontera inköpet.",
+        "hint": "EU-varuförvärv: Debet 4015 (Varuinköp EU), Debet 2645 (Ingående moms EU), Kredit 2615 (Utgående moms EU), Kredit 2440 (Leverantörsskulder).",
+        "correctAnswer": [
+            { "account": "4015", "side": "debet", "amount": 100000 },
+            { "account": "2645", "side": "debet", "amount": 25000 },
+            { "account": "2615", "side": "kredit", "amount": 25000 },
+            { "account": "2440", "side": "kredit", "amount": 100000 }
+        ],
+        "level": 10
+    },
+    {
+        "type": "drag-to-side",
+        "description": "EU-varuförvärv 80 000 kr med omvänd skattskyldighet (25% moms). Dra momskontona till rätt sida.",
+        "hint": "Ingående moms (avdragsgill) på debet, utgående moms (skuld) på kredit.",
+        "blocks": [
+            { "account": "2645", "name": "Ingående moms EU", "amount": 20000 },
+            { "account": "2615", "name": "Utgående moms EU", "amount": 20000 }
+        ],
+        "correctAnswer": {
+            "debet": ["2645"],
+            "kredit": ["2615"]
+        },
+        "level": 10
+    },
+    {
+        "description": "Du köper tjänster för 50 000 kr från Frankrike (EU). Omvänd skattskyldighet gäller (25% moms). Betalas kontant från företagskontot. Kontera.",
+        "hint": "Tjänsteköp EU med omvänd skattskyldighet. Kostnad 6500, moms hanteras som vid varuförvärv.",
+        "correctAnswer": [
+            { "account": "6500", "side": "debet", "amount": 50000 },
+            { "account": "2645", "side": "debet", "amount": 12500 },
+            { "account": "2615", "side": "kredit", "amount": 12500 },
+            { "account": "1930", "side": "kredit", "amount": 50000 }
+        ],
+        "level": 10
+    },
+    {
+        "type": "true-false",
+        "description": "Bedöm om påståendet är sant eller falskt.",
+        "statement": "Vid import från land utanför EU tillkommer ofta tull som bokförs på konto 4018.",
+        "hint": "Tänk på vad som händer när varor passerar EU:s yttre gräns.",
+        "correctAnswer": true,
+        "explanation": "Vid import från länder utanför EU (tredjeland) tillkommer ofta tull som bokförs som en del av varuanskaffningen på konto 4018.",
+        "level": 10
+    },
+    {
+        "description": "Du importerar varor från Kina för 60 000 kr. Tull 6 000 kr och importmoms 16 500 kr (25% på 66 000 kr). Allt betalas via företagskontot. Kontera.",
+        "hint": "Varukostnad + tull = anskaffningsvärde. Importmoms är avdragsgill ingående moms (2640).",
+        "correctAnswer": [
+            { "account": "4016", "side": "debet", "amount": 60000 },
+            { "account": "4018", "side": "debet", "amount": 6000 },
+            { "account": "2640", "side": "debet", "amount": 16500 },
+            { "account": "1930", "side": "kredit", "amount": 82500 }
+        ],
+        "level": 10
+    },
+    {
+        "type": "drag-to-side",
+        "description": "Import från USA: varor 40 000 kr, tull 4 000 kr. Dra kontona till rätt sida (exkl. moms och betalning).",
+        "hint": "Varuinköp och tull är kostnader som ökar på debet.",
+        "blocks": [
+            { "account": "4016", "name": "Varuinköp utanför EU", "amount": 40000 },
+            { "account": "4018", "name": "Tull", "amount": 4000 }
+        ],
+        "correctAnswer": {
+            "debet": ["4016", "4018"],
+            "kredit": []
+        },
+        "level": 10
+    },
+    {
+        "description": "Du importerar maskiner från Japan för 200 000 kr. Tull 10 000 kr och importmoms 52 500 kr. Leverantörsskuld skapas för varuvärdet, tull och moms betalas kontant. Kontera.",
+        "hint": "Maskiner bokförs på 1210. Tull läggs på anskaffningsvärdet. Importmoms på 2640.",
+        "correctAnswer": [
+            { "account": "1210", "side": "debet", "amount": 210000 },
+            { "account": "2640", "side": "debet", "amount": 52500 },
+            { "account": "2440", "side": "kredit", "amount": 200000 },
+            { "account": "1930", "side": "kredit", "amount": 62500 }
+        ],
+        "level": 10
+    },
+    {
+        "type": "true-false",
+        "description": "Bedöm om påståendet är sant eller falskt.",
+        "statement": "Valutakursvinster bokförs på konto 8330.",
+        "hint": "Konton i 8-klassen är finansiella intäkter och kostnader.",
+        "correctAnswer": true,
+        "explanation": "Valutakursvinster är finansiella intäkter och bokförs på konto 8330.",
+        "level": 10
+    },
+    {
+        "description": "Du hade en leverantörsskuld på 10 000 USD bokförd till 100 000 SEK. Vid betalning är kursen 9,50 kr/USD. Betala från företagskontot och bokför valutakursvinsten.",
+        "hint": "Betalning: 10 000 × 9,50 = 95 000 SEK. Skulden var 100 000 SEK. Vinst = 5 000 kr.",
+        "correctAnswer": [
+            { "account": "2440", "side": "debet", "amount": 100000 },
+            { "account": "1930", "side": "kredit", "amount": 95000 },
+            { "account": "8330", "side": "kredit", "amount": 5000 }
+        ],
+        "level": 10
+    },
+    {
+        "type": "drag-to-side",
+        "description": "Leverantörsskuld 50 000 SEK betalas. Kursen har sjunkit och betalningen blir 47 000 SEK. Dra kontona till rätt sida.",
+        "hint": "Skulden minskar (debet). Bankkontot minskar (kredit). Vinsten är intäkt (kredit).",
+        "blocks": [
+            { "account": "2440", "name": "Leverantörsskulder", "amount": 50000 },
+            { "account": "1930", "name": "Företagskonto", "amount": 47000 },
+            { "account": "8330", "name": "Valutakursvinst", "amount": 3000 }
+        ],
+        "correctAnswer": {
+            "debet": ["2440"],
+            "kredit": ["1930", "8330"]
+        },
+        "level": 10
+    },
+    {
+        "type": "true-false",
+        "description": "Bedöm om påståendet är sant eller falskt.",
+        "statement": "Valutakursförluster bokförs på konto 8430.",
+        "hint": "Konton i 8-klassen är finansiella intäkter och kostnader.",
+        "correctAnswer": true,
+        "explanation": "Valutakursförluster är finansiella kostnader och bokförs på konto 8430.",
+        "level": 10
+    },
+    {
+        "description": "Du hade en leverantörsskuld på 5 000 EUR bokförd till 55 000 SEK. Vid betalning är kursen 11,50 kr/EUR. Betala från företagskontot och bokför valutakursförlusten.",
+        "hint": "Betalning: 5 000 × 11,50 = 57 500 SEK. Skulden var 55 000 SEK. Förlust = 2 500 kr.",
+        "correctAnswer": [
+            { "account": "2440", "side": "debet", "amount": 55000 },
+            { "account": "8430", "side": "debet", "amount": 2500 },
+            { "account": "1930", "side": "kredit", "amount": 57500 }
+        ],
+        "level": 10
+    },
+    {
+        "type": "drag-to-side",
+        "description": "Leverantörsskuld 80 000 SEK betalas. Kursen har stigit och betalningen blir 84 000 SEK. Dra kontona till rätt sida.",
+        "hint": "Skulden minskar (debet). Förlusten är kostnad (debet). Bankkontot minskar med hela beloppet (kredit).",
+        "blocks": [
+            { "account": "2440", "name": "Leverantörsskulder", "amount": 80000 },
+            { "account": "8430", "name": "Valutakursförlust", "amount": 4000 },
+            { "account": "1930", "name": "Företagskonto", "amount": 84000 }
+        ],
+        "correctAnswer": {
+            "debet": ["2440", "8430"],
+            "kredit": ["1930"]
+        },
+        "level": 10
+    },
+    {
+        "description": "Du får betalt för en kundfordran på 8 000 GBP bokförd till 96 000 SEK. Vid betalning är kursen 12,50 kr/GBP. Bokför inbetalningen och valutakursvinsten.",
+        "hint": "Inbetalning: 8 000 × 12,50 = 100 000 SEK. Fordran var 96 000 SEK. Vinst = 4 000 kr.",
+        "correctAnswer": [
+            { "account": "1930", "side": "debet", "amount": 100000 },
+            { "account": "1510", "side": "kredit", "amount": 96000 },
+            { "account": "8330", "side": "kredit", "amount": 4000 }
+        ],
+        "level": 10
+    },
+    {
+        "description": "Du får betalt för en kundfordran på 3 000 USD bokförd till 30 000 SEK. Vid betalning är kursen 9,00 kr/USD. Bokför inbetalningen och valutakursförlusten.",
+        "hint": "Inbetalning: 3 000 × 9,00 = 27 000 SEK. Fordran var 30 000 SEK. Förlust = 3 000 kr.",
+        "correctAnswer": [
+            { "account": "1930", "side": "debet", "amount": 27000 },
+            { "account": "8430", "side": "debet", "amount": 3000 },
+            { "account": "1510", "side": "kredit", "amount": 30000 }
+        ],
+        "level": 10
+    },
+    {
+        "type": "drag-to-side",
+        "description": "Kundfordran 45 000 SEK inkasseras. Kursen har stigit och du får 48 000 SEK. Dra kontona till rätt sida.",
+        "hint": "Bankkontot ökar (debet). Fordran minskar (kredit). Vinsten är intäkt (kredit).",
+        "blocks": [
+            { "account": "1930", "name": "Företagskonto", "amount": 48000 },
+            { "account": "1510", "name": "Kundfordringar", "amount": 45000 },
+            { "account": "8330", "name": "Valutakursvinst", "amount": 3000 }
+        ],
+        "correctAnswer": {
+            "debet": ["1930"],
+            "kredit": ["1510", "8330"]
+        },
+        "level": 10
+    },
+    {
+        "description": "Du köper varor från Polen (EU) för 75 000 kr med omvänd skattskyldighet (25% moms). Samtidigt betalar du en gammal USD-skuld på 20 000 SEK men kursen har sjunkit så du bara betalar 19 000 SEK. Allt via företagskontot. Kontera båda händelserna.",
+        "hint": "EU-köp: 4015 + moms (2645/2615). Valutavinst på skulden = 1 000 kr.",
+        "correctAnswer": [
+            { "account": "4015", "side": "debet", "amount": 75000 },
+            { "account": "2645", "side": "debet", "amount": 18750 },
+            { "account": "2615", "side": "kredit", "amount": 18750 },
+            { "account": "1930", "side": "kredit", "amount": 75000 },
+            { "account": "2440", "side": "debet", "amount": 20000 },
+            { "account": "1930", "side": "kredit", "amount": 19000 },
+            { "account": "8330", "side": "kredit", "amount": 1000 }
+        ],
+        "level": 10
+    },
+    {
+        "description": "Du importerar varor från Indien för 150 000 kr. Tull 15 000 kr, importmoms 41 250 kr. Fakturan på varorna är obetald. Tull och moms betalas kontant. Kontera.",
+        "hint": "Varuinköp utanför EU (4016), tull (4018) läggs på kostnaden. Importmoms (2640) är avdragsgill.",
+        "correctAnswer": [
+            { "account": "4016", "side": "debet", "amount": 150000 },
+            { "account": "4018", "side": "debet", "amount": 15000 },
+            { "account": "2640", "side": "debet", "amount": 41250 },
+            { "account": "2440", "side": "kredit", "amount": 150000 },
+            { "account": "1930", "side": "kredit", "amount": 56250 }
+        ],
+        "level": 10
+    },
+    {
+        "type": "true-false",
+        "description": "Bedöm om påståendet är sant eller falskt.",
+        "statement": "Vid EU-varuförvärv med omvänd skattskyldighet tar utgående och ingående moms ut varandra om företaget har full avdragsrätt.",
+        "hint": "Tänk på att samma belopp bokförs på båda momskontona.",
+        "correctAnswer": true,
+        "explanation": "Ja, vid full avdragsrätt blir nettoeffekten av momsen noll eftersom samma belopp debiteras 2645 (ingående) och krediteras 2615 (utgående).",
+        "level": 10
+    }
+]
