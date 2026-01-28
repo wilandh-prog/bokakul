@@ -1,0 +1,211 @@
+[
+    {
+        "type": "true-false",
+        "description": "Bedöm om påståendet är sant eller falskt.",
+        "statement": "Upplupna intäkter är intäkter som tillhör perioden men ännu inte fakturerats.",
+        "hint": "Tänk på vad 'upplupen' betyder - något som har samlats.",
+        "correctAnswer": true,
+        "explanation": "Upplupna intäkter är intjänade men ännu inte fakturerade intäkter som bokförs på konto 1790.",
+        "level": 9
+    },
+    {
+        "description": "Vid bokslutet har du utfört tjänster för 25 000 kr som ännu inte fakturerats. Kontera den upplupna intäkten.",
+        "hint": "Ej bokförd försäljning är en upplupen intäkt. Debet 1790 (Upplupna intäkter), Kredit 3030 (Utförda uppdrag).",
+        "correctAnswer": [
+            { "account": "1790", "side": "debet", "amount": 25000 },
+            { "account": "3030", "side": "kredit", "amount": 25000 }
+        ],
+        "level": 9
+    },
+    {
+        "type": "drag-to-side",
+        "description": "Ej fakturerad försäljning 30 000 kr ska periodiseras. Dra kontona till rätt sida.",
+        "hint": "Upplupen intäkt är en tillgång (debet). Intäkt ökar (kredit).",
+        "blocks": [
+            { "account": "1790", "name": "Upplupna intäkter", "amount": 30000 },
+            { "account": "3010", "name": "Varuförsäljning", "amount": 30000 }
+        ],
+        "correctAnswer": {
+            "debet": ["1790"],
+            "kredit": ["3010"]
+        },
+        "level": 9
+    },
+    {
+        "description": "Vid bokslutet har du sålt varor för 40 000 kr som ännu inte fakturerats. Kontera den upplupna intäkten.",
+        "hint": "Ej bokförd försäljning ökar upplupna intäkter (1790) och intäkter (3010).",
+        "correctAnswer": [
+            { "account": "1790", "side": "debet", "amount": 40000 },
+            { "account": "3010", "side": "kredit", "amount": 40000 }
+        ],
+        "level": 9
+    },
+    {
+        "type": "true-false",
+        "description": "Bedöm om påståendet är sant eller falskt.",
+        "statement": "Förskottsbetalning från kund är en skuld för företaget.",
+        "hint": "Tänk på att du ännu inte utfört arbetet.",
+        "correctAnswer": true,
+        "explanation": "Förskott från kund är en förutbetald intäkt (skuld) eftersom du är skyldig att leverera tjänster/varor.",
+        "level": 9
+    },
+    {
+        "description": "En kund har betalat 30 000 kr i förskott för tjänster som ska utföras nästa år. Pengarna har kommit in på företagskontot. Kontera förskottsbetalningen.",
+        "hint": "Förskott från kund är en skuld (förutbetald intäkt). Debet 1930 (Företagskonto), Kredit 2990 (Förutbetalda intäkter).",
+        "correctAnswer": [
+            { "account": "1930", "side": "debet", "amount": 30000 },
+            { "account": "2990", "side": "kredit", "amount": 30000 }
+        ],
+        "level": 9
+    },
+    {
+        "type": "drag-to-side",
+        "description": "Kund betalar 20 000 kr i förskott till företagskontot. Dra kontona till rätt sida.",
+        "hint": "Bankkontot ökar (debet). Förutbetald intäkt är skuld (kredit).",
+        "blocks": [
+            { "account": "1930", "name": "Företagskonto", "amount": 20000 },
+            { "account": "2990", "name": "Förutbetalda intäkter", "amount": 20000 }
+        ],
+        "correctAnswer": {
+            "debet": ["1930"],
+            "kredit": ["2990"]
+        },
+        "level": 9
+    },
+    {
+        "description": "En kund betalade 50 000 kr i förskott förra året. Nu har tjänsterna utförts. Kontera intäktsföringen.",
+        "hint": "Skulden (förutbetald intäkt) minskar och blir en intäkt. Debet 2990, Kredit 3030.",
+        "correctAnswer": [
+            { "account": "2990", "side": "debet", "amount": 50000 },
+            { "account": "3030", "side": "kredit", "amount": 50000 }
+        ],
+        "level": 9
+    },
+    {
+        "type": "true-false",
+        "description": "Bedöm om påståendet är sant eller falskt.",
+        "statement": "Förutbetald försäkring är en tillgång.",
+        "hint": "Tänk på att du har betalat för något du ännu inte förbrukat.",
+        "correctAnswer": true,
+        "explanation": "Förutbetald försäkring är en tillgång (1730) eftersom du har en fordran på framtida tjänster.",
+        "level": 9
+    },
+    {
+        "description": "Du betalar årsförsäkring på 24 000 kr från företagskontot den 1 juli. Räkenskapsåret är kalenderår. Kontera betalningen och periodisera vid bokslutet.",
+        "hint": "Halva försäkringen (6 mån) tillhör nästa år. Betala först hela, sen periodisera 12 000 kr som förutbetald kostnad.",
+        "correctAnswer": [
+            { "account": "6310", "side": "debet", "amount": 24000 },
+            { "account": "1930", "side": "kredit", "amount": 24000 },
+            { "account": "1730", "side": "debet", "amount": 12000 },
+            { "account": "6310", "side": "kredit", "amount": 12000 }
+        ],
+        "level": 9
+    },
+    {
+        "type": "drag-to-side",
+        "description": "Periodisera 15 000 kr försäkring till nästa år. Dra kontona till rätt sida.",
+        "hint": "Förutbetald kostnad är tillgång (debet). Kostnad minskar (kredit).",
+        "blocks": [
+            { "account": "1730", "name": "Förutbetalda försäkringar", "amount": 15000 },
+            { "account": "6310", "name": "Försäkringspremier", "amount": 15000 }
+        ],
+        "correctAnswer": {
+            "debet": ["1730"],
+            "kredit": ["6310"]
+        },
+        "level": 9
+    },
+    {
+        "description": "Vid bokslutet ska 8 000 kr av årets försäkringskostnad periodiseras till nästa år. Kontera periodiseringen.",
+        "hint": "Förutbetald försäkring är en tillgång. Debet 1730, Kredit 6310.",
+        "correctAnswer": [
+            { "account": "1730", "side": "debet", "amount": 8000 },
+            { "account": "6310", "side": "kredit", "amount": 8000 }
+        ],
+        "level": 9
+    },
+    {
+        "type": "true-false",
+        "description": "Bedöm om påståendet är sant eller falskt.",
+        "statement": "Upplupen räntekostnad bokförs på konto 2960.",
+        "hint": "Tänk på att upplupna kostnader är skulder.",
+        "correctAnswer": true,
+        "explanation": "Upplupen ränta är en skuld som bokförs på konto 2960 (Upplupna kostnader/räntor).",
+        "level": 9
+    },
+    {
+        "description": "Vid bokslutet har 15 000 kr i ränta på banklånet förfallit men ännu inte betalats. Kontera den upplupna räntekostnaden.",
+        "hint": "Upplupen ränta är en skuld som ökar. Debet 8410 (Räntekostnader), Kredit 2960 (Upplupen ränta).",
+        "correctAnswer": [
+            { "account": "8410", "side": "debet", "amount": 15000 },
+            { "account": "2960", "side": "kredit", "amount": 15000 }
+        ],
+        "level": 9
+    },
+    {
+        "type": "drag-to-side",
+        "description": "Upplupen räntekostnad 10 000 kr ska periodiseras. Dra kontona till rätt sida.",
+        "hint": "Räntekostnad ökar (debet). Upplupen ränta är skuld (kredit).",
+        "blocks": [
+            { "account": "8410", "name": "Räntekostnader", "amount": 10000 },
+            { "account": "2960", "name": "Upplupen ränta", "amount": 10000 }
+        ],
+        "correctAnswer": {
+            "debet": ["8410"],
+            "kredit": ["2960"]
+        },
+        "level": 9
+    },
+    {
+        "description": "Vid bokslutet finns 6 000 kr i upplupen ränta på banklånet som ska kostnadsföras. Kontera periodiseringen.",
+        "hint": "Räntekostnad som tillhör året men inte betalats. Debet 8410, Kredit 2960.",
+        "correctAnswer": [
+            { "account": "8410", "side": "debet", "amount": 6000 },
+            { "account": "2960", "side": "kredit", "amount": 6000 }
+        ],
+        "level": 9
+    },
+    {
+        "type": "true-false",
+        "description": "Bedöm om påståendet är sant eller falskt.",
+        "statement": "Förutbetald hyra bokförs på konto 1710.",
+        "hint": "Titta på kontoplanen för interimsposter.",
+        "correctAnswer": true,
+        "explanation": "Förutbetalda hyreskostnader bokförs på konto 1710 (Förutbetalda hyreskostnader).",
+        "level": 9
+    },
+    {
+        "description": "Du betalade hyra för januari nästa år, 20 000 kr, redan i december från företagskontot. Kontera betalningen som förutbetald hyra.",
+        "hint": "Hyran tillhör nästa period och är en förutbetald kostnad (tillgång). Debet 1710, Kredit 1930.",
+        "correctAnswer": [
+            { "account": "1710", "side": "debet", "amount": 20000 },
+            { "account": "1930", "side": "kredit", "amount": 20000 }
+        ],
+        "level": 9
+    },
+    {
+        "type": "drag-to-side",
+        "description": "Förskott tjänster 40 000 kr från förra året ska intäktsföras. Dra kontona till rätt sida.",
+        "hint": "Skulden minskar (debet). Intäkt ökar (kredit).",
+        "blocks": [
+            { "account": "2990", "name": "Förutbetalda intäkter", "amount": 40000 },
+            { "account": "3030", "name": "Utförda uppdrag", "amount": 40000 }
+        ],
+        "correctAnswer": {
+            "debet": ["2990"],
+            "kredit": ["3030"]
+        },
+        "level": 9
+    },
+    {
+        "description": "Vid bokslutet har du levererat varor för 60 000 kr som ännu inte fakturerats, och en kund har betalat 35 000 kr i förskott för varor som levereras nästa år. Kontera båda periodiseringarna.",
+        "hint": "Ej fakturerad försäljning = upplupen intäkt (Debet 1790, Kredit 3010). Förskott = förutbetald intäkt redan på banken.",
+        "correctAnswer": [
+            { "account": "1790", "side": "debet", "amount": 60000 },
+            { "account": "3010", "side": "kredit", "amount": 60000 },
+            { "account": "1930", "side": "debet", "amount": 35000 },
+            { "account": "2990", "side": "kredit", "amount": 35000 }
+        ],
+        "level": 9
+    }
+]

@@ -1,11 +1,34 @@
 [
     {
+        "type": "true-false",
+        "description": "Bedöm om påståendet är sant eller falskt.",
+        "statement": "Varulager är en tillgång som bokförs på konto 1400.",
+        "hint": "Tänk på vilken kontoklass varulager tillhör.",
+        "correctAnswer": true,
+        "explanation": "Varulager är en omsättningstillgång och bokförs på konto 1400.",
+        "level": 8
+    },
+    {
         "description": "Vid årsbokslutet inventerar du varulagret till 80 000 kr. Ingående lager var 0 kr. Kontera lagerökningen.",
         "hint": "Lagret har ökat med 80 000 kr. Debet 1400 (Varulager), Kredit 4900 (Varulagerförändring).",
         "correctAnswer": [
             { "account": "1400", "side": "debet", "amount": 80000 },
             { "account": "4900", "side": "kredit", "amount": 80000 }
         ],
+        "level": 8
+    },
+    {
+        "type": "drag-to-side",
+        "description": "Varulagret har ökat med 50 000 kr. Dra kontona till rätt sida.",
+        "hint": "Varulager (tillgång) ökar på debet. Lagerförändring på kredit.",
+        "blocks": [
+            { "account": "1400", "name": "Varulager", "amount": 50000 },
+            { "account": "4900", "name": "Lagerförändring", "amount": 50000 }
+        ],
+        "correctAnswer": {
+            "debet": ["1400"],
+            "kredit": ["4900"]
+        },
         "level": 8
     },
     {
@@ -18,12 +41,35 @@
         "level": 8
     },
     {
+        "type": "true-false",
+        "description": "Bedöm om påståendet är sant eller falskt.",
+        "statement": "Lagerminskning bokförs som debet 4900 och kredit 1400.",
+        "hint": "Tänk på vad som händer när lagret minskar.",
+        "correctAnswer": true,
+        "explanation": "Vid lagerminskning debiteras lagerförändring (4900) och krediteras varulager (1400).",
+        "level": 8
+    },
+    {
         "description": "Vid årsbokslutet inventerar du varulagret till 65 000 kr. Ingående lager var 90 000 kr. Kontera lagerförändringen.",
         "hint": "Lagret har minskat med 25 000 kr. Minskning = Debet 4900, Kredit 1400.",
         "correctAnswer": [
             { "account": "4900", "side": "debet", "amount": 25000 },
             { "account": "1400", "side": "kredit", "amount": 25000 }
         ],
+        "level": 8
+    },
+    {
+        "type": "drag-to-side",
+        "description": "Varulagret har minskat med 30 000 kr. Dra kontona till rätt sida.",
+        "hint": "Lagerförändring ökar kostnaden (debet). Varulager minskar (kredit).",
+        "blocks": [
+            { "account": "4900", "name": "Lagerförändring", "amount": 30000 },
+            { "account": "1400", "name": "Varulager", "amount": 30000 }
+        ],
+        "correctAnswer": {
+            "debet": ["4900"],
+            "kredit": ["1400"]
+        },
         "level": 8
     },
     {
@@ -36,6 +82,15 @@
         "level": 8
     },
     {
+        "type": "true-false",
+        "description": "Bedöm om påståendet är sant eller falskt.",
+        "statement": "Avskrivningar bokförs som en kostnad på konto 7832.",
+        "hint": "Tänk på att avskrivning minskar en tillgångs värde över tid.",
+        "correctAnswer": true,
+        "explanation": "Avskrivningar på maskiner och inventarier bokförs som kostnad på konto 7832.",
+        "level": 8
+    },
+    {
         "description": "Du ska skriva av bilar med 40 000 kr. Kontera avskrivningen.",
         "hint": "Avskrivning bilar är kostnad (7834). Ackumulerade avskrivningar bilar (1249).",
         "correctAnswer": [
@@ -45,12 +100,35 @@
         "level": 8
     },
     {
+        "type": "drag-to-side",
+        "description": "Avskrivning maskiner 25 000 kr. Dra kontona till rätt sida.",
+        "hint": "Avskrivning är kostnad (debet). Ackumulerade avskrivningar ökar (kredit).",
+        "blocks": [
+            { "account": "7832", "name": "Avskrivning maskiner", "amount": 25000 },
+            { "account": "1219", "name": "Ack. avskr. maskiner", "amount": 25000 }
+        ],
+        "correctAnswer": {
+            "debet": ["7832"],
+            "kredit": ["1219"]
+        },
+        "level": 8
+    },
+    {
         "description": "Maskiner anskaffades för 100 000 kr. Avskrivningstiden är 5 år (linjär). Beräkna och kontera årets avskrivning.",
         "hint": "Årlig avskrivning = 100 000 / 5 = 20 000 kr.",
         "correctAnswer": [
             { "account": "7832", "side": "debet", "amount": 20000 },
             { "account": "1219", "side": "kredit", "amount": 20000 }
         ],
+        "level": 8
+    },
+    {
+        "type": "true-false",
+        "description": "Bedöm om påståendet är sant eller falskt.",
+        "statement": "Bokfört värde = Anskaffningsvärde - Ackumulerade avskrivningar.",
+        "hint": "Tänk på vad som återstår av tillgångens värde.",
+        "correctAnswer": true,
+        "explanation": "Bokfört värde är det värde som återstår efter avdrag för ackumulerade avskrivningar.",
         "level": 8
     },
     {
@@ -71,6 +149,15 @@
             { "account": "1210", "side": "kredit", "amount": 100000 },
             { "account": "3973", "side": "kredit", "amount": 10000 }
         ],
+        "level": 8
+    },
+    {
+        "type": "true-false",
+        "description": "Bedöm om påståendet är sant eller falskt.",
+        "statement": "Vinst vid försäljning av anläggningstillgång bokförs på konto 3973.",
+        "hint": "Tänk på hur realisationsvinster bokförs.",
+        "correctAnswer": true,
+        "explanation": "Vinst vid försäljning av maskiner och inventarier bokförs på konto 3973.",
         "level": 8
     },
     {

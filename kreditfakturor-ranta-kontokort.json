@@ -1,5 +1,14 @@
 [
     {
+        "type": "true-false",
+        "description": "Bedöm om påståendet är sant eller falskt.",
+        "statement": "En kreditfaktura minskar både försäljning och moms.",
+        "hint": "Tänk på vad som händer när kunden returnerar varor.",
+        "correctAnswer": true,
+        "explanation": "Kreditfaktura är motsatsen till en vanlig faktura - den minskar försäljning, moms och kundfordran.",
+        "level": 6
+    },
+    {
         "description": "En kund returnerar varor för 5 000 kr exkl. moms (25%). Du utfärdar en kreditfaktura. Kontera kreditfakturan.",
         "hint": "Kreditfaktura är motsatsen till en vanlig faktura. Minska kundfordran och minska försäljning + moms.",
         "correctAnswer": [
@@ -7,6 +16,21 @@
             { "account": "2610", "side": "debet", "amount": 1250 },
             { "account": "1510", "side": "kredit", "amount": 6250 }
         ],
+        "level": 6
+    },
+    {
+        "type": "drag-to-side",
+        "description": "Kund returnerar varor för 8 000 kr exkl. moms (25%). Total = 10 000 kr. Dra kontona till rätt sida.",
+        "hint": "Kreditfaktura: Försäljning och moms minskar (debet), kundfordran minskar (kredit).",
+        "blocks": [
+            { "account": "3010", "name": "Varuförsäljning", "amount": 8000 },
+            { "account": "2610", "name": "Utgående moms 25%", "amount": 2000 },
+            { "account": "1510", "name": "Kundfordringar", "amount": 10000 }
+        ],
+        "correctAnswer": {
+            "debet": ["3010", "2610"],
+            "kredit": ["1510"]
+        },
         "level": 6
     },
     {
@@ -20,12 +44,35 @@
         "level": 6
     },
     {
+        "type": "true-false",
+        "description": "Bedöm om påståendet är sant eller falskt.",
+        "statement": "Vid kortbetalning bokas hela beloppet som fordran på kortföretaget (1580).",
+        "hint": "Tänk på vad som händer direkt vid kortbetalning.",
+        "correctAnswer": true,
+        "explanation": "Hela försäljningsbeloppet bokas som fordran på kortföretaget. Avgiften dras först när kortföretaget betalar.",
+        "level": 6
+    },
+    {
         "description": "En kund betalar en faktura på 12 500 kr med kontokort. Kontera betalningen.",
         "hint": "Vid kortbetalning får du en fordran på kortföretaget (1580) för hela beloppet. Avgiften dras senare när kortföretaget betalar.",
         "correctAnswer": [
             { "account": "1580", "side": "debet", "amount": 12500 },
             { "account": "1510", "side": "kredit", "amount": 12500 }
         ],
+        "level": 6
+    },
+    {
+        "type": "drag-to-side",
+        "description": "Kund betalar faktura 20 000 kr med kontokort. Dra kontona till rätt sida.",
+        "hint": "Fordran på kortföretaget ökar (debet). Kundfordran minskar (kredit).",
+        "blocks": [
+            { "account": "1580", "name": "Fordran kortföretag", "amount": 20000 },
+            { "account": "1510", "name": "Kundfordringar", "amount": 20000 }
+        ],
+        "correctAnswer": {
+            "debet": ["1580"],
+            "kredit": ["1510"]
+        },
         "level": 6
     },
     {
@@ -39,6 +86,15 @@
         "level": 6
     },
     {
+        "type": "true-false",
+        "description": "Bedöm om påståendet är sant eller falskt.",
+        "statement": "Kortavgiften bokförs som en kostnad på konto 6040.",
+        "hint": "Tänk på vad kortavgiften representerar för företaget.",
+        "correctAnswer": true,
+        "explanation": "Kortavgiften är en kostnad för företaget och bokförs på konto 6040 (Bankavgifter/Kortavgifter).",
+        "level": 6
+    },
+    {
         "description": "En kund har betalat 30 dagar för sent. Fakturabeloppet var 24 000 kr. Dröjsmålsräntan är 8% per år. Beräkna räntan för 30 dagar och kontera räntefakturan.",
         "hint": "Ränta = Belopp × Räntesats × (Dagar/360). 24 000 × 0,08 × (30/360) = 160 kr. Ränteintäkten ökar din fordran.",
         "correctAnswer": [
@@ -48,12 +104,35 @@
         "level": 6
     },
     {
+        "type": "drag-to-side",
+        "description": "Du skickar räntefaktura på 200 kr till en kund för sen betalning. Dra kontona till rätt sida.",
+        "hint": "Kundfordran ökar (debet). Ränteintäkt ökar (kredit).",
+        "blocks": [
+            { "account": "1510", "name": "Kundfordringar", "amount": 200 },
+            { "account": "8320", "name": "Ränteintäkter", "amount": 200 }
+        ],
+        "correctAnswer": {
+            "debet": ["1510"],
+            "kredit": ["8320"]
+        },
+        "level": 6
+    },
+    {
         "description": "Du har betalat en leverantörsfaktura på 50 000 kr 45 dagar för sent. Leverantören kräver 10% årlig dröjsmålsränta. Beräkna och kontera räntan.",
         "hint": "Ränta = 50 000 × 0,10 × (45/360) = 625 kr. Dröjsmålsränta du betalar är en kostnad.",
         "correctAnswer": [
             { "account": "8420", "side": "debet", "amount": 625 },
             { "account": "2440", "side": "kredit", "amount": 625 }
         ],
+        "level": 6
+    },
+    {
+        "type": "true-false",
+        "description": "Bedöm om påståendet är sant eller falskt.",
+        "statement": "Dröjsmålsränta som du får från kunder bokförs på konto 8320.",
+        "hint": "Tänk på skillnaden mellan ränteintäkter och räntekostnader.",
+        "correctAnswer": true,
+        "explanation": "Ränta du får från kunder är en intäkt och bokförs på 8320 (Ränteintäkter).",
         "level": 6
     },
     {
@@ -77,6 +156,21 @@
         "level": 6
     },
     {
+        "type": "drag-to-side",
+        "description": "Kortföretaget betalar 15 000 kr minus 2% avgift (300 kr). Dra kontona till rätt sida.",
+        "hint": "Bankkontot ökar, avgiften är kostnad. Fordran på kortföretaget minskar.",
+        "blocks": [
+            { "account": "1930", "name": "Företagskonto", "amount": 14700 },
+            { "account": "6040", "name": "Kortavgifter", "amount": 300 },
+            { "account": "1580", "name": "Fordran kortföretag", "amount": 15000 }
+        ],
+        "correctAnswer": {
+            "debet": ["1930", "6040"],
+            "kredit": ["1580"]
+        },
+        "level": 6
+    },
+    {
         "description": "En kund returnerar tjänster för 4 000 kr exkl. moms (25%). Kunden hade redan betalat. Kontera återbetalningen från företagskontot.",
         "hint": "Minska intäkt och moms, pengarna går ut från banken.",
         "correctAnswer": [
@@ -94,6 +188,15 @@
             { "account": "4010", "side": "kredit", "amount": 2000 },
             { "account": "2640", "side": "kredit", "amount": 500 }
         ],
+        "level": 6
+    },
+    {
+        "type": "true-false",
+        "description": "Bedöm om påståendet är sant eller falskt.",
+        "statement": "Dröjsmålsränta du betalar till leverantörer bokförs på konto 8420.",
+        "hint": "Tänk på att räntekostnader är utgifter för företaget.",
+        "correctAnswer": true,
+        "explanation": "Ränta du betalar är en kostnad och bokförs på 8420 (Räntekostnader).",
         "level": 6
     },
     {

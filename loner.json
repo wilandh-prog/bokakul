@@ -1,5 +1,14 @@
 [
     {
+        "type": "true-false",
+        "description": "Bedöm om påståendet är sant eller falskt.",
+        "statement": "Bruttolön minus skatt ger nettolön.",
+        "hint": "Tänk på vad som dras från lönen innan utbetalning.",
+        "correctAnswer": true,
+        "explanation": "Nettolön = Bruttolön - Skatt. Detta är vad den anställde får utbetalt.",
+        "level": 7
+    },
+    {
         "description": "Du betalar ut lön på 25 000 kr brutto. Personalskatt är 30%. Kontera löneutbetalningen.",
         "hint": "Skatt = 25 000 × 30% = 7 500 kr. Nettolön = 17 500 kr. Lönekostnad (7010), skatteskuld (2710), utbetalning från bank.",
         "correctAnswer": [
@@ -7,6 +16,21 @@
             { "account": "2710", "side": "kredit", "amount": 7500 },
             { "account": "1930", "side": "kredit", "amount": 17500 }
         ],
+        "level": 7
+    },
+    {
+        "type": "drag-to-side",
+        "description": "Löneutbetalning: brutto 20 000 kr, skatt 6 000 kr, netto 14 000 kr. Dra kontona till rätt sida.",
+        "hint": "Lönekostnad ökar (debet). Skatteskuld och bank minskar (kredit).",
+        "blocks": [
+            { "account": "7010", "name": "Löner", "amount": 20000 },
+            { "account": "2710", "name": "Personalskatt", "amount": 6000 },
+            { "account": "1930", "name": "Företagskonto", "amount": 14000 }
+        ],
+        "correctAnswer": {
+            "debet": ["7010"],
+            "kredit": ["2710", "1930"]
+        },
         "level": 7
     },
     {
@@ -20,12 +44,35 @@
         "level": 7
     },
     {
+        "type": "true-false",
+        "description": "Bedöm om påståendet är sant eller falskt.",
+        "statement": "Arbetsgivaravgifter beräknas på bruttolönen.",
+        "hint": "Tänk på vad som är beräkningsunderlaget för arbetsgivaravgifter.",
+        "correctAnswer": true,
+        "explanation": "Arbetsgivaravgifter beräknas på bruttolönen, normalt 31,42%.",
+        "level": 7
+    },
+    {
         "description": "Du ska bokföra arbetsgivaravgifter på en bruttolön på 25 000 kr. Arbetsgivaravgiften är 31,42%. Kontera.",
         "hint": "Arbetsgivaravgift = 25 000 × 31,42% = 7 855 kr. Kostnad (7510), skuld (2730).",
         "correctAnswer": [
             { "account": "7510", "side": "debet", "amount": 7855 },
             { "account": "2730", "side": "kredit", "amount": 7855 }
         ],
+        "level": 7
+    },
+    {
+        "type": "drag-to-side",
+        "description": "Arbetsgivaravgifter 10 000 kr ska bokföras. Dra kontona till rätt sida.",
+        "hint": "Arbetsgivaravgift är en kostnad (debet). Skuld till staten ökar (kredit).",
+        "blocks": [
+            { "account": "7510", "name": "Arbetsgivaravgifter", "amount": 10000 },
+            { "account": "2730", "name": "Lagstadgade sociala avgifter", "amount": 10000 }
+        ],
+        "correctAnswer": {
+            "debet": ["7510"],
+            "kredit": ["2730"]
+        },
         "level": 7
     },
     {
@@ -38,6 +85,15 @@
         "level": 7
     },
     {
+        "type": "true-false",
+        "description": "Bedöm om påståendet är sant eller falskt.",
+        "statement": "Personalskatt bokförs som en skuld på konto 2710.",
+        "hint": "Tänk på att skatten ska betalas till Skatteverket.",
+        "correctAnswer": true,
+        "explanation": "Personalskatt som dras från lönen är en skuld till staten och bokförs på konto 2710.",
+        "level": 7
+    },
+    {
         "description": "Du ska överföra personalskatt på 8 000 kr till skattekontot (1630). Kontera.",
         "hint": "Skatteskulden (2710) minskar, skuld på skattekontot (1630) ökar.",
         "correctAnswer": [
@@ -47,12 +103,35 @@
         "level": 7
     },
     {
+        "type": "drag-to-side",
+        "description": "Överför personalskatt 12 000 kr till skattekontot 1630. Dra kontona till rätt sida.",
+        "hint": "Skatteskuld 2710 minskar (debet). Skuld på skattekonto ökar (kredit).",
+        "blocks": [
+            { "account": "2710", "name": "Personalskatt", "amount": 12000 },
+            { "account": "1630", "name": "Skattekonto", "amount": 12000 }
+        ],
+        "correctAnswer": {
+            "debet": ["2710"],
+            "kredit": ["1630"]
+        },
+        "level": 7
+    },
+    {
         "description": "Du ska överföra arbetsgivaravgifter på 10 000 kr till skattekontot (1630). Kontera.",
         "hint": "Skuld för sociala avgifter (2730) minskar, skuld på skattekontot (1630) ökar.",
         "correctAnswer": [
             { "account": "2730", "side": "debet", "amount": 10000 },
             { "account": "1630", "side": "kredit", "amount": 10000 }
         ],
+        "level": 7
+    },
+    {
+        "type": "true-false",
+        "description": "Bedöm om påståendet är sant eller falskt.",
+        "statement": "Konto 7010 är ett kostnadskonto för löner.",
+        "hint": "Titta på kontonumret - 7xxx är personalkostnader.",
+        "correctAnswer": true,
+        "explanation": "Konton som börjar på 7 är personalkostnader. 7010 är löner till tjänstemän.",
         "level": 7
     },
     {
@@ -72,6 +151,20 @@
             { "account": "2710", "side": "kredit", "amount": 5000 },
             { "account": "1910", "side": "kredit", "amount": 15000 }
         ],
+        "level": 7
+    },
+    {
+        "type": "drag-to-side",
+        "description": "Betala skatteskuld 20 000 kr från företagskontot till skattekontot. Dra kontona till rätt sida.",
+        "hint": "Skuld på skattekontot minskar (debet). Bankkontot minskar (kredit).",
+        "blocks": [
+            { "account": "1630", "name": "Skattekonto", "amount": 20000 },
+            { "account": "1930", "name": "Företagskonto", "amount": 20000 }
+        ],
+        "correctAnswer": {
+            "debet": ["1630"],
+            "kredit": ["1930"]
+        },
         "level": 7
     },
     {
@@ -96,6 +189,15 @@
             { "account": "7510", "side": "debet", "amount": 8798 },
             { "account": "2730", "side": "kredit", "amount": 8798 }
         ],
+        "level": 7
+    },
+    {
+        "type": "true-false",
+        "description": "Bedöm om påståendet är sant eller falskt.",
+        "statement": "Arbetsgivaravgifter bokförs på konto 7510.",
+        "hint": "Tänk på att arbetsgivaravgifter är en personalkostnad.",
+        "correctAnswer": true,
+        "explanation": "Arbetsgivaravgifter är en personalkostnad och bokförs på konto 7510.",
         "level": 7
     },
     {

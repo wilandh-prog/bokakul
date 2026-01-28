@@ -1,11 +1,34 @@
 [
     {
+        "type": "true-false",
+        "description": "Bedöm om påståendet är sant eller falskt.",
+        "statement": "Vid momsredovisning nollställs momskontona mot momsredovisningskontot 2650.",
+        "hint": "Tänk på hur momskontona töms vid bokslut.",
+        "correctAnswer": true,
+        "explanation": "Utgående och ingående moms nollställs genom att överföras till momsredovisningskontot 2650.",
+        "level": 4
+    },
+    {
         "description": "Du ska nollställa utgående moms 25% (2610) som har ett saldo på 5 000 kr (kredit). Bokför överföringen till momsredovisningskontot (2650).",
         "hint": "Utgående moms är en skuld (kreditsaldo). För att nollställa debiterar du 2610 och krediterar 2650.",
         "correctAnswer": [
             { "account": "2610", "side": "debet", "amount": 5000 },
             { "account": "2650", "side": "kredit", "amount": 5000 }
         ],
+        "level": 4
+    },
+    {
+        "type": "drag-to-side",
+        "description": "Du ska nollställa utgående moms 25% (2610) med saldo 8 000 kr till momsredovisningskontot (2650). Dra kontona till rätt sida.",
+        "hint": "Utgående moms (skuld) nollställs genom att debitera 2610.",
+        "blocks": [
+            { "account": "2610", "name": "Utgående moms 25%", "amount": 8000 },
+            { "account": "2650", "name": "Momsredovisning", "amount": 8000 }
+        ],
+        "correctAnswer": {
+            "debet": ["2610"],
+            "kredit": ["2650"]
+        },
         "level": 4
     },
     {
@@ -18,12 +41,35 @@
         "level": 4
     },
     {
+        "type": "true-false",
+        "description": "Bedöm om påståendet är sant eller falskt.",
+        "statement": "Om utgående moms är större än ingående moms har företaget en momsskuld.",
+        "hint": "Tänk på vad som händer när du tar ut mer moms än du betalar.",
+        "correctAnswer": true,
+        "explanation": "När utgående moms > ingående moms ska företaget betala mellanskillnaden till staten.",
+        "level": 4
+    },
+    {
         "description": "Momsredovisningskontot (2650) visar en skuld på 8 000 kr (kreditsaldo). Bokför överföringen till skattekontot (2012).",
         "hint": "En momsskuld på 2650 (kredit) överförs till skattekontot som en skuld. Debitera 2650 och kreditera 2012.",
         "correctAnswer": [
             { "account": "2650", "side": "debet", "amount": 8000 },
             { "account": "2012", "side": "kredit", "amount": 8000 }
         ],
+        "level": 4
+    },
+    {
+        "type": "drag-to-side",
+        "description": "Du ska nollställa ingående moms (2640) med saldo 5 000 kr till momsredovisningskontot. Dra kontona till rätt sida.",
+        "hint": "Ingående moms (fordran) nollställs genom att kreditera 2640.",
+        "blocks": [
+            { "account": "2650", "name": "Momsredovisning", "amount": 5000 },
+            { "account": "2640", "name": "Ingående moms", "amount": 5000 }
+        ],
+        "correctAnswer": {
+            "debet": ["2650"],
+            "kredit": ["2640"]
+        },
         "level": 4
     },
     {
@@ -36,6 +82,15 @@
         "level": 4
     },
     {
+        "type": "true-false",
+        "description": "Bedöm om påståendet är sant eller falskt.",
+        "statement": "Konto 2650 (Momsredovisning) är ett skuldkonto.",
+        "hint": "Titta på kontonumret - konton som börjar på 2 är skulder.",
+        "correctAnswer": true,
+        "explanation": "Konto 2650 är ett skuldkonto där momsskulden samlas innan betalning.",
+        "level": 4
+    },
+    {
         "description": "Du ska nollställa utgående moms 12% (2620) som har ett saldo på 2 400 kr (kredit). Bokför överföringen till momsredovisningskontot.",
         "hint": "Utgående moms 12% nollställs på samma sätt som 25% - debitera 2620 och kreditera 2650.",
         "correctAnswer": [
@@ -45,12 +100,35 @@
         "level": 4
     },
     {
+        "type": "drag-to-side",
+        "description": "Momsskuld 6 000 kr på 2650 ska överföras till skattekontot 2012. Dra kontona till rätt sida.",
+        "hint": "Skuld på 2650 nollställs (debet), skuld på 2012 ökar (kredit).",
+        "blocks": [
+            { "account": "2650", "name": "Momsredovisning", "amount": 6000 },
+            { "account": "2012", "name": "Skattekonto", "amount": 6000 }
+        ],
+        "correctAnswer": {
+            "debet": ["2650"],
+            "kredit": ["2012"]
+        },
+        "level": 4
+    },
+    {
         "description": "Du ska nollställa utgående moms 6% (2630) som har ett saldo på 1 200 kr (kredit). Bokför överföringen till momsredovisningskontot.",
         "hint": "Utgående moms 6% nollställs genom att debitera 2630 och kreditera 2650.",
         "correctAnswer": [
             { "account": "2630", "side": "debet", "amount": 1200 },
             { "account": "2650", "side": "kredit", "amount": 1200 }
         ],
+        "level": 4
+    },
+    {
+        "type": "true-false",
+        "description": "Bedöm om påståendet är sant eller falskt.",
+        "statement": "Ingående moms nollställs genom att kreditera 2640.",
+        "hint": "Tänk på att ingående moms har debetsaldo.",
+        "correctAnswer": true,
+        "explanation": "Ingående moms har debetsaldo och nollställs genom att kreditera kontot.",
         "level": 4
     },
     {
@@ -69,6 +147,20 @@
         "level": 4
     },
     {
+        "type": "drag-to-side",
+        "description": "Du betalar momsskuld 10 000 kr från företagskontot till skattekontot. Dra kontona till rätt sida.",
+        "hint": "Skuld på skattekontot minskar (debet). Bankkontot minskar (kredit).",
+        "blocks": [
+            { "account": "2012", "name": "Skattekonto", "amount": 10000 },
+            { "account": "1930", "name": "Företagskonto", "amount": 10000 }
+        ],
+        "correctAnswer": {
+            "debet": ["2012"],
+            "kredit": ["1930"]
+        },
+        "level": 4
+    },
+    {
         "description": "Hela kedjan: Utgående moms 25% har 15 000 kr, ingående moms har 9 000 kr. Gör komplett momsredovisning och betala momsskulden. Använd skattekonto 2012.",
         "hint": "Nettoskulden blir 6 000 kr (15 000 - 9 000). Nollställ momskontona, överför till skattekonto 2012, betala från bank.",
         "correctAnswer": [
@@ -81,6 +173,15 @@
             { "account": "2012", "side": "debet", "amount": 6000 },
             { "account": "1930", "side": "kredit", "amount": 6000 }
         ],
+        "level": 4
+    },
+    {
+        "type": "true-false",
+        "description": "Bedöm om påståendet är sant eller falskt.",
+        "statement": "Utgående moms nollställs genom att debitera momskontot.",
+        "hint": "Tänk på att utgående moms har kreditsaldo.",
+        "correctAnswer": true,
+        "explanation": "Utgående moms har kreditsaldo och nollställs genom att debitera kontot.",
         "level": 4
     },
     {

@@ -1245,3 +1245,367 @@ main {
         font-size: 0.85em;
     }
 }
+
+/* ==========================================
+   DRAG AND DROP ÖVNINGAR
+   ========================================== */
+
+.drag-exercise-area {
+    margin: 20px 0;
+}
+
+/* Gemensam blockstil */
+.draggable-block {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 20px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    border: 2px solid #667eea;
+    border-radius: 12px;
+    cursor: grab;
+    user-select: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.15);
+    min-height: 50px;
+    touch-action: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+}
+
+.draggable-block:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.25);
+    border-color: #5568d3;
+}
+
+.draggable-block:active,
+.draggable-block.dragging {
+    cursor: grabbing;
+    opacity: 0.8;
+    transform: scale(1.02) rotate(1deg);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.35);
+    z-index: 1000;
+}
+
+.draggable-block.dropped {
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+    border-color: #4caf50;
+}
+
+/* Block innehåll */
+.block-account {
+    font-weight: 700;
+    color: #667eea;
+    font-size: 1.1em;
+    min-width: 50px;
+}
+
+.block-name {
+    flex: 1;
+    color: #333;
+    font-weight: 500;
+}
+
+.block-amount {
+    font-weight: 600;
+    color: #28a745;
+    background: rgba(40, 167, 69, 0.1);
+    padding: 4px 12px;
+    border-radius: 15px;
+}
+
+.block-side {
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 0.75em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.block-side.debet {
+    background: #e3f2fd;
+    color: #1565c0;
+}
+
+.block-side.kredit {
+    background: #fce4ec;
+    color: #c2185b;
+}
+
+/* Typ 1: Dra till sida */
+.drag-exercise {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.block-pool {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 15px;
+    border: 2px dashed #dee2e6;
+    min-height: 80px;
+}
+
+.block-pool.empty-pool {
+    justify-content: center;
+    align-items: center;
+    color: #999;
+    font-style: italic;
+}
+
+.drop-zones {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.drop-zone {
+    min-height: 180px;
+    padding: 20px;
+    border-radius: 15px;
+    border: 3px dashed;
+    transition: all 0.3s ease;
+}
+
+.drop-zone.debet-zone {
+    border-color: #1565c0;
+    background: linear-gradient(135deg, rgba(21, 101, 192, 0.05) 0%, rgba(21, 101, 192, 0.1) 100%);
+}
+
+.drop-zone.kredit-zone {
+    border-color: #c2185b;
+    background: linear-gradient(135deg, rgba(194, 24, 91, 0.05) 0%, rgba(194, 24, 91, 0.1) 100%);
+}
+
+.drop-zone h4 {
+    text-align: center;
+    margin: 0 0 15px 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid currentColor;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 1.1em;
+}
+
+.debet-zone h4 {
+    color: #1565c0;
+}
+
+.kredit-zone h4 {
+    color: #c2185b;
+}
+
+.dropped-blocks {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Drag-over effekt */
+.drop-zone.drag-over {
+    border-style: solid;
+    transform: scale(1.02);
+    box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+}
+
+.debet-zone.drag-over {
+    background: rgba(21, 101, 192, 0.2);
+}
+
+.kredit-zone.drag-over {
+    background: rgba(194, 24, 91, 0.2);
+}
+
+/* Sant/Falskt övningar */
+.true-false-exercise {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.statement-box {
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    border: 2px solid #667eea;
+    border-radius: 15px;
+    padding: 25px 30px;
+    text-align: center;
+    font-size: 1.15em;
+    line-height: 1.6;
+    color: #333;
+}
+
+.true-false-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.tf-btn {
+    padding: 20px 30px;
+    font-size: 1.2em;
+    font-weight: 600;
+    border: 3px solid;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.tf-btn.true-btn {
+    background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+    border-color: #28a745;
+    color: #155724;
+}
+
+.tf-btn.true-btn:hover {
+    background: linear-gradient(135deg, #c3e6cb 0%, #b1dfbb 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+}
+
+.tf-btn.false-btn {
+    background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+    border-color: #dc3545;
+    color: #721c24;
+}
+
+.tf-btn.false-btn:hover {
+    background: linear-gradient(135deg, #f5c6cb 0%, #f1b0b7 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+}
+
+.tf-btn.selected {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.3);
+}
+
+.tf-btn.correct-answer {
+    animation: correctPulse 0.6s ease-out;
+}
+
+.tf-btn.wrong-answer {
+    animation: wrongShake 0.5s ease-out;
+}
+
+/* Animationer */
+@keyframes dropBounce {
+    0% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(0.95);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes correctPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 0 15px rgba(40, 167, 69, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(40, 167, 69, 0);
+    }
+}
+
+@keyframes wrongShake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-8px); }
+    40% { transform: translateX(8px); }
+    60% { transform: translateX(-6px); }
+    80% { transform: translateX(6px); }
+}
+
+.draggable-block.correct {
+    animation: correctPulse 0.6s ease-out;
+    border-color: #28a745;
+    background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+}
+
+.draggable-block.incorrect {
+    animation: wrongShake 0.5s ease-out;
+    border-color: #dc3545;
+    background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+}
+
+/* Touch clone */
+.touch-clone {
+    transition: none !important;
+    animation: none !important;
+}
+
+/* Responsiv drag-and-drop */
+@media (max-width: 768px) {
+    .drop-zones {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .drop-zone {
+        min-height: 120px;
+    }
+
+    .build-exercise {
+        grid-template-columns: 1fr;
+    }
+
+    .draggable-block {
+        padding: 12px 15px;
+        min-height: 48px;
+    }
+
+    .block-pool {
+        padding: 15px;
+        gap: 10px;
+    }
+
+    .step-handle {
+        padding: 10px;
+        font-size: 1.5em;
+    }
+
+    .block-account {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .draggable-block {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+
+    .block-amount {
+        align-self: flex-end;
+    }
+}
+
+/* Touch targets */
+@media (pointer: coarse) {
+    .draggable-block {
+        min-height: 56px;
+        padding: 16px 20px;
+    }
+
+    .step-handle {
+        padding: 15px;
+    }
+}

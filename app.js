@@ -415,6 +415,22 @@ function renderAccountPlan() {
 }
 
 // Ladda en händelse
+// Avgör övningstyp
+function getExerciseType(event) {
+    return event.type || 'classic';
+}
+
+// Dölj alla övningsytor
+function hideAllExerciseAreas() {
+    const bookingArea = document.querySelector('.booking-area');
+    const dragArea = document.getElementById('drag-exercise-area');
+    const addRowBtn = document.getElementById('add-row');
+
+    if (bookingArea) bookingArea.style.display = 'none';
+    if (dragArea) dragArea.style.display = 'none';
+    if (addRowBtn) addRowBtn.style.display = 'none';
+}
+
 function loadEvent() {
     const event = events[currentEventIndex];
     document.getElementById('event-description').textContent = event.description;
@@ -428,10 +444,24 @@ function loadEvent() {
     // Dölj mini-balansräkningen vid ny uppgift
     hideMiniBalance();
 
-    // Rensa bokföringsrader
-    bookingRows = [];
-    renderBookingRows();
-    addBookingRow();
+    // Dölj alla övningsytor först
+    hideAllExerciseAreas();
+
+    // Rendera rätt övningstyp
+    const type = getExerciseType(event);
+
+    if (type === 'classic') {
+        // Visa klassisk bokföringsyta
+        document.querySelector('.booking-area').style.display = 'block';
+        document.getElementById('add-row').style.display = 'block';
+        bookingRows = [];
+        renderBookingRows();
+        addBookingRow();
+    } else {
+        // Visa drag-and-drop yta
+        document.getElementById('drag-exercise-area').style.display = 'block';
+        renderDragExercise(event, type);
+    }
 
     // Scrolla till uppgiften
     const eventCard = document.querySelector('.event-card');
@@ -599,7 +629,29 @@ function handleInputChange(e) {
 // Kontrollera svar
 function checkAnswer() {
     const event = events[currentEventIndex];
+    const type = getExerciseType(event);
 
+    let isCorrect = null;
+
+    // Hantera olika övningstyper
+    if (type === 'drag-to-side') {
+        isCorrect = checkDragToSideAnswer(event);
+    } else if (type === 'true-false') {
+        isCorrect = checkTrueFalseAnswer(event);
+    } else {
+        // Klassisk konteringsövning
+        isCorrect = checkClassicAnswer(event);
+    }
+
+    // Om null returnerades betyder det att validering misslyckades och feedback visades
+    if (isCorrect === null) return;
+
+    // Resten av funktionen hanterar poäng och feedback
+    handleAnswerResult(isCorrect, event);
+}
+
+// Klassisk konteringsvalidering
+function checkClassicAnswer(event) {
     // Konvertera nya formatet till gammalt format för jämförelse
     const userAnswer = [];
     bookingRows.forEach(row => {
@@ -627,13 +679,13 @@ function checkAnswer() {
     );
     if (rowsWithoutAccount.length > 0) {
         showFeedback(false, "Välj konto först!\n\nDu har fyllt i belopp men inte valt vilket konto det gäller. Använd dropdown-menyn för att välja rätt konto.");
-        return;
+        return null;
     }
 
     // Validera att det finns svar
     if (userAnswer.length === 0) {
         showFeedback(false, "Ingen kontering gjord\n\nFyll i minst en bokföringspost genom att:\n1. Välja ett konto i dropdown-menyn\n2. Ange belopp i Debet eller Kredit");
-        return;
+        return null;
     }
 
     // Kontrollera att debet = kredit
@@ -648,11 +700,16 @@ function checkAnswer() {
     if (Math.abs(debetSum - kreditSum) > 0.01) {
         const diff = Math.abs(debetSum - kreditSum);
         showFeedback(false, `Bokföringen balanserar inte!\n\nDebet: ${debetSum.toLocaleString('sv-SE')} kr\nKredit: ${kreditSum.toLocaleString('sv-SE')} kr\nDifferens: ${diff.toLocaleString('sv-SE')} kr\n\n💡 Tips: I bokföring måste summa debet alltid vara lika med summa kredit.`);
-        return;
+        return null;
     }
 
     // Kontrollera om svaret är korrekt
-    const isCorrect = compareAnswers(userAnswer, event.correctAnswer);
+    return compareAnswers(userAnswer, event.correctAnswer);
+}
+
+// Hantera resultat (poäng, streak, feedback)
+function handleAnswerResult(isCorrect, event) {
+    const type = getExerciseType(event);
 
     if (isCorrect) {
         correctCount++;
@@ -698,8 +755,15 @@ function checkAnswer() {
         }
         showFeedback(true, message);
 
-        // Visa mini-balansräkning med animation
-        showMiniBalance(event.correctAnswer);
+        // Visa mini-balansräkning med animation (endast för klassisk och drag-to-side)
+        if (type === 'classic' && event.correctAnswer) {
+            showMiniBalance(event.correctAnswer);
+        }
+
+        // Markera korrekta block för drag-övningar
+        if (type !== 'classic') {
+            markDragBlocksCorrect();
+        }
     } else {
         incorrectCount++;
         totalIncorrect++;
@@ -709,17 +773,13 @@ function checkAnswer() {
         saveProgress();
         updateStats();
 
-        let explanation = "Inte riktigt rätt. Så här ska det konteras:\n\n";
-        event.correctAnswer.forEach(entry => {
-            const accountInfo = findAccountByNumber(entry.account);
-            const accountName = accountInfo ? accountInfo.name : 'Okänt konto';
-            const side = entry.side === 'debet' ? 'Debet' : 'Kredit';
-            explanation += `📌 ${entry.account} ${accountName}\n     ${side}: ${entry.amount.toLocaleString('sv-SE')} kr\n\n`;
-        });
-
-        explanation += "💡 Tips: Läs igenom händelsen igen och tänk på vilka konton som påverkas.";
-
+        let explanation = getIncorrectExplanation(event, type);
         showFeedback(false, explanation);
+
+        // Markera felaktiga block för drag-övningar
+        if (type !== 'classic') {
+            markDragBlocksIncorrect();
+        }
     }
 
     document.getElementById('check-answer').style.display = 'none';
@@ -757,6 +817,675 @@ function skipEvent() {
     document.getElementById('skip-event').style.display = 'none';
     document.getElementById('next-event').style.display = 'block';
 }
+
+// ==========================================
+// DRAG AND DROP ÖVNINGAR
+// ==========================================
+
+let draggedElement = null;
+let touchClone = null;
+let currentDropTarget = null;
+
+// Generera förklaring vid fel svar
+function getIncorrectExplanation(event, type) {
+    if (type === 'drag-to-side') {
+        let explanation = "Inte riktigt rätt. Rätt placering:\n\n";
+        explanation += "📌 DEBET:\n";
+        event.correctAnswer.debet.forEach(acc => {
+            const block = event.blocks.find(b => b.account === acc);
+            if (block) {
+                explanation += `   ${block.account} ${block.name} (${block.amount.toLocaleString('sv-SE')} kr)\n`;
+            }
+        });
+        explanation += "\n📌 KREDIT:\n";
+        event.correctAnswer.kredit.forEach(acc => {
+            const block = event.blocks.find(b => b.account === acc);
+            if (block) {
+                explanation += `   ${block.account} ${block.name} (${block.amount.toLocaleString('sv-SE')} kr)\n`;
+            }
+        });
+        return explanation;
+    } else if (type === 'build-entry') {
+        let explanation = "Inte riktigt rätt ordning. Rätt ordning:\n\n";
+        event.correctOrder.forEach((id, idx) => {
+            const block = event.blocks.find(b => b.id === id);
+            if (block) {
+                explanation += `${idx + 1}. ${block.side.toUpperCase()}: ${block.account} ${block.name} (${block.amount.toLocaleString('sv-SE')} kr)\n`;
+            }
+        });
+        return explanation;
+    } else if (type === 'true-false') {
+        const correct = event.correctAnswer ? 'SANT' : 'FALSKT';
+        return `Svaret är ${correct}.\n\n${event.explanation || ''}`;
+    } else {
+        // Klassisk
+        let explanation = "Inte riktigt rätt. Så här ska det konteras:\n\n";
+        event.correctAnswer.forEach(entry => {
+            const accountInfo = findAccountByNumber(entry.account);
+            const accountName = accountInfo ? accountInfo.name : 'Okänt konto';
+            const side = entry.side === 'debet' ? 'Debet' : 'Kredit';
+            explanation += `📌 ${entry.account} ${accountName}\n     ${side}: ${entry.amount.toLocaleString('sv-SE')} kr\n\n`;
+        });
+        explanation += "💡 Tips: Läs igenom händelsen igen och tänk på vilka konton som påverkas.";
+        return explanation;
+    }
+}
+
+// Markera block som korrekta
+function markDragBlocksCorrect() {
+    document.querySelectorAll('.draggable-block').forEach(block => {
+        block.classList.add('correct');
+    });
+}
+
+// Markera block som felaktiga
+function markDragBlocksIncorrect() {
+    document.querySelectorAll('.draggable-block').forEach(block => {
+        block.classList.add('incorrect');
+    });
+}
+
+// Router för interaktiva övningar
+function renderDragExercise(event, type) {
+    const container = document.getElementById('drag-exercise-area');
+
+    if (type === 'drag-to-side') {
+        renderDragToSide(event, container);
+    } else if (type === 'true-false') {
+        renderTrueFalse(event, container);
+    }
+}
+
+// Sant/Falskt övning
+function renderTrueFalse(event, container) {
+    container.innerHTML = `
+        <div class="true-false-exercise">
+            <div class="statement-box">
+                ${event.statement}
+            </div>
+            <div class="true-false-buttons">
+                <button class="tf-btn true-btn" data-answer="true">Sant</button>
+                <button class="tf-btn false-btn" data-answer="false">Falskt</button>
+            </div>
+        </div>
+    `;
+
+    initTrueFalseListeners();
+}
+
+let selectedTrueFalse = null;
+
+function initTrueFalseListeners() {
+    const buttons = document.querySelectorAll('.tf-btn');
+    selectedTrueFalse = null;
+
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Ta bort tidigare val
+            buttons.forEach(b => b.classList.remove('selected'));
+            // Markera valt
+            btn.classList.add('selected');
+            selectedTrueFalse = btn.dataset.answer === 'true';
+        });
+    });
+}
+
+function checkTrueFalseAnswer(event) {
+    if (selectedTrueFalse === null) {
+        showFeedback(false, "Välj Sant eller Falskt!");
+        return null;
+    }
+
+    const isCorrect = selectedTrueFalse === event.correctAnswer;
+
+    // Markera knapparna
+    const buttons = document.querySelectorAll('.tf-btn');
+    buttons.forEach(btn => {
+        const btnAnswer = btn.dataset.answer === 'true';
+        if (btnAnswer === event.correctAnswer) {
+            btn.classList.add('correct-answer');
+        } else if (btn.classList.contains('selected') && !isCorrect) {
+            btn.classList.add('wrong-answer');
+        }
+    });
+
+    return isCorrect;
+}
+
+// Typ 1: Dra konton till rätt sida
+function renderDragToSide(event, container) {
+    container.innerHTML = `
+        <div class="drag-exercise">
+            <div class="block-pool" id="block-pool">
+                ${event.blocks.map((block, idx) => `
+                    <div class="draggable-block"
+                         draggable="true"
+                         data-account="${block.account}"
+                         data-index="${idx}"
+                         id="block-${idx}">
+                        <span class="block-account">${block.account}</span>
+                        <span class="block-name">${block.name}</span>
+                        <span class="block-amount">${block.amount.toLocaleString('sv-SE')} kr</span>
+                    </div>
+                `).join('')}
+            </div>
+
+            <div class="drop-zones">
+                <div class="drop-zone debet-zone" id="debet-dropzone" data-side="debet">
+                    <h4>DEBET</h4>
+                    <div class="dropped-blocks"></div>
+                </div>
+                <div class="drop-zone kredit-zone" id="kredit-dropzone" data-side="kredit">
+                    <h4>KREDIT</h4>
+                    <div class="dropped-blocks"></div>
+                </div>
+            </div>
+        </div>
+    `;
+
+    initDragToSideListeners();
+}
+
+// Typ 2: Bygg konteringen
+function renderBuildEntry(event, container) {
+    // Blanda blocken
+    const shuffledBlocks = [...event.blocks].sort(() => Math.random() - 0.5);
+
+    container.innerHTML = `
+        <div class="build-exercise">
+            <div class="block-pool" id="build-pool">
+                ${shuffledBlocks.map(block => `
+                    <div class="draggable-block entry-block"
+                         draggable="true"
+                         data-id="${block.id}"
+                         data-side="${block.side}"
+                         id="entry-${block.id}">
+                        <span class="block-side ${block.side}">${block.side.toUpperCase()}</span>
+                        <span class="block-account">${block.account}</span>
+                        <span class="block-name">${block.name}</span>
+                        <span class="block-amount">${block.amount.toLocaleString('sv-SE')} kr</span>
+                    </div>
+                `).join('')}
+            </div>
+
+            <div class="build-zone" id="build-dropzone">
+                <h4>Konteringsorder</h4>
+                <div class="entry-stack" id="entry-stack">
+                    <div class="stack-placeholder">Dra block hit för att bygga konteringen</div>
+                </div>
+            </div>
+        </div>
+    `;
+
+    initBuildEntryListeners();
+}
+
+// Typ 3: Sortera bokslutssteg
+function renderSortSteps(event, container) {
+    // Blanda blocken
+    const shuffledBlocks = [...event.blocks].sort(() => Math.random() - 0.5);
+
+    container.innerHTML = `
+        <div class="sort-exercise">
+            <div class="step-list" id="step-list">
+                ${shuffledBlocks.map((block, idx) => `
+                    <div class="draggable-block step-block"
+                         draggable="true"
+                         data-id="${block.id}"
+                         id="step-${block.id}">
+                        <span class="step-number">${idx + 1}</span>
+                        <span class="step-text">${block.text}</span>
+                        <span class="step-handle">⋮⋮</span>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `;
+
+    initSortStepsListeners();
+}
+
+// ==========================================
+// DRAG AND DROP EVENT HANDLERS
+// ==========================================
+
+function handleDragStart(e) {
+    draggedElement = e.target.closest('.draggable-block');
+    if (!draggedElement) return;
+
+    draggedElement.classList.add('dragging');
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/plain', draggedElement.id);
+}
+
+function handleDragEnd(e) {
+    if (draggedElement) {
+        draggedElement.classList.remove('dragging');
+        draggedElement = null;
+    }
+
+    document.querySelectorAll('.drag-over').forEach(el => {
+        el.classList.remove('drag-over');
+    });
+}
+
+function handleDragOver(e) {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+}
+
+function handleDragEnter(e) {
+    const dropzone = e.target.closest('.drop-zone, .build-zone, .step-list, .block-pool');
+    if (dropzone) {
+        dropzone.classList.add('drag-over');
+    }
+}
+
+function handleDragLeave(e) {
+    const dropzone = e.target.closest('.drop-zone, .build-zone, .step-list, .block-pool');
+    if (dropzone && !dropzone.contains(e.relatedTarget)) {
+        dropzone.classList.remove('drag-over');
+    }
+}
+
+// Typ 1: Listeners
+function initDragToSideListeners() {
+    const blocks = document.querySelectorAll('#block-pool .draggable-block');
+    const dropzones = document.querySelectorAll('.drop-zone');
+    const pool = document.getElementById('block-pool');
+
+    blocks.forEach(block => {
+        block.addEventListener('dragstart', handleDragStart);
+        block.addEventListener('dragend', handleDragEnd);
+        block.addEventListener('touchstart', handleTouchStart, { passive: false });
+        block.addEventListener('touchmove', handleTouchMove, { passive: false });
+        block.addEventListener('touchend', handleTouchEndDrop);
+    });
+
+    dropzones.forEach(zone => {
+        zone.addEventListener('dragover', handleDragOver);
+        zone.addEventListener('dragenter', handleDragEnter);
+        zone.addEventListener('dragleave', handleDragLeave);
+        zone.addEventListener('drop', handleDropToSide);
+    });
+
+    pool.addEventListener('dragover', handleDragOver);
+    pool.addEventListener('dragenter', handleDragEnter);
+    pool.addEventListener('dragleave', handleDragLeave);
+    pool.addEventListener('drop', handleReturnToPool);
+}
+
+function handleDropToSide(e) {
+    e.preventDefault();
+    const dropzone = e.target.closest('.drop-zone');
+    if (!dropzone || !draggedElement) return;
+
+    dropzone.classList.remove('drag-over');
+
+    const droppedContainer = dropzone.querySelector('.dropped-blocks');
+    droppedContainer.appendChild(draggedElement);
+
+    draggedElement.classList.add('dropped');
+    draggedElement.style.animation = 'dropBounce 0.3s ease-out';
+
+    // Re-attach listeners
+    draggedElement.addEventListener('dragstart', handleDragStart);
+    draggedElement.addEventListener('dragend', handleDragEnd);
+}
+
+function handleReturnToPool(e) {
+    e.preventDefault();
+    const pool = e.target.closest('.block-pool');
+    if (!pool || !draggedElement) return;
+
+    pool.classList.remove('drag-over');
+    pool.appendChild(draggedElement);
+    draggedElement.classList.remove('dropped');
+}
+
+// Typ 2: Build Entry Listeners
+function initBuildEntryListeners() {
+    const pool = document.getElementById('build-pool');
+    const stack = document.getElementById('entry-stack');
+    const blocks = pool.querySelectorAll('.draggable-block');
+
+    blocks.forEach(block => {
+        block.addEventListener('dragstart', handleDragStart);
+        block.addEventListener('dragend', handleDragEnd);
+        block.addEventListener('touchstart', handleTouchStart, { passive: false });
+        block.addEventListener('touchmove', handleTouchMove, { passive: false });
+        block.addEventListener('touchend', handleTouchEndSort);
+    });
+
+    stack.addEventListener('dragover', handleSortDragOver);
+    stack.addEventListener('dragenter', handleDragEnter);
+    stack.addEventListener('dragleave', handleDragLeave);
+    stack.addEventListener('drop', handleStackDrop);
+
+    pool.addEventListener('dragover', handleDragOver);
+    pool.addEventListener('dragenter', handleDragEnter);
+    pool.addEventListener('dragleave', handleDragLeave);
+    pool.addEventListener('drop', handleReturnToBuildPool);
+}
+
+function handleStackDrop(e) {
+    e.preventDefault();
+    const stack = document.getElementById('entry-stack');
+    if (!draggedElement) return;
+
+    stack.classList.remove('drag-over');
+
+    // Ta bort placeholder
+    const placeholder = stack.querySelector('.stack-placeholder');
+    if (placeholder) placeholder.remove();
+
+    // Lägg till i rätt position
+    const afterElement = getDragAfterElement(stack, e.clientY);
+    if (afterElement) {
+        stack.insertBefore(draggedElement, afterElement);
+    } else {
+        stack.appendChild(draggedElement);
+    }
+
+    draggedElement.classList.add('dropped');
+    draggedElement.style.animation = 'dropBounce 0.3s ease-out';
+}
+
+function handleReturnToBuildPool(e) {
+    e.preventDefault();
+    const pool = document.getElementById('build-pool');
+    if (!pool || !draggedElement) return;
+
+    pool.classList.remove('drag-over');
+    pool.appendChild(draggedElement);
+    draggedElement.classList.remove('dropped');
+
+    // Visa placeholder om stacken är tom
+    const stack = document.getElementById('entry-stack');
+    if (stack && stack.querySelectorAll('.draggable-block').length === 0) {
+        stack.innerHTML = '<div class="stack-placeholder">Dra block hit för att bygga konteringen</div>';
+    }
+}
+
+// Typ 3: Sort Steps Listeners
+function initSortStepsListeners() {
+    const list = document.getElementById('step-list');
+    const blocks = list.querySelectorAll('.draggable-block');
+
+    blocks.forEach(block => {
+        block.addEventListener('dragstart', handleDragStart);
+        block.addEventListener('dragend', handleDragEndSort);
+        block.addEventListener('touchstart', handleTouchStart, { passive: false });
+        block.addEventListener('touchmove', handleTouchMove, { passive: false });
+        block.addEventListener('touchend', handleTouchEndSort);
+    });
+
+    list.addEventListener('dragover', handleSortDragOver);
+    list.addEventListener('dragenter', handleDragEnter);
+    list.addEventListener('dragleave', handleDragLeave);
+    list.addEventListener('drop', handleSortDrop);
+}
+
+function handleSortDragOver(e) {
+    e.preventDefault();
+    const container = e.target.closest('.entry-stack, .step-list');
+    if (!container || !draggedElement) return;
+
+    const afterElement = getDragAfterElement(container, e.clientY);
+
+    if (afterElement == null) {
+        container.appendChild(draggedElement);
+    } else {
+        container.insertBefore(draggedElement, afterElement);
+    }
+}
+
+function handleSortDrop(e) {
+    e.preventDefault();
+    const list = document.getElementById('step-list');
+    if (!list) return;
+
+    list.classList.remove('drag-over');
+    updateStepNumbers();
+}
+
+function handleDragEndSort(e) {
+    handleDragEnd(e);
+    updateStepNumbers();
+}
+
+function getDragAfterElement(container, y) {
+    const draggableElements = [...container.querySelectorAll('.draggable-block:not(.dragging)')];
+
+    return draggableElements.reduce((closest, child) => {
+        const box = child.getBoundingClientRect();
+        const offset = y - box.top - box.height / 2;
+
+        if (offset < 0 && offset > closest.offset) {
+            return { offset: offset, element: child };
+        } else {
+            return closest;
+        }
+    }, { offset: Number.NEGATIVE_INFINITY }).element;
+}
+
+function updateStepNumbers() {
+    const list = document.getElementById('step-list');
+    if (!list) return;
+
+    const blocks = list.querySelectorAll('.step-block');
+    blocks.forEach((block, idx) => {
+        const numEl = block.querySelector('.step-number');
+        if (numEl) numEl.textContent = idx + 1;
+    });
+}
+
+// ==========================================
+// TOUCH SUPPORT
+// ==========================================
+
+function handleTouchStart(e) {
+    const block = e.target.closest('.draggable-block');
+    if (!block) return;
+
+    e.preventDefault();
+    draggedElement = block;
+
+    const touch = e.touches[0];
+
+    touchClone = block.cloneNode(true);
+    touchClone.classList.add('touch-clone');
+    touchClone.style.cssText = `
+        position: fixed;
+        left: ${touch.clientX - block.offsetWidth / 2}px;
+        top: ${touch.clientY - block.offsetHeight / 2}px;
+        width: ${block.offsetWidth}px;
+        z-index: 10000;
+        pointer-events: none;
+        opacity: 0.9;
+        transform: scale(1.05);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    `;
+    document.body.appendChild(touchClone);
+
+    block.classList.add('dragging');
+
+    if (navigator.vibrate) {
+        navigator.vibrate(50);
+    }
+}
+
+function handleTouchMove(e) {
+    if (!touchClone || !draggedElement) return;
+    e.preventDefault();
+
+    const touch = e.touches[0];
+
+    touchClone.style.left = `${touch.clientX - touchClone.offsetWidth / 2}px`;
+    touchClone.style.top = `${touch.clientY - touchClone.offsetHeight / 2}px`;
+
+    touchClone.style.display = 'none';
+    const elementBelow = document.elementFromPoint(touch.clientX, touch.clientY);
+    touchClone.style.display = '';
+
+    const dropzone = elementBelow?.closest('.drop-zone, .build-zone, .step-list, .block-pool');
+
+    if (currentDropTarget && currentDropTarget !== dropzone) {
+        currentDropTarget.classList.remove('drag-over');
+    }
+
+    if (dropzone) {
+        dropzone.classList.add('drag-over');
+        currentDropTarget = dropzone;
+    }
+}
+
+function handleTouchEndDrop(e) {
+    if (!draggedElement) return;
+
+    const touch = e.changedTouches[0];
+
+    if (touchClone) {
+        touchClone.remove();
+        touchClone = null;
+    }
+
+    const elementBelow = document.elementFromPoint(touch.clientX, touch.clientY);
+    const dropzone = elementBelow?.closest('.drop-zone');
+    const pool = elementBelow?.closest('.block-pool');
+
+    if (dropzone) {
+        const droppedContainer = dropzone.querySelector('.dropped-blocks');
+        droppedContainer.appendChild(draggedElement);
+        draggedElement.classList.add('dropped');
+        draggedElement.style.animation = 'dropBounce 0.3s ease-out';
+
+        if (navigator.vibrate) {
+            navigator.vibrate([50, 30, 50]);
+        }
+    } else if (pool) {
+        pool.appendChild(draggedElement);
+        draggedElement.classList.remove('dropped');
+    }
+
+    draggedElement.classList.remove('dragging');
+
+    if (currentDropTarget) {
+        currentDropTarget.classList.remove('drag-over');
+        currentDropTarget = null;
+    }
+
+    draggedElement = null;
+}
+
+function handleTouchEndSort(e) {
+    if (!draggedElement) return;
+
+    if (touchClone) {
+        touchClone.remove();
+        touchClone = null;
+    }
+
+    const touch = e.changedTouches[0];
+    const elementBelow = document.elementFromPoint(touch.clientX, touch.clientY);
+    const container = elementBelow?.closest('.entry-stack, .step-list');
+    const pool = elementBelow?.closest('.block-pool');
+
+    if (container) {
+        const afterElement = getDragAfterElement(container, touch.clientY);
+        if (afterElement) {
+            container.insertBefore(draggedElement, afterElement);
+        } else {
+            container.appendChild(draggedElement);
+        }
+
+        // Ta bort placeholder för build-entry
+        const placeholder = container.querySelector('.stack-placeholder');
+        if (placeholder) placeholder.remove();
+
+        draggedElement.classList.add('dropped');
+        updateStepNumbers();
+    } else if (pool) {
+        pool.appendChild(draggedElement);
+        draggedElement.classList.remove('dropped');
+
+        // Visa placeholder om stacken är tom
+        const stack = document.getElementById('entry-stack');
+        if (stack && stack.querySelectorAll('.draggable-block').length === 0) {
+            stack.innerHTML = '<div class="stack-placeholder">Dra block hit för att bygga konteringen</div>';
+        }
+    }
+
+    draggedElement.classList.remove('dragging');
+
+    if (currentDropTarget) {
+        currentDropTarget.classList.remove('drag-over');
+        currentDropTarget = null;
+    }
+
+    draggedElement = null;
+}
+
+// ==========================================
+// VALIDERING FÖR DRAG-ÖVNINGAR
+// ==========================================
+
+function checkDragToSideAnswer(event) {
+    const debetZone = document.querySelector('#debet-dropzone .dropped-blocks');
+    const kreditZone = document.querySelector('#kredit-dropzone .dropped-blocks');
+    const pool = document.getElementById('block-pool');
+
+    // Kolla om det finns block kvar i poolen
+    if (pool.querySelectorAll('.draggable-block').length > 0) {
+        showFeedback(false, "Placera alla block!\n\nDra alla kontoblock till antingen DEBET eller KREDIT.");
+        return null;
+    }
+
+    const userDebet = [...debetZone.querySelectorAll('.draggable-block')]
+        .map(block => block.dataset.account);
+    const userKredit = [...kreditZone.querySelectorAll('.draggable-block')]
+        .map(block => block.dataset.account);
+
+    const correctDebet = [...event.correctAnswer.debet].sort();
+    const correctKredit = [...event.correctAnswer.kredit].sort();
+
+    return arraysEqual(userDebet.sort(), correctDebet) &&
+           arraysEqual(userKredit.sort(), correctKredit);
+}
+
+function checkBuildEntryAnswer(event) {
+    const stack = document.getElementById('entry-stack');
+    const pool = document.getElementById('build-pool');
+
+    // Kolla om det finns block kvar i poolen
+    if (pool.querySelectorAll('.draggable-block').length > 0) {
+        showFeedback(false, "Placera alla block!\n\nDra alla kontoblock till konteringsytan i rätt ordning.");
+        return null;
+    }
+
+    const userOrder = [...stack.querySelectorAll('.draggable-block')]
+        .map(block => block.dataset.id);
+
+    return arraysEqual(userOrder, event.correctOrder);
+}
+
+function checkSortStepsAnswer(event) {
+    const list = document.getElementById('step-list');
+
+    const userOrder = [...list.querySelectorAll('.draggable-block')]
+        .map(block => block.dataset.id);
+
+    return arraysEqual(userOrder, event.correctOrder);
+}
+
+function arraysEqual(a, b) {
+    if (a.length !== b.length) return false;
+    return a.every((val, idx) => val === b[idx]);
+}
+
+// ==========================================
+// KLASSISK BOKFÖRING
+// ==========================================
 
 // Jämför användarens svar med rätt svar
 function compareAnswers(userAnswer, correctAnswer) {
@@ -1048,7 +1777,9 @@ const levelFiles = {
     5: 'resultatrakning.json',
     6: 'kreditfakturor-ranta-kontokort.json',
     7: 'loner.json',
-    8: 'periodiseringar.json'
+    8: 'periodiseringar.json',
+    9: 'mer-periodiseringar.json',
+    10: 'interaktiva-ovningar.json'
 };
 
 // Aktuell vald nivå
@@ -1108,12 +1839,21 @@ async function loadLevel(levelNumber) {
         }
 
         // Validera att händelserna har rätt format
-        const isValid = loadedEvents.every(event =>
-            event.description &&
-            event.hint &&
-            Array.isArray(event.correctAnswer) &&
-            event.level
-        );
+        const isValid = loadedEvents.every(event => {
+            // Grundläggande fält
+            if (!event.description || !event.hint || !event.level) return false;
+
+            // Typspecifik validering
+            const type = event.type || 'classic';
+            if (type === 'classic') {
+                return Array.isArray(event.correctAnswer);
+            } else if (type === 'drag-to-side') {
+                return event.blocks && event.correctAnswer && event.correctAnswer.debet && event.correctAnswer.kredit;
+            } else if (type === 'true-false') {
+                return event.statement && typeof event.correctAnswer === 'boolean';
+            }
+            return false;
+        });
 
         if (!isValid) {
             alert('Händelserna har fel format!');

@@ -1,11 +1,34 @@
 [
     {
+        "type": "true-false",
+        "description": "Bedöm om påståendet är sant eller falskt.",
+        "statement": "En tillgång ökar alltid på debetsidan.",
+        "hint": "Tänk på huvudregeln för tillgångar.",
+        "correctAnswer": true,
+        "explanation": "Tillgångar ökar på debet och minskar på kredit. Detta är en av grundreglerna i bokföring.",
+        "level": 1
+    },
+    {
         "description": "Du sätter in 50 000 kr eget kapital i kassan. Kontera denna händelse.",
         "hint": "Eget kapital är en skuld som ökar. Kassan är en tillgång som ökar.",
         "correctAnswer": [
             { "account": "1910", "side": "debet", "amount": 50000 },
             { "account": "2010", "side": "kredit", "amount": 50000 }
         ],
+        "level": 1
+    },
+    {
+        "type": "drag-to-side",
+        "description": "Du sätter in 30 000 kr eget kapital i kassan. Dra kontona till rätt sida.",
+        "hint": "Kassan (tillgång) ökar på debet. Eget kapital ökar på kredit.",
+        "blocks": [
+            { "account": "1910", "name": "Kassa", "amount": 30000 },
+            { "account": "2010", "name": "Eget kapital", "amount": 30000 }
+        ],
+        "correctAnswer": {
+            "debet": ["1910"],
+            "kredit": ["2010"]
+        },
         "level": 1
     },
     {
@@ -18,6 +41,15 @@
         "level": 1
     },
     {
+        "type": "true-false",
+        "description": "Bedöm om påståendet är sant eller falskt.",
+        "statement": "En skuld ökar på kreditsidan.",
+        "hint": "Tänk på huvudregeln för skulder.",
+        "correctAnswer": true,
+        "explanation": "Skulder ökar på kredit och minskar på debet.",
+        "level": 1
+    },
+    {
         "description": "Du tar ett banklån på 100 000 kr som sätts in på ditt företagskonto. Kontera denna händelse.",
         "hint": "Banklån är en skuld som ökar. Företagskontot är en tillgång som ökar.",
         "correctAnswer": [
@@ -27,12 +59,35 @@
         "level": 1
     },
     {
+        "type": "drag-to-side",
+        "description": "Du tar ett banklån på 50 000 kr som sätts in på företagskontot. Dra kontona till rätt sida.",
+        "hint": "Företagskontot (tillgång) ökar på debet. Banklån (skuld) ökar på kredit.",
+        "blocks": [
+            { "account": "1930", "name": "Företagskonto", "amount": 50000 },
+            { "account": "2350", "name": "Banklån", "amount": 50000 }
+        ],
+        "correctAnswer": {
+            "debet": ["1930"],
+            "kredit": ["2350"]
+        },
+        "level": 1
+    },
+    {
         "description": "Du betalar av 15 000 kr på ditt banklån från företagskontot. Kontera denna händelse.",
         "hint": "Banklån är en skuld som minskar. Företagskontot är en tillgång som minskar.",
         "correctAnswer": [
             { "account": "2350", "side": "debet", "amount": 15000 },
             { "account": "1930", "side": "kredit", "amount": 15000 }
         ],
+        "level": 1
+    },
+    {
+        "type": "true-false",
+        "description": "Bedöm om påståendet är sant eller falskt.",
+        "statement": "Konto 1910 (Kassa) är ett skuldkonto.",
+        "hint": "Titta på kontonumret - vad börjar 1xxx-konton på?",
+        "correctAnswer": false,
+        "explanation": "Konto 1910 är ett TILLGÅNGSKONTO. Alla konton som börjar på 1 är tillgångar.",
         "level": 1
     },
     {
@@ -54,12 +109,35 @@
         "level": 1
     },
     {
+        "type": "drag-to-side",
+        "description": "Du betalar av 20 000 kr på banklånet från företagskontot. Dra kontona till rätt sida.",
+        "hint": "Banklån (skuld) minskar på debet. Företagskontot (tillgång) minskar på kredit.",
+        "blocks": [
+            { "account": "2350", "name": "Banklån", "amount": 20000 },
+            { "account": "1930", "name": "Företagskonto", "amount": 20000 }
+        ],
+        "correctAnswer": {
+            "debet": ["2350"],
+            "kredit": ["1930"]
+        },
+        "level": 1
+    },
+    {
         "description": "Du överför 30 000 kr från plusgiro till företagskontot. Kontera denna händelse.",
         "hint": "Pengarna flyttas mellan två tillgångskonton.",
         "correctAnswer": [
             { "account": "1930", "side": "debet", "amount": 30000 },
             { "account": "1920", "side": "kredit", "amount": 30000 }
         ],
+        "level": 1
+    },
+    {
+        "type": "true-false",
+        "description": "Bedöm om påståendet är sant eller falskt.",
+        "statement": "Summa debet måste alltid vara lika med summa kredit.",
+        "hint": "Tänk på dubbel bokföring.",
+        "correctAnswer": true,
+        "explanation": "Detta är grundprincipen i dubbel bokföring - varje transaktion måste balansera.",
         "level": 1
     },
     {
@@ -81,12 +159,35 @@
         "level": 1
     },
     {
+        "type": "drag-to-side",
+        "description": "Du överför 15 000 kr från kassan till plusgiro. Dra kontona till rätt sida.",
+        "hint": "Plusgiro ökar (debet). Kassan minskar (kredit).",
+        "blocks": [
+            { "account": "1920", "name": "Plusgiro", "amount": 15000 },
+            { "account": "1910", "name": "Kassa", "amount": 15000 }
+        ],
+        "correctAnswer": {
+            "debet": ["1920"],
+            "kredit": ["1910"]
+        },
+        "level": 1
+    },
+    {
         "description": "Du sätter in 40 000 kr eget kapital på företagskontot. Kontera denna händelse.",
         "hint": "Eget kapital är en skuld som ökar. Företagskontot är en tillgång som ökar.",
         "correctAnswer": [
             { "account": "1930", "side": "debet", "amount": 40000 },
             { "account": "2010", "side": "kredit", "amount": 40000 }
         ],
+        "level": 1
+    },
+    {
+        "type": "true-false",
+        "description": "Bedöm om påståendet är sant eller falskt.",
+        "statement": "När en tillgång minskar bokförs det på kreditsidan.",
+        "hint": "Tänk på motsatsen till hur tillgångar ökar.",
+        "correctAnswer": true,
+        "explanation": "Tillgångar ökar på debet och minskar på kredit.",
         "level": 1
     },
     {
@@ -108,29 +209,25 @@
         "level": 1
     },
     {
+        "type": "drag-to-side",
+        "description": "Du tar ut 10 000 kr eget kapital från företagskontot. Dra kontona till rätt sida.",
+        "hint": "Eget kapital minskar på debet. Företagskontot minskar på kredit.",
+        "blocks": [
+            { "account": "2010", "name": "Eget kapital", "amount": 10000 },
+            { "account": "1930", "name": "Företagskonto", "amount": 10000 }
+        ],
+        "correctAnswer": {
+            "debet": ["2010"],
+            "kredit": ["1930"]
+        },
+        "level": 1
+    },
+    {
         "description": "Du tar ett banklån på 75 000 kr som sätts in på plusgiro. Kontera denna händelse.",
         "hint": "Banklån är en skuld som ökar. Plusgiro är en tillgång som ökar.",
         "correctAnswer": [
             { "account": "1920", "side": "debet", "amount": 75000 },
             { "account": "2350", "side": "kredit", "amount": 75000 }
-        ],
-        "level": 1
-    },
-    {
-        "description": "Du betalar av 10 000 kr på banklån från plusgiro. Kontera denna händelse.",
-        "hint": "Banklån är en skuld som minskar. Plusgiro är en tillgång som minskar.",
-        "correctAnswer": [
-            { "account": "2350", "side": "debet", "amount": 10000 },
-            { "account": "1920", "side": "kredit", "amount": 10000 }
-        ],
-        "level": 1
-    },
-    {
-        "description": "Du tar ut 18 500 kr eget kapital från kassan. Kontera denna händelse.",
-        "hint": "Eget kapital är en skuld som minskar. Kassan är en tillgång som minskar.",
-        "correctAnswer": [
-            { "account": "2010", "side": "debet", "amount": 18500 },
-            { "account": "1910", "side": "kredit", "amount": 18500 }
         ],
         "level": 1
     },
@@ -149,33 +246,6 @@
         "correctAnswer": [
             { "account": "1930", "side": "debet", "amount": 60000 },
             { "account": "2010", "side": "kredit", "amount": 60000 }
-        ],
-        "level": 1
-    },
-    {
-        "description": "Du överför 15 000 kr från kassan till plusgiro. Kontera denna händelse.",
-        "hint": "Pengarna flyttas mellan två tillgångskonton.",
-        "correctAnswer": [
-            { "account": "1920", "side": "debet", "amount": 15000 },
-            { "account": "1910", "side": "kredit", "amount": 15000 }
-        ],
-        "level": 1
-    },
-    {
-        "description": "Du betalar av 9 000 kr på banklån från plusgiro. Kontera denna händelse.",
-        "hint": "Banklån är en skuld som minskar. Plusgiro är en tillgång som minskar.",
-        "correctAnswer": [
-            { "account": "2350", "side": "debet", "amount": 9000 },
-            { "account": "1920", "side": "kredit", "amount": 9000 }
-        ],
-        "level": 1
-    },
-    {
-        "description": "Du tar ut 6 500 kr eget kapital från plusgiro. Kontera denna händelse.",
-        "hint": "Eget kapital är en skuld som minskar. Plusgiro är en tillgång som minskar.",
-        "correctAnswer": [
-            { "account": "2010", "side": "debet", "amount": 6500 },
-            { "account": "1920", "side": "kredit", "amount": 6500 }
         ],
         "level": 1
     }

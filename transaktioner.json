@@ -1,7 +1,16 @@
 [
     {
+        "type": "true-false",
+        "description": "Bedöm om påståendet är sant eller falskt.",
+        "statement": "Utgående moms är en skuld till staten.",
+        "hint": "Tänk på vad som händer med momsen du tar ut av kunder.",
+        "correctAnswer": true,
+        "explanation": "Utgående moms är moms du tar ut av kunder och ska betalas till staten - alltså en skuld.",
+        "level": 3
+    },
+    {
         "description": "Du säljer varor för 10 000 kr exkl. moms (25%) på kredit. Kontera denna händelse.",
-        "hint": "Försäljning på kredit med 25% moms. Kundfordran = 10 000 + 2 500 = 12 500 kr. Utgående moms 25% är 2 500 kr.",
+        "hint": "Försäljning på kredit med 25% moms. Kundfordran = 10 000 + 2 500 = 12 500 kr.",
         "correctAnswer": [
             { "account": "1510", "side": "debet", "amount": 12500 },
             { "account": "3010", "side": "kredit", "amount": 10000 },
@@ -10,8 +19,23 @@
         "level": 3
     },
     {
+        "type": "drag-to-side",
+        "description": "Du säljer varor för 20 000 kr exkl. moms (25%) kontant. Total = 25 000 kr. Dra kontona till rätt sida.",
+        "hint": "Kassan ökar med totalen. Försäljning och moms ökar på kredit.",
+        "blocks": [
+            { "account": "1910", "name": "Kassa", "amount": 25000 },
+            { "account": "3010", "name": "Varuförsäljning", "amount": 20000 },
+            { "account": "2610", "name": "Utgående moms 25%", "amount": 5000 }
+        ],
+        "correctAnswer": {
+            "debet": ["1910"],
+            "kredit": ["3010", "2610"]
+        },
+        "level": 3
+    },
+    {
         "description": "Du köper in varor för 8 000 kr exkl. moms (25%) på kredit. Kontera denna händelse.",
-        "hint": "Inköp på kredit med 25% moms. Leverantörsskuld = 8 000 + 2 000 = 10 000 kr. Ingående moms är avdragsgill.",
+        "hint": "Inköp på kredit med 25% moms. Leverantörsskuld = 8 000 + 2 000 = 10 000 kr.",
         "correctAnswer": [
             { "account": "4010", "side": "debet", "amount": 8000 },
             { "account": "2640", "side": "debet", "amount": 2000 },
@@ -20,8 +44,17 @@
         "level": 3
     },
     {
+        "type": "true-false",
+        "description": "Bedöm om påståendet är sant eller falskt.",
+        "statement": "Ingående moms är en fordran på staten.",
+        "hint": "Tänk på vad som händer med momsen du betalar vid inköp.",
+        "correctAnswer": true,
+        "explanation": "Ingående moms är moms du betalar vid inköp och får dra av - alltså en fordran på staten.",
+        "level": 3
+    },
+    {
         "description": "Du säljer varor för 20 000 kr exkl. moms (25%) kontant. Kontera denna händelse.",
-        "hint": "Kontant försäljning med 25% moms. Kassa = 20 000 + 5 000 = 25 000 kr. Utgående moms 25% är 5 000 kr.",
+        "hint": "Kontant försäljning med 25% moms. Kassa = 20 000 + 5 000 = 25 000 kr.",
         "correctAnswer": [
             { "account": "1910", "side": "debet", "amount": 25000 },
             { "account": "3010", "side": "kredit", "amount": 20000 },
@@ -30,8 +63,23 @@
         "level": 3
     },
     {
+        "type": "drag-to-side",
+        "description": "Du köper varor för 10 000 kr exkl. moms (25%) på kredit. Total = 12 500 kr. Dra kontona till rätt sida.",
+        "hint": "Varuinköp och ingående moms på debet. Leverantörsskuld på kredit.",
+        "blocks": [
+            { "account": "4010", "name": "Varuinköp", "amount": 10000 },
+            { "account": "2640", "name": "Ingående moms", "amount": 2500 },
+            { "account": "2440", "name": "Leverantörsskulder", "amount": 12500 }
+        ],
+        "correctAnswer": {
+            "debet": ["4010", "2640"],
+            "kredit": ["2440"]
+        },
+        "level": 3
+    },
+    {
         "description": "Du köper kontorsmaterial för 4 000 kr exkl. moms (25%) kontant. Kontera denna händelse.",
-        "hint": "Kontant inköp med 25% moms. Kassa = 4 000 + 1 000 = 5 000 kr. Ingående moms är 1 000 kr.",
+        "hint": "Kontant inköp med 25% moms. Kassa = 4 000 + 1 000 = 5 000 kr.",
         "correctAnswer": [
             { "account": "6100", "side": "debet", "amount": 4000 },
             { "account": "2640", "side": "debet", "amount": 1000 },
@@ -40,8 +88,17 @@
         "level": 3
     },
     {
+        "type": "true-false",
+        "description": "Bedöm om påståendet är sant eller falskt.",
+        "statement": "25% moms på 10 000 kr blir 2 000 kr.",
+        "hint": "Räkna: 10 000 × 0,25 = ?",
+        "correctAnswer": false,
+        "explanation": "25% av 10 000 kr = 10 000 × 0,25 = 2 500 kr, inte 2 000 kr.",
+        "level": 3
+    },
+    {
         "description": "Du utför ett uppdrag för 15 000 kr exkl. moms (25%) och får betalt till företagskontot. Kontera denna händelse.",
-        "hint": "Tjänsteförsäljning med 25% moms. Bank = 15 000 + 3 750 = 18 750 kr. Utgående moms är 3 750 kr.",
+        "hint": "Tjänsteförsäljning med 25% moms. Bank = 15 000 + 3 750 = 18 750 kr.",
         "correctAnswer": [
             { "account": "1930", "side": "debet", "amount": 18750 },
             { "account": "3030", "side": "kredit", "amount": 15000 },
@@ -51,7 +108,7 @@
     },
     {
         "description": "Du köper in varor för 12 000 kr exkl. moms (25%) och betalar från företagskontot. Kontera denna händelse.",
-        "hint": "Kontant inköp med 25% moms. Bank = 12 000 + 3 000 = 15 000 kr. Ingående moms är 3 000 kr.",
+        "hint": "Kontant inköp med 25% moms. Bank = 12 000 + 3 000 = 15 000 kr.",
         "correctAnswer": [
             { "account": "4010", "side": "debet", "amount": 12000 },
             { "account": "2640", "side": "debet", "amount": 3000 },
@@ -60,8 +117,23 @@
         "level": 3
     },
     {
+        "type": "drag-to-side",
+        "description": "Du säljer varor för 16 000 kr exkl. moms (25%) på kredit. Total = 20 000 kr. Dra kontona till rätt sida.",
+        "hint": "Kundfordran ökar med totalen (debet). Försäljning och moms ökar (kredit).",
+        "blocks": [
+            { "account": "1510", "name": "Kundfordringar", "amount": 20000 },
+            { "account": "3010", "name": "Varuförsäljning", "amount": 16000 },
+            { "account": "2610", "name": "Utgående moms 25%", "amount": 4000 }
+        ],
+        "correctAnswer": {
+            "debet": ["1510"],
+            "kredit": ["3010", "2610"]
+        },
+        "level": 3
+    },
+    {
         "description": "Du säljer varor för 30 000 kr exkl. moms (25%) på kredit. Kontera denna händelse.",
-        "hint": "Försäljning på kredit med 25% moms. Kundfordran = 30 000 + 7 500 = 37 500 kr. Utgående moms är 7 500 kr.",
+        "hint": "Försäljning på kredit med 25% moms. Kundfordran = 30 000 + 7 500 = 37 500 kr.",
         "correctAnswer": [
             { "account": "1510", "side": "debet", "amount": 37500 },
             { "account": "3010", "side": "kredit", "amount": 30000 },
@@ -70,8 +142,17 @@
         "level": 3
     },
     {
+        "type": "true-false",
+        "description": "Bedöm om påståendet är sant eller falskt.",
+        "statement": "Ingående moms bokförs på kreditsidan.",
+        "hint": "Tänk på att ingående moms är något du får tillbaka.",
+        "correctAnswer": false,
+        "explanation": "Ingående moms bokförs på DEBET eftersom det är en fordran (tillgång).",
+        "level": 3
+    },
+    {
         "description": "Du köper förbrukningsinventarier för 6 000 kr exkl. moms (25%) på kredit. Kontera denna händelse.",
-        "hint": "Inköp på kredit med 25% moms. Leverantörsskuld = 6 000 + 1 500 = 7 500 kr. Ingående moms är 1 500 kr.",
+        "hint": "Inköp på kredit med 25% moms. Leverantörsskuld = 6 000 + 1 500 = 7 500 kr.",
         "correctAnswer": [
             { "account": "5410", "side": "debet", "amount": 6000 },
             { "account": "2640", "side": "debet", "amount": 1500 },
@@ -81,7 +162,7 @@
     },
     {
         "description": "Du säljer varor för 16 000 kr exkl. moms (25%) och får betalt till plusgiro. Kontera denna händelse.",
-        "hint": "Försäljning med 25% moms. Plusgiro = 16 000 + 4 000 = 20 000 kr. Utgående moms är 4 000 kr.",
+        "hint": "Försäljning med 25% moms. Plusgiro = 16 000 + 4 000 = 20 000 kr.",
         "correctAnswer": [
             { "account": "1920", "side": "debet", "amount": 20000 },
             { "account": "3010", "side": "kredit", "amount": 16000 },
@@ -90,8 +171,23 @@
         "level": 3
     },
     {
+        "type": "drag-to-side",
+        "description": "Du betalar hyra 8 000 kr exkl. moms (25%) från banken. Total = 10 000 kr. Dra kontona till rätt sida.",
+        "hint": "Hyra och ingående moms på debet. Bankkontot minskar (kredit).",
+        "blocks": [
+            { "account": "5010", "name": "Lokalhyra", "amount": 8000 },
+            { "account": "2640", "name": "Ingående moms", "amount": 2000 },
+            { "account": "1930", "name": "Företagskonto", "amount": 10000 }
+        ],
+        "correctAnswer": {
+            "debet": ["5010", "2640"],
+            "kredit": ["1930"]
+        },
+        "level": 3
+    },
+    {
         "description": "Du betalar reklamkostnader på 8 000 kr exkl. moms (25%) från företagskontot. Kontera denna händelse.",
-        "hint": "Reklamkostnad med 25% moms. Bank = 8 000 + 2 000 = 10 000 kr. Ingående moms är 2 000 kr.",
+        "hint": "Reklamkostnad med 25% moms. Bank = 8 000 + 2 000 = 10 000 kr.",
         "correctAnswer": [
             { "account": "5900", "side": "debet", "amount": 8000 },
             { "account": "2640", "side": "debet", "amount": 2000 },
@@ -100,28 +196,17 @@
         "level": 3
     },
     {
-        "description": "Du utför ett uppdrag för 24 000 kr exkl. moms (25%) på kredit. Kontera denna händelse.",
-        "hint": "Tjänsteförsäljning på kredit med 25% moms. Kundfordran = 24 000 + 6 000 = 30 000 kr.",
-        "correctAnswer": [
-            { "account": "1510", "side": "debet", "amount": 30000 },
-            { "account": "3030", "side": "kredit", "amount": 24000 },
-            { "account": "2610", "side": "kredit", "amount": 6000 }
-        ],
-        "level": 3
-    },
-    {
-        "description": "Du köper in varor för 20 000 kr exkl. moms (25%) på kredit. Kontera denna händelse.",
-        "hint": "Inköp på kredit med 25% moms. Leverantörsskuld = 20 000 + 5 000 = 25 000 kr. Ingående moms är 5 000 kr.",
-        "correctAnswer": [
-            { "account": "4010", "side": "debet", "amount": 20000 },
-            { "account": "2640", "side": "debet", "amount": 5000 },
-            { "account": "2440", "side": "kredit", "amount": 25000 }
-        ],
+        "type": "true-false",
+        "description": "Bedöm om påståendet är sant eller falskt.",
+        "statement": "Utgående moms bokförs på kreditsidan.",
+        "hint": "Tänk på att utgående moms är något du är skyldig.",
+        "correctAnswer": true,
+        "explanation": "Utgående moms bokförs på KREDIT eftersom det är en skuld till staten.",
         "level": 3
     },
     {
         "description": "Du säljer varor för 40 000 kr exkl. moms (25%) kontant. Kontera denna händelse.",
-        "hint": "Kontant försäljning med 25% moms. Kassa = 40 000 + 10 000 = 50 000 kr. Utgående moms är 10 000 kr.",
+        "hint": "Kontant försäljning med 25% moms. Kassa = 40 000 + 10 000 = 50 000 kr.",
         "correctAnswer": [
             { "account": "1910", "side": "debet", "amount": 50000 },
             { "account": "3010", "side": "kredit", "amount": 40000 },
@@ -130,8 +215,33 @@
         "level": 3
     },
     {
+        "description": "Du köper in varor för 20 000 kr exkl. moms (25%) på kredit. Kontera denna händelse.",
+        "hint": "Inköp på kredit med 25% moms. Leverantörsskuld = 20 000 + 5 000 = 25 000 kr.",
+        "correctAnswer": [
+            { "account": "4010", "side": "debet", "amount": 20000 },
+            { "account": "2640", "side": "debet", "amount": 5000 },
+            { "account": "2440", "side": "kredit", "amount": 25000 }
+        ],
+        "level": 3
+    },
+    {
+        "type": "drag-to-side",
+        "description": "Du utför ett uppdrag för 24 000 kr exkl. moms (25%) på kredit. Total = 30 000 kr. Dra kontona till rätt sida.",
+        "hint": "Kundfordran ökar med totalen. Intäkt och moms på kredit.",
+        "blocks": [
+            { "account": "1510", "name": "Kundfordringar", "amount": 30000 },
+            { "account": "3030", "name": "Utförda uppdrag", "amount": 24000 },
+            { "account": "2610", "name": "Utgående moms 25%", "amount": 6000 }
+        ],
+        "correctAnswer": {
+            "debet": ["1510"],
+            "kredit": ["3030", "2610"]
+        },
+        "level": 3
+    },
+    {
         "description": "Du betalar lokalhyra på 10 000 kr exkl. moms (25%) från företagskontot. Kontera denna händelse.",
-        "hint": "Hyra med 25% moms. Bank = 10 000 + 2 500 = 12 500 kr. Ingående moms är 2 500 kr.",
+        "hint": "Hyra med 25% moms. Bank = 10 000 + 2 500 = 12 500 kr.",
         "correctAnswer": [
             { "account": "5010", "side": "debet", "amount": 10000 },
             { "account": "2640", "side": "debet", "amount": 2500 },
@@ -140,58 +250,8 @@
         "level": 3
     },
     {
-        "description": "Du säljer varor för 18 000 kr exkl. moms (25%) och får betalt till företagskontot. Kontera denna händelse.",
-        "hint": "Försäljning med 25% moms. Bank = 18 000 + 4 500 = 22 500 kr. Utgående moms är 4 500 kr.",
-        "correctAnswer": [
-            { "account": "1930", "side": "debet", "amount": 22500 },
-            { "account": "3010", "side": "kredit", "amount": 18000 },
-            { "account": "2610", "side": "kredit", "amount": 4500 }
-        ],
-        "level": 3
-    },
-    {
-        "description": "Du köper datorer för 16 000 kr exkl. moms (25%) på kredit. Kontera denna händelse.",
-        "hint": "Inköp av inventarier med 25% moms. Leverantörsskuld = 16 000 + 4 000 = 20 000 kr.",
-        "correctAnswer": [
-            { "account": "1250", "side": "debet", "amount": 16000 },
-            { "account": "2640", "side": "debet", "amount": 4000 },
-            { "account": "2440", "side": "kredit", "amount": 20000 }
-        ],
-        "level": 3
-    },
-    {
-        "description": "Du utför ett uppdrag för 32 000 kr exkl. moms (25%) och får betalt kontant. Kontera denna händelse.",
-        "hint": "Tjänsteförsäljning kontant med 25% moms. Kassa = 32 000 + 8 000 = 40 000 kr.",
-        "correctAnswer": [
-            { "account": "1910", "side": "debet", "amount": 40000 },
-            { "account": "3030", "side": "kredit", "amount": 32000 },
-            { "account": "2610", "side": "kredit", "amount": 8000 }
-        ],
-        "level": 3
-    },
-    {
-        "description": "Du betalar telefoni och internet för 2 000 kr exkl. moms (25%) från plusgiro. Kontera denna händelse.",
-        "hint": "Tele och post med 25% moms. Plusgiro = 2 000 + 500 = 2 500 kr. Ingående moms är 500 kr.",
-        "correctAnswer": [
-            { "account": "6200", "side": "debet", "amount": 2000 },
-            { "account": "2640", "side": "debet", "amount": 500 },
-            { "account": "1920", "side": "kredit", "amount": 2500 }
-        ],
-        "level": 3
-    },
-    {
-        "description": "Du säljer varor för 50 000 kr exkl. moms (25%) på kredit. Kontera denna händelse.",
-        "hint": "Försäljning på kredit med 25% moms. Kundfordran = 50 000 + 12 500 = 62 500 kr.",
-        "correctAnswer": [
-            { "account": "1510", "side": "debet", "amount": 62500 },
-            { "account": "3010", "side": "kredit", "amount": 50000 },
-            { "account": "2610", "side": "kredit", "amount": 12500 }
-        ],
-        "level": 3
-    },
-    {
         "description": "Du köper in varor för 28 000 kr exkl. moms (25%) och betalar kontant. Kontera denna händelse.",
-        "hint": "Kontant inköp med 25% moms. Kassa = 28 000 + 7 000 = 35 000 kr. Ingående moms är 7 000 kr.",
+        "hint": "Kontant inköp med 25% moms. Kassa = 28 000 + 7 000 = 35 000 kr.",
         "correctAnswer": [
             { "account": "4010", "side": "debet", "amount": 28000 },
             { "account": "2640", "side": "debet", "amount": 7000 },

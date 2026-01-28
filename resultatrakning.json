@@ -1,11 +1,34 @@
 [
     {
+        "type": "true-false",
+        "description": "Bedöm om påståendet är sant eller falskt.",
+        "statement": "Vid vinst debiteras konto 8999 och krediteras 2019.",
+        "hint": "Tänk på hur vinst överförs till eget kapital.",
+        "correctAnswer": true,
+        "explanation": "Vinst överförs från resultaträkningen (8999) till eget kapital (2019) genom debet 8999 och kredit 2019.",
+        "level": 5
+    },
+    {
         "description": "Företaget har haft intäkter på 50 000 kr och kostnader på 30 000 kr under året. Bokför överföring av årets resultat till eget kapital.",
         "hint": "Vinst = 50 000 - 30 000 = 20 000 kr. Vid vinst: debet 8999, kredit 2019.",
         "correctAnswer": [
             { "account": "8999", "side": "debet", "amount": 20000 },
             { "account": "2019", "side": "kredit", "amount": 20000 }
         ],
+        "level": 5
+    },
+    {
+        "type": "drag-to-side",
+        "description": "Företaget har gjort en vinst på 35 000 kr. Dra kontona till rätt sida för att överföra resultatet.",
+        "hint": "Vinst: debet 8999, kredit 2019 (eget kapital ökar).",
+        "blocks": [
+            { "account": "8999", "name": "Årets resultat", "amount": 35000 },
+            { "account": "2019", "name": "Årets resultat EK", "amount": 35000 }
+        ],
+        "correctAnswer": {
+            "debet": ["8999"],
+            "kredit": ["2019"]
+        },
         "level": 5
     },
     {
@@ -18,6 +41,15 @@
         "level": 5
     },
     {
+        "type": "true-false",
+        "description": "Bedöm om påståendet är sant eller falskt.",
+        "statement": "Vid förlust debiteras konto 2019 och krediteras 8999.",
+        "hint": "Tänk på hur förlust minskar eget kapital.",
+        "correctAnswer": true,
+        "explanation": "Förlust minskar eget kapital - debet 2019 och kredit 8999.",
+        "level": 5
+    },
+    {
         "description": "Företaget har varuförsäljning 120 000 kr, varuinköp 70 000 kr och lokalhyra 24 000 kr. Bokför överföring av årets resultat till eget kapital.",
         "hint": "Vinst = 120 000 - 70 000 - 24 000 = 26 000 kr.",
         "correctAnswer": [
@@ -27,12 +59,35 @@
         "level": 5
     },
     {
+        "type": "drag-to-side",
+        "description": "Företaget har gjort en förlust på 12 000 kr. Dra kontona till rätt sida för att överföra resultatet.",
+        "hint": "Förlust: debet 2019 (eget kapital minskar), kredit 8999.",
+        "blocks": [
+            { "account": "2019", "name": "Årets resultat EK", "amount": 12000 },
+            { "account": "8999", "name": "Årets resultat", "amount": 12000 }
+        ],
+        "correctAnswer": {
+            "debet": ["2019"],
+            "kredit": ["8999"]
+        },
+        "level": 5
+    },
+    {
         "description": "Intäkter: varuförsäljning 100 000 kr, ränteintäkter 2 000 kr. Kostnader: varuinköp 60 000 kr, löner 50 000 kr. Bokför överföring av årets resultat.",
         "hint": "Intäkter = 102 000 kr. Kostnader = 110 000 kr. Förlust = 8 000 kr.",
         "correctAnswer": [
             { "account": "2019", "side": "debet", "amount": 8000 },
             { "account": "8999", "side": "kredit", "amount": 8000 }
         ],
+        "level": 5
+    },
+    {
+        "type": "true-false",
+        "description": "Bedöm om påståendet är sant eller falskt.",
+        "statement": "Konto 8999 är ett resultatkonto som används vid bokslut.",
+        "hint": "Tänk på vad 8xxx-konton representerar.",
+        "correctAnswer": true,
+        "explanation": "Konto 8999 är ett resultatkonto där årets resultat samlas innan överföring till eget kapital.",
         "level": 5
     },
     {
@@ -51,6 +106,15 @@
             { "account": "8999", "side": "debet", "amount": 30000 },
             { "account": "2019", "side": "kredit", "amount": 30000 }
         ],
+        "level": 5
+    },
+    {
+        "type": "true-false",
+        "description": "Bedöm om påståendet är sant eller falskt.",
+        "statement": "Konto 2019 är ett skuldkonto för årets resultat i eget kapital.",
+        "hint": "Titta på kontonumret - 2xxx är skulder och eget kapital.",
+        "correctAnswer": true,
+        "explanation": "Konto 2019 är ett eget kapital-konto (skuldkonto) där årets resultat bokförs.",
         "level": 5
     },
     {
