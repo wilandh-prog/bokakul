@@ -1486,8 +1486,44 @@ main {
 }
 
 .tf-btn.selected {
-    transform: scale(1.05);
-    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.3);
+    transform: scale(1.08);
+    box-shadow: 0 0 0 6px rgba(102, 126, 234, 0.5), 0 8px 25px rgba(0, 0, 0, 0.2);
+    border-width: 4px;
+    position: relative;
+}
+
+.tf-btn.selected::after {
+    content: '✓';
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    width: 28px;
+    height: 28px;
+    background: #667eea;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+}
+
+.tf-btn.true-btn.selected {
+    background: linear-gradient(135deg, #b8e6c1 0%, #9fddab 100%);
+    border-color: #1e7e34;
+}
+
+.tf-btn.false-btn.selected {
+    background: linear-gradient(135deg, #f1b0b7 0%, #ea9099 100%);
+    border-color: #bd2130;
+}
+
+/* Dim unselected button when one is selected */
+.true-false-buttons:has(.selected) .tf-btn:not(.selected) {
+    opacity: 0.5;
+    transform: scale(0.95);
 }
 
 .tf-btn.correct-answer {

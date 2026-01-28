@@ -85,6 +85,65 @@ const accounts = {
     ]
 };
 
+// Ljudeffekter med Web Audio API
+let audioContext = null;
+
+function initAudio() {
+    if (!audioContext) {
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    if (audioContext.state === 'suspended') {
+        audioContext.resume();
+    }
+}
+
+// Aktivera ljud vid första interaktion
+document.addEventListener('click', initAudio, { once: true });
+document.addEventListener('touchstart', initAudio, { once: true });
+
+function playCorrectSound() {
+    if (!audioContext) return;
+    // Pling-ljud för rätt svar
+    const oscillator = audioContext.createOscillator();
+    const gainNode = audioContext.createGain();
+
+    oscillator.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+
+    oscillator.frequency.setValueAtTime(880, audioContext.currentTime); // A5
+    oscillator.frequency.setValueAtTime(1108.73, audioContext.currentTime + 0.1); // C#6
+    oscillator.frequency.setValueAtTime(1318.51, audioContext.currentTime + 0.2); // E6
+
+    oscillator.type = 'sine';
+
+    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.4);
+
+    oscillator.start(audioContext.currentTime);
+    oscillator.stop(audioContext.currentTime + 0.4);
+}
+
+function playWrongSound() {
+    if (!audioContext) return;
+    // Mjukt buzz-ljud för fel svar
+    const oscillator = audioContext.createOscillator();
+    const gainNode = audioContext.createGain();
+
+    oscillator.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+
+    oscillator.frequency.setValueAtTime(200, audioContext.currentTime);
+    oscillator.frequency.setValueAtTime(150, audioContext.currentTime + 0.15);
+
+    oscillator.type = 'triangle';
+
+    gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
+    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+
+    oscillator.start(audioContext.currentTime);
+    oscillator.stop(audioContext.currentTime + 0.3);
+}
+
 // Affärshändelser med rätta svar
 const defaultEvents = [
     {
@@ -1571,6 +1630,13 @@ function showFeedback(isCorrect, message) {
         <p style="white-space: pre-line;">${message}</p>
     `;
     feedback.style.display = 'block';
+
+    // Spela ljud
+    if (isCorrect) {
+        playCorrectSound();
+    } else {
+        playWrongSound();
+    }
 
     // Visa mobil toast för tydligare feedback
     showMobileToast(isCorrect, message);
