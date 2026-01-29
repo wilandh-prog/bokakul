@@ -257,6 +257,7 @@ let level = 1;
 let correctCount = 0;
 let incorrectCount = 0;
 let bookingRows = [];
+let cachedDistractors = null;  // Cache distraktorer per event
 let streak = 0;
 let bestStreak = 0;
 let highScore = 0;
@@ -519,6 +520,7 @@ function loadEvent() {
         document.querySelector('.booking-area').style.display = 'block';
         document.getElementById('add-row').style.display = 'block';
         bookingRows = [];
+        cachedDistractors = null;  // Rensa cache för nya distraktorer
         renderBookingRows();
         addBookingRow();
     } else {
@@ -589,11 +591,32 @@ function renderBookingRows() {
         }
     }
 
-    // Lägg till 7 liknande konton som distraktorer
-    const distractorAccounts = getSimilarAccounts(usedAccountNumbers, 7);
+    // Lägg till 7 liknande konton som distraktorer (cacha för att undvika att de ändras vid omrendering)
+    if (!cachedDistractors) {
+        cachedDistractors = getSimilarAccounts(usedAccountNumbers, 7);
+    }
+    const distractorAccounts = cachedDistractors;
+
+    // Hitta redan valda konton som användaren har valt (för att inte förlora dem vid omrendering)
+    const selectedAccountNumbers = bookingRows
+        .map(row => row.account)
+        .filter(acc => acc && acc !== '');
+
+    // Hitta redan valda konton som inte finns bland correctAccounts eller distraktorer
+    const allAccounts = [];
+    for (const accountArray of Object.values(accounts)) {
+        allAccounts.push(...accountArray);
+    }
+    const alreadyIncluded = new Set([
+        ...correctAccounts.map(a => a.number),
+        ...distractorAccounts.map(a => a.number)
+    ]);
+    const selectedAccounts = allAccounts.filter(acc =>
+        selectedAccountNumbers.includes(acc.number) && !alreadyIncluded.has(acc.number)
+    );
 
     // Kombinera och sortera
-    const relevantAccounts = [...correctAccounts, ...distractorAccounts];
+    const relevantAccounts = [...correctAccounts, ...distractorAccounts, ...selectedAccounts];
     relevantAccounts.sort((a, b) => a.number.localeCompare(b.number));
 
     container.innerHTML = bookingRows.map((row, index) => {
