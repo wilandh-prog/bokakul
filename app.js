@@ -71,6 +71,7 @@ const accounts = {
         { number: "6100", name: "Kontorsmaterial" },
         { number: "6200", name: "Tele och post" },
         { number: "6310", name: "Försäkringar" },
+        { number: "6500", name: "Övriga externa tjänster" },
         { number: "6990", name: "Övriga kostnader" },
         { number: "7010", name: "Löner" },
         { number: "7510", name: "Arbetsgivaravgifter" },
