@@ -649,6 +649,7 @@ main {
         grid-template-columns: 1fr;
         grid-template-areas:
             "header"
+            "intro"
             "main"
             "aside";
     }
@@ -1785,5 +1786,9 @@ main {
 
     .intro-section h2 {
         font-size: 1.3em;
+    }
+
+    .site-logo {
+        max-height: 50px;
     }
 }
