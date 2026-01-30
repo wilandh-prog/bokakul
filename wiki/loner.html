@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Löner | BokaKul Wiki</title>
+    <meta name="description" content="Lär dig bokföra löner, arbetsgivaravgifter och preliminärskatt. Allt som händer när någon får betalt.">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+    <div class="wiki-container">
+        <header class="wiki-header">
+            <h1><img src="../logga.png" alt="BokaKul" class="site-logo"> Wiki</h1>
+            <a href="../index.html" class="btn btn-secondary">Tillbaka till appen</a>
+        </header>
+
+        <main class="wiki-content">
+            <nav class="wiki-nav">
+                <h2>Ämnen</h2>
+                <ol class="wiki-topic-list">
+                    <li><a href="grundlaggande.html">Grundläggande kontering</a></li>
+                    <li><a href="forsaljning-inkop.html">Försäljning och inköp</a></li>
+                    <li><a href="moms.html">Moms</a></li>
+                    <li><a href="momsredovisning.html">Momsredovisning</a></li>
+                    <li><a href="resultatrakning.html">Resultaträkning</a></li>
+                    <li><a href="kreditfakturor.html">Kreditfakturor, ränta och kontokort</a></li>
+                    <li><a href="loner.html" class="active">Löner</a></li>
+                    <li><a href="periodiseringar.html">Periodiseringar</a></li>
+                    <li><a href="mer-periodiseringar.html">Mer periodiseringar</a></li>
+                    <li><a href="eu-import-valuta.html">EU, import och valuta</a></li>
+                </ol>
+            </nav>
+
+            <article class="wiki-article">
+                <h2>Löner</h2>
+
+                <p>Att ha anställda kostar mer än bara lönen. Arbetsgivaren betalar också arbetsgivaravgifter (cirka 31% extra) och håller inne preliminärskatt som ska skickas vidare till Skatteverket. Kul.</p>
+
+                <h3>Vad som händer</h3>
+                <p>Säg att en anställd har 30 000 kr i bruttolön och 30% skatt. Då händer följande:</p>
+                <ul>
+                    <li>Bruttolön: 30 000 kr (utgift för företaget)</li>
+                    <li>Skatt som hålls inne: 9 000 kr (skuld till Skatteverket)</li>
+                    <li>Nettolön till anställd: 21 000 kr (det som faktiskt betalas ut)</li>
+                    <li>Arbetsgivaravgifter: ca 9 400 kr (31,42% av bruttolönen, extra utgift)</li>
+                </ul>
+
+                <h3>Steg 1: Bokföra lönen</h3>
+
+                <div class="kontering-example">
+                    <h4>Lön 30 000 kr, skatt 9 000 kr:</h4>
+                    <table class="kontering-table">
+                        <tr>
+                            <th>Konto</th>
+                            <th>Debet</th>
+                            <th>Kredit</th>
+                        </tr>
+                        <tr>
+                            <td>7010 Löner</td>
+                            <td>30 000</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2710 Personalskatt</td>
+                            <td></td>
+                            <td>9 000</td>
+                        </tr>
+                        <tr>
+                            <td>2820 Nettolöneskuld</td>
+                            <td></td>
+                            <td>21 000</td>
+                        </tr>
+                    </table>
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #666;">Löneutgiften bokförs, skulder uppstår för skatt och nettolön.</p>
+                </div>
+
+                <h3>Steg 2: Bokföra arbetsgivaravgifter</h3>
+
+                <div class="kontering-example">
+                    <h4>Arbetsgivaravgifter 31,42% av 30 000 = 9 426 kr:</h4>
+                    <table class="kontering-table">
+                        <tr>
+                            <th>Konto</th>
+                            <th>Debet</th>
+                            <th>Kredit</th>
+                        </tr>
+                        <tr>
+                            <td>7510 Arbetsgivaravgifter</td>
+                            <td>9 426</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2730 Arbetsgivaravgiftsskuld</td>
+                            <td></td>
+                            <td>9 426</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <h3>Steg 3: Betala ut nettolönen</h3>
+
+                <div class="kontering-example">
+                    <h4>Utbetalning till anställd:</h4>
+                    <table class="kontering-table">
+                        <tr>
+                            <th>Konto</th>
+                            <th>Debet</th>
+                            <th>Kredit</th>
+                        </tr>
+                        <tr>
+                            <td>2820 Nettolöneskuld</td>
+                            <td>21 000</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>1930 Företagskonto</td>
+                            <td></td>
+                            <td>21 000</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <h3>Steg 4: Betala skatt och avgifter till Skatteverket</h3>
+                <p>Den 12:e varje månad (eller 17:e för större företag) ska skatten och arbetsgivaravgifterna betalas in.</p>
+
+                <div class="kontering-example">
+                    <h4>Betalning till Skatteverket:</h4>
+                    <table class="kontering-table">
+                        <tr>
+                            <th>Konto</th>
+                            <th>Debet</th>
+                            <th>Kredit</th>
+                        </tr>
+                        <tr>
+                            <td>2710 Personalskatt</td>
+                            <td>9 000</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2730 Arbetsgivaravgiftsskuld</td>
+                            <td>9 426</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>1930 Företagskonto</td>
+                            <td></td>
+                            <td>18 426</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <h3>Sammanfattning</h3>
+                <p>Total utgift för företaget: 30 000 + 9 426 = 39 426 kr. Den anställde får 21 000 kr på kontot. Resten går till staten. Så fungerar det.</p>
+
+                <div class="wiki-cta">
+                    <p>Dags att bokföra löner?</p>
+                    <a href="../index.html?level=7" class="btn btn-primary">Öva på löner</a>
+                </div>
+
+                <nav class="wiki-article-nav">
+                    <a href="kreditfakturor.html">← Föregående: Kreditfakturor, ränta och kontokort</a>
+                    <a href="periodiseringar.html">Nästa: Periodiseringar →</a>
+                </nav>
+            </article>
+        </main>
+
+        <footer class="wiki-footer">
+            <p>Del av <a href="../index.html">BokaKul</a></p>
+        </footer>
+    </div>
+</body>
+</html>

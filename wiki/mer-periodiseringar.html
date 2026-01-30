@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mer periodiseringar | BokaKul Wiki</title>
+    <meta name="description" content="Fördjupning i periodiseringar. Upplupna intäkter, förutbetalda intäkter och mer komplexa fall.">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+    <div class="wiki-container">
+        <header class="wiki-header">
+            <h1><img src="../logga.png" alt="BokaKul" class="site-logo"> Wiki</h1>
+            <a href="../index.html" class="btn btn-secondary">Tillbaka till appen</a>
+        </header>
+
+        <main class="wiki-content">
+            <nav class="wiki-nav">
+                <h2>Ämnen</h2>
+                <ol class="wiki-topic-list">
+                    <li><a href="grundlaggande.html">Grundläggande kontering</a></li>
+                    <li><a href="forsaljning-inkop.html">Försäljning och inköp</a></li>
+                    <li><a href="moms.html">Moms</a></li>
+                    <li><a href="momsredovisning.html">Momsredovisning</a></li>
+                    <li><a href="resultatrakning.html">Resultaträkning</a></li>
+                    <li><a href="kreditfakturor.html">Kreditfakturor, ränta och kontokort</a></li>
+                    <li><a href="loner.html">Löner</a></li>
+                    <li><a href="periodiseringar.html">Periodiseringar</a></li>
+                    <li><a href="mer-periodiseringar.html" class="active">Mer periodiseringar</a></li>
+                    <li><a href="eu-import-valuta.html">EU, import och valuta</a></li>
+                </ol>
+            </nav>
+
+            <article class="wiki-article">
+                <h2>Mer periodiseringar</h2>
+
+                <p>I förra avsnittet gick vi igenom grunderna. Nu tar vi de lite klurigare fallen: upplupna intäkter, förutbetalda intäkter och hur man hanterar periodiseringar vid bokslut.</p>
+
+                <h3>Upplupna intäkter</h3>
+                <p>Ibland har företaget utfört ett jobb men inte hunnit fakturera innan perioden tar slut. Intäkten tillhör ändå perioden.</p>
+
+                <div class="kontering-example">
+                    <h4>Utfört konsultjobb i december, faktureras i januari (15 000 kr):</h4>
+                    <table class="kontering-table">
+                        <tr>
+                            <th>Konto</th>
+                            <th>Debet</th>
+                            <th>Kredit</th>
+                        </tr>
+                        <tr>
+                            <td>1790 Upplupna intäkter</td>
+                            <td>15 000</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>3000 Försäljning</td>
+                            <td></td>
+                            <td>15 000</td>
+                        </tr>
+                    </table>
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #666;">Intäkten bokförs i december, fordran väntar på fakturan.</p>
+                </div>
+
+                <div class="kontering-example">
+                    <h4>I januari när fakturan skickas:</h4>
+                    <table class="kontering-table">
+                        <tr>
+                            <th>Konto</th>
+                            <th>Debet</th>
+                            <th>Kredit</th>
+                        </tr>
+                        <tr>
+                            <td>1510 Kundfordringar</td>
+                            <td>15 000</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>1790 Upplupna intäkter</td>
+                            <td></td>
+                            <td>15 000</td>
+                        </tr>
+                    </table>
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #666;">Upplupna intäkter ersätts av kundfordran. Ingen ny intäkt bokförs.</p>
+                </div>
+
+                <h3>Förutbetalda intäkter</h3>
+                <p>Motsatsen: kunden har betalat i förväg för något som levereras nästa period. Pengarna har kommit in, men intäkten tillhör inte denna period än.</p>
+
+                <div class="kontering-example">
+                    <h4>Kund förskottsbetalar 20 000 kr för jobb som görs nästa månad:</h4>
+                    <table class="kontering-table">
+                        <tr>
+                            <th>Konto</th>
+                            <th>Debet</th>
+                            <th>Kredit</th>
+                        </tr>
+                        <tr>
+                            <td>1930 Företagskonto</td>
+                            <td>20 000</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2990 Förutbetalda intäkter</td>
+                            <td></td>
+                            <td>20 000</td>
+                        </tr>
+                    </table>
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #666;">Pengarna är en skuld tills jobbet är utfört.</p>
+                </div>
+
+                <div class="kontering-example">
+                    <h4>Nästa månad när jobbet är klart:</h4>
+                    <table class="kontering-table">
+                        <tr>
+                            <th>Konto</th>
+                            <th>Debet</th>
+                            <th>Kredit</th>
+                        </tr>
+                        <tr>
+                            <td>2990 Förutbetalda intäkter</td>
+                            <td>20 000</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>3000 Försäljning</td>
+                            <td></td>
+                            <td>20 000</td>
+                        </tr>
+                    </table>
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #666;">Nu bokförs intäkten, skulden nollas.</p>
+                </div>
+
+                <h3>Upplupna räntekostnader</h3>
+                <p>Ränta på lån betalas ofta i efterskott. Räntan för december kan betalas i januari, men kostnaden tillhör december.</p>
+
+                <div class="kontering-example">
+                    <h4>Periodisera ränta 2 000 kr i december:</h4>
+                    <table class="kontering-table">
+                        <tr>
+                            <th>Konto</th>
+                            <th>Debet</th>
+                            <th>Kredit</th>
+                        </tr>
+                        <tr>
+                            <td>8400 Räntekostnader</td>
+                            <td>2 000</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2960 Upplupna räntekostnader</td>
+                            <td></td>
+                            <td>2 000</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <h3>Pågående arbeten</h3>
+                <p>För längre projekt kan man behöva ta upp intäkter successivt baserat på hur mycket som är färdigt. Det kallas successiv vinstavräkning och används för projekt som sträcker sig över flera perioder.</p>
+
+                <h3>Sammanfattning av periodiseringskonton</h3>
+                <ul>
+                    <li><strong>1710</strong>: Förutbetalda kostnader (tillgång)</li>
+                    <li><strong>1790</strong>: Upplupna intäkter (tillgång)</li>
+                    <li><strong>2960</strong>: Upplupna räntekostnader (skuld)</li>
+                    <li><strong>2990</strong>: Upplupna kostnader / Förutbetalda intäkter (skuld)</li>
+                </ul>
+
+                <div class="wiki-cta">
+                    <p>Mer övning på periodiseringar?</p>
+                    <a href="../index.html?level=9" class="btn btn-primary">Öva på mer periodiseringar</a>
+                </div>
+
+                <nav class="wiki-article-nav">
+                    <a href="periodiseringar.html">← Föregående: Periodiseringar</a>
+                    <a href="eu-import-valuta.html">Nästa: EU, import och valuta →</a>
+                </nav>
+            </article>
+        </main>
+
+        <footer class="wiki-footer">
+            <p>Del av <a href="../index.html">BokaKul</a></p>
+        </footer>
+    </div>
+</body>
+</html>

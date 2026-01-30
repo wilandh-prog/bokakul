@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kreditfakturor, ränta och kontokort | BokaKul Wiki</title>
+    <meta name="description" content="Lär dig bokföra kreditfakturor, ränteintäkter, räntekostnader och kontokortsinköp.">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+    <div class="wiki-container">
+        <header class="wiki-header">
+            <h1><img src="../logga.png" alt="BokaKul" class="site-logo"> Wiki</h1>
+            <a href="../index.html" class="btn btn-secondary">Tillbaka till appen</a>
+        </header>
+
+        <main class="wiki-content">
+            <nav class="wiki-nav">
+                <h2>Ämnen</h2>
+                <ol class="wiki-topic-list">
+                    <li><a href="grundlaggande.html">Grundläggande kontering</a></li>
+                    <li><a href="forsaljning-inkop.html">Försäljning och inköp</a></li>
+                    <li><a href="moms.html">Moms</a></li>
+                    <li><a href="momsredovisning.html">Momsredovisning</a></li>
+                    <li><a href="resultatrakning.html">Resultaträkning</a></li>
+                    <li><a href="kreditfakturor.html" class="active">Kreditfakturor, ränta och kontokort</a></li>
+                    <li><a href="loner.html">Löner</a></li>
+                    <li><a href="periodiseringar.html">Periodiseringar</a></li>
+                    <li><a href="mer-periodiseringar.html">Mer periodiseringar</a></li>
+                    <li><a href="eu-import-valuta.html">EU, import och valuta</a></li>
+                </ol>
+            </nav>
+
+            <article class="wiki-article">
+                <h2>Kreditfakturor, ränta och kontokort</h2>
+
+                <p>Ibland går saker fel. Kunder returnerar varor, leverantörer skickar fel saker, och någon måste betala ränta på ett lån. Här är hur man bokför sådant.</p>
+
+                <h3>Kreditfakturor</h3>
+                <p>En kreditfaktura är motsatsen till en vanlig faktura. Den utfärdas när något ska rättas till: en retur, en rabatt i efterhand, eller en felaktig faktura.</p>
+
+                <p>Principen är enkel: gör samma bokning som originalfakturan, fast med omvända tecken.</p>
+
+                <div class="kontering-example">
+                    <h4>Kreditfaktura till kund 5 000 kr + moms (1 250 kr):</h4>
+                    <table class="kontering-table">
+                        <tr>
+                            <th>Konto</th>
+                            <th>Debet</th>
+                            <th>Kredit</th>
+                        </tr>
+                        <tr>
+                            <td>3000 Försäljning</td>
+                            <td>5 000</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2610 Utgående moms</td>
+                            <td>1 250</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>1510 Kundfordringar</td>
+                            <td></td>
+                            <td>6 250</td>
+                        </tr>
+                    </table>
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #666;">Inkomsten minskar, momsskulden minskar, kundfordran minskar.</p>
+                </div>
+
+                <h3>Ränta</h3>
+                <p>Ränta är priset för att låna pengar. Har företaget lån betalar det ränta (utgift). Har företaget pengar på banken får det ränta (inkomst, om än minimal nuförtiden).</p>
+
+                <div class="kontering-example">
+                    <h4>Räntekostnad på lån 500 kr:</h4>
+                    <table class="kontering-table">
+                        <tr>
+                            <th>Konto</th>
+                            <th>Debet</th>
+                            <th>Kredit</th>
+                        </tr>
+                        <tr>
+                            <td>8400 Räntekostnader</td>
+                            <td>500</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>1930 Företagskonto</td>
+                            <td></td>
+                            <td>500</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="kontering-example">
+                    <h4>Ränteintäkt på sparkonto 100 kr:</h4>
+                    <table class="kontering-table">
+                        <tr>
+                            <th>Konto</th>
+                            <th>Debet</th>
+                            <th>Kredit</th>
+                        </tr>
+                        <tr>
+                            <td>1930 Företagskonto</td>
+                            <td>100</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>8300 Ränteintäkter</td>
+                            <td></td>
+                            <td>100</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <h3>Kontokort</h3>
+                <p>Företagskort (kreditkort) skapar en mellanliggande skuld. När man handlar med kortet uppstår en skuld till kortföretaget. När fakturan kommer och betalas nollas skulden.</p>
+
+                <div class="kontering-example">
+                    <h4>Inköp med företagskort 2 000 kr + moms (500 kr):</h4>
+                    <table class="kontering-table">
+                        <tr>
+                            <th>Konto</th>
+                            <th>Debet</th>
+                            <th>Kredit</th>
+                        </tr>
+                        <tr>
+                            <td>6100 Kontorsmaterial</td>
+                            <td>2 000</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2640 Ingående moms</td>
+                            <td>500</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2499 Kortfakturor</td>
+                            <td></td>
+                            <td>2 500</td>
+                        </tr>
+                    </table>
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #666;">Skulden hamnar på kortkontot istället för direkt på banken.</p>
+                </div>
+
+                <div class="kontering-example">
+                    <h4>Betala kortfakturan:</h4>
+                    <table class="kontering-table">
+                        <tr>
+                            <th>Konto</th>
+                            <th>Debet</th>
+                            <th>Kredit</th>
+                        </tr>
+                        <tr>
+                            <td>2499 Kortfakturor</td>
+                            <td>2 500</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>1930 Företagskonto</td>
+                            <td></td>
+                            <td>2 500</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="wiki-cta">
+                    <p>Redo att hantera verklighetens komplikationer?</p>
+                    <a href="../index.html?level=6" class="btn btn-primary">Öva på kreditfakturor, ränta och kontokort</a>
+                </div>
+
+                <nav class="wiki-article-nav">
+                    <a href="resultatrakning.html">← Föregående: Resultaträkning</a>
+                    <a href="loner.html">Nästa: Löner →</a>
+                </nav>
+            </article>
+        </main>
+
+        <footer class="wiki-footer">
+            <p>Del av <a href="../index.html">BokaKul</a></p>
+        </footer>
+    </div>
+</body>
+</html>

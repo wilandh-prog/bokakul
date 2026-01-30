@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grundläggande kontering | BokaKul Wiki</title>
+    <meta name="description" content="Lär dig grunderna i bokföring: debet, kredit och kontoplanen. Förstå varför summan alltid ska bli noll.">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+    <div class="wiki-container">
+        <header class="wiki-header">
+            <h1><img src="../logga.png" alt="BokaKul" class="site-logo"> Wiki</h1>
+            <a href="../index.html" class="btn btn-secondary">Tillbaka till appen</a>
+        </header>
+
+        <main class="wiki-content">
+            <nav class="wiki-nav">
+                <h2>Ämnen</h2>
+                <ol class="wiki-topic-list">
+                    <li><a href="grundlaggande.html" class="active">Grundläggande kontering</a></li>
+                    <li><a href="forsaljning-inkop.html">Försäljning och inköp</a></li>
+                    <li><a href="moms.html">Moms</a></li>
+                    <li><a href="momsredovisning.html">Momsredovisning</a></li>
+                    <li><a href="resultatrakning.html">Resultaträkning</a></li>
+                    <li><a href="kreditfakturor.html">Kreditfakturor, ränta och kontokort</a></li>
+                    <li><a href="loner.html">Löner</a></li>
+                    <li><a href="periodiseringar.html">Periodiseringar</a></li>
+                    <li><a href="mer-periodiseringar.html">Mer periodiseringar</a></li>
+                    <li><a href="eu-import-valuta.html">EU, import och valuta</a></li>
+                </ol>
+            </nav>
+
+            <article class="wiki-article">
+                <h2>Grundläggande kontering</h2>
+
+                <p>Bokföring bygger på en enkel princip: varje krona som rör sig måste bokföras på två ställen. Det kallas dubbel bokföring och har fungerat i ungefär 500 år, så det lär inte ändras i första taget.</p>
+
+                <h3>Debet och kredit</h3>
+                <p>Debet är vänster kolumn, kredit är höger kolumn. Det är egentligen allt man behöver veta rent tekniskt. Sen kommer reglerna för vad som ska hamna var.</p>
+
+                <p>Grundregeln ser ut så här:</p>
+                <ul>
+                    <li><strong>Tillgångar</strong> (konton som börjar på 1): ökar i debet, minskar i kredit</li>
+                    <li><strong>Skulder</strong> (konton som börjar på 2): ökar i kredit, minskar i debet</li>
+                    <li><strong>Inkomster</strong> (konton som börjar på 3): ökar i kredit</li>
+                    <li><strong>Utgifter</strong> (konton som börjar på 4-7): ökar i debet</li>
+                </ul>
+
+                <p>Förvirrande? Ja, lite. Men det finns en logik: tillgångar är saker företaget äger, så när de ökar vill man se det tydligt (debet). Skulder är saker företaget är skyldigt, så de hamnar på andra sidan.</p>
+
+                <h3>BAS-kontoplanen</h3>
+                <p>I Sverige använder de flesta BAS-kontoplanen. Det är en standardiserad lista med konton där varje nummer betyder något specifikt:</p>
+                <ul>
+                    <li><strong>1000-1999:</strong> Tillgångar (kassa, bank, kundfordringar, inventarier)</li>
+                    <li><strong>2000-2999:</strong> Skulder och eget kapital (leverantörsskulder, lån, moms)</li>
+                    <li><strong>3000-3999:</strong> Inkomster (försäljning)</li>
+                    <li><strong>4000-7999:</strong> Utgifter (inköp, löner, hyra, etc.)</li>
+                    <li><strong>8000-8999:</strong> Finansiella poster (räntor)</li>
+                </ul>
+
+                <h3>Ett exempel</h3>
+                <p>Företaget köper kontorsmaterial för 500 kr och betalar med företagskortet (kopplat till bankkontot).</p>
+
+                <div class="kontering-example">
+                    <h4>Kontering:</h4>
+                    <table class="kontering-table">
+                        <tr>
+                            <th>Konto</th>
+                            <th>Debet</th>
+                            <th>Kredit</th>
+                        </tr>
+                        <tr>
+                            <td>6100 Kontorsmaterial</td>
+                            <td>500</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>1930 Företagskonto</td>
+                            <td></td>
+                            <td>500</td>
+                        </tr>
+                    </table>
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #666;">Utgiften ökar (debet), bankkontot minskar (kredit). Summa debet = summa kredit.</p>
+                </div>
+
+                <p>Det är hela grejen. Sen blir det mer komplicerat med moms och periodiseringar och annat, men grundprincipen är densamma.</p>
+
+                <div class="wiki-cta">
+                    <p>Redo att testa själv?</p>
+                    <a href="../index.html?level=1" class="btn btn-primary">Öva på grundläggande kontering</a>
+                </div>
+
+                <nav class="wiki-article-nav">
+                    <span></span>
+                    <a href="forsaljning-inkop.html">Nästa: Försäljning och inköp →</a>
+                </nav>
+            </article>
+        </main>
+
+        <footer class="wiki-footer">
+            <p>Del av <a href="../index.html">BokaKul</a></p>
+        </footer>
+    </div>
+</body>
+</html>

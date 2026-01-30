@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Momsredovisning | BokaKul Wiki</title>
+    <meta name="description" content="Lär dig bokföra momsredovisningen. Hur man stänger momskontona och betalar in moms till Skatteverket.">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+    <div class="wiki-container">
+        <header class="wiki-header">
+            <h1><img src="../logga.png" alt="BokaKul" class="site-logo"> Wiki</h1>
+            <a href="../index.html" class="btn btn-secondary">Tillbaka till appen</a>
+        </header>
+
+        <main class="wiki-content">
+            <nav class="wiki-nav">
+                <h2>Ämnen</h2>
+                <ol class="wiki-topic-list">
+                    <li><a href="grundlaggande.html">Grundläggande kontering</a></li>
+                    <li><a href="forsaljning-inkop.html">Försäljning och inköp</a></li>
+                    <li><a href="moms.html">Moms</a></li>
+                    <li><a href="momsredovisning.html" class="active">Momsredovisning</a></li>
+                    <li><a href="resultatrakning.html">Resultaträkning</a></li>
+                    <li><a href="kreditfakturor.html">Kreditfakturor, ränta och kontokort</a></li>
+                    <li><a href="loner.html">Löner</a></li>
+                    <li><a href="periodiseringar.html">Periodiseringar</a></li>
+                    <li><a href="mer-periodiseringar.html">Mer periodiseringar</a></li>
+                    <li><a href="eu-import-valuta.html">EU, import och valuta</a></li>
+                </ol>
+            </nav>
+
+            <article class="wiki-article">
+                <h2>Momsredovisning</h2>
+
+                <p>En gång i månaden, kvartalet eller året (beroende på företagets storlek) ska momsen redovisas till Skatteverket. Då gör man upp räkningen: utgående minus ingående moms.</p>
+
+                <h3>Principen</h3>
+                <p>Under perioden har företaget samlat på sig:</p>
+                <ul>
+                    <li>Utgående moms (2610): skuld till staten för moms på försäljning</li>
+                    <li>Ingående moms (2640): fordran på staten för moms på inköp</li>
+                </ul>
+
+                <p>När perioden är slut flyttar man båda till ett gemensamt konto (2650 Momsredovisning eller liknande) och betalar in mellanskillnaden.</p>
+
+                <h3>Steg 1: Flytta utgående moms</h3>
+
+                <div class="kontering-example">
+                    <h4>Utgående moms under perioden: 25 000 kr</h4>
+                    <table class="kontering-table">
+                        <tr>
+                            <th>Konto</th>
+                            <th>Debet</th>
+                            <th>Kredit</th>
+                        </tr>
+                        <tr>
+                            <td>2610 Utgående moms</td>
+                            <td>25 000</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2650 Momsredovisning</td>
+                            <td></td>
+                            <td>25 000</td>
+                        </tr>
+                    </table>
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #666;">Tömmer utgående moms till redovisningskontot.</p>
+                </div>
+
+                <h3>Steg 2: Flytta ingående moms</h3>
+
+                <div class="kontering-example">
+                    <h4>Ingående moms under perioden: 10 000 kr</h4>
+                    <table class="kontering-table">
+                        <tr>
+                            <th>Konto</th>
+                            <th>Debet</th>
+                            <th>Kredit</th>
+                        </tr>
+                        <tr>
+                            <td>2650 Momsredovisning</td>
+                            <td>10 000</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2640 Ingående moms</td>
+                            <td></td>
+                            <td>10 000</td>
+                        </tr>
+                    </table>
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #666;">Tömmer ingående moms till redovisningskontot.</p>
+                </div>
+
+                <h3>Steg 3: Betala momsen</h3>
+                <p>Nu har konto 2650 ett saldo på 15 000 kr (25 000 - 10 000). Det är vad som ska betalas till Skatteverket.</p>
+
+                <div class="kontering-example">
+                    <h4>Betala moms till Skatteverket:</h4>
+                    <table class="kontering-table">
+                        <tr>
+                            <th>Konto</th>
+                            <th>Debet</th>
+                            <th>Kredit</th>
+                        </tr>
+                        <tr>
+                            <td>2650 Momsredovisning</td>
+                            <td>15 000</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>1930 Företagskonto</td>
+                            <td></td>
+                            <td>15 000</td>
+                        </tr>
+                    </table>
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #666;">Momsskulden nollställs, pengarna går från bankkontot.</p>
+                </div>
+
+                <h3>Om ingående moms är större</h3>
+                <p>Ibland har man köpt mer än man sålt (vanligt för nya företag eller vid stora investeringar). Då får man pengar tillbaka från Skatteverket istället. Samma princip, bara att pengarna går åt andra hållet.</p>
+
+                <div class="wiki-cta">
+                    <p>Dags att stänga momsen?</p>
+                    <a href="../index.html?level=4" class="btn btn-primary">Öva på momsredovisning</a>
+                </div>
+
+                <nav class="wiki-article-nav">
+                    <a href="moms.html">← Föregående: Moms</a>
+                    <a href="resultatrakning.html">Nästa: Resultaträkning →</a>
+                </nav>
+            </article>
+        </main>
+
+        <footer class="wiki-footer">
+            <p>Del av <a href="../index.html">BokaKul</a></p>
+        </footer>
+    </div>
+</body>
+</html>

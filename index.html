@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BokaKul - Öva Bokföring</title>
-    <meta name="description" content="Öva bokföring på ett roligt sätt. Lär dig kontera affärshändelser med direkt feedback.">
+    <title>Öva Bokföring Gratis Online | BokaKul Konteringsövningar</title>
+    <meta name="description" content="Lär dig bokföring genom att faktiskt göra det. Interaktiva konteringsövningar med BAS-kontoplan, från grunderna till moms, löner och periodiseringar. Gratis, direkt i webbläsaren.">
     <meta name="theme-color" content="#667eea">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+    <link rel="icon" type="image/png" href="logga.png">
     <link rel="stylesheet" href="style.css">
     <!-- Google Analytics - laddas endast efter samtycke -->
     <script>
@@ -33,7 +33,7 @@
     <div class="container" role="application" aria-label="BokaKul bokföringsövning">
         <header>
             <div class="header-top">
-                <h1>📚 BokaKul</h1>
+                <h1><img src="logga.png" alt="BokaKul" class="site-logo"></h1>
                 <div class="header-badge" id="best-badge-container" aria-label="Din bästa utmärkelse">
                     <span id="best-badge" class="best-badge" aria-hidden="true">🔒</span>
                     <span id="best-badge-name" class="best-badge-name">Ingen ännu</span>
@@ -62,6 +62,32 @@
                 </div>
             </div>
         </header>
+
+        <section class="intro-section" id="intro">
+            <h2>Lär dig bokföring genom att göra det</h2>
+            <p>Bokföring är en av de där sakerna som blir begripligt först när man testar själv. Att läsa om debet och kredit i en bok är ungefär lika effektivt som att lära sig cykla genom att titta på YouTube.</p>
+            <p>BokaKul ger dig affärshändelser och du konterar dem. Blir det fel får du veta direkt, ingen väntan på provrättning eller passiv-aggressiva kommentarer från revisorn.</p>
+
+            <button class="btn btn-primary intro-start-btn" onclick="document.getElementById('intro').style.display='none'">Börja öva</button>
+
+            <details class="intro-details">
+                <summary>Vad ingår? (10 nivåer)</summary>
+                <ul class="level-list">
+                    <li><strong>Grundläggande kontering:</strong> debet, kredit och varför det alltid ska gå jämnt ut</li>
+                    <li><strong>Försäljning och inköp:</strong> först utan moms (för att inte göra allt på en gång)</li>
+                    <li><strong>Moms:</strong> ingående, utgående och den där skillnaden man ska betala in</li>
+                    <li><strong>Momsredovisning:</strong> när det är dags att göra upp med Skatteverket</li>
+                    <li><strong>Resultaträkning:</strong> för den som vill veta om det går plus eller minus</li>
+                    <li><strong>Kreditfakturor, ränta och kontokort:</strong> verklighetens komplikationer</li>
+                    <li><strong>Löner:</strong> arbetsgivaravgifter, skatt och allt det roliga</li>
+                    <li><strong>Periodiseringar:</strong> för att hamna i rätt period (bokföringsmässigt, alltså)</li>
+                    <li><strong>Mer periodiseringar:</strong> det finns fler än man tror</li>
+                    <li><strong>EU, import och valuta:</strong> för den internationellt lagde</li>
+                </ul>
+            </details>
+
+            <p class="intro-cta">Helt gratis, funkar direkt i webbläsaren, ingen registrering. Hursomhelst, välj nivå nedan och sätt igång. Vill du läsa på först? Kolla in <a href="wiki/">wikin</a>.</p>
+        </section>
 
         <main id="main-content" aria-label="Övningsområde">
             <div class="level-selector">
@@ -163,6 +189,10 @@
             </div>
         </aside>
     </div>
+
+    <footer class="site-footer">
+        <a href="wiki/">Lär dig bokföring</a> · <a href="om.html">Om BokaKul</a>
+    </footer>
 
     <script src="app.js"></script>
 

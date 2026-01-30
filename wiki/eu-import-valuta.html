@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EU, import och valuta | BokaKul Wiki</title>
+    <meta name="description" content="Lär dig bokföra handel med EU-länder, import från tredje land och transaktioner i utländsk valuta.">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+    <div class="wiki-container">
+        <header class="wiki-header">
+            <h1><img src="../logga.png" alt="BokaKul" class="site-logo"> Wiki</h1>
+            <a href="../index.html" class="btn btn-secondary">Tillbaka till appen</a>
+        </header>
+
+        <main class="wiki-content">
+            <nav class="wiki-nav">
+                <h2>Ämnen</h2>
+                <ol class="wiki-topic-list">
+                    <li><a href="grundlaggande.html">Grundläggande kontering</a></li>
+                    <li><a href="forsaljning-inkop.html">Försäljning och inköp</a></li>
+                    <li><a href="moms.html">Moms</a></li>
+                    <li><a href="momsredovisning.html">Momsredovisning</a></li>
+                    <li><a href="resultatrakning.html">Resultaträkning</a></li>
+                    <li><a href="kreditfakturor.html">Kreditfakturor, ränta och kontokort</a></li>
+                    <li><a href="loner.html">Löner</a></li>
+                    <li><a href="periodiseringar.html">Periodiseringar</a></li>
+                    <li><a href="mer-periodiseringar.html">Mer periodiseringar</a></li>
+                    <li><a href="eu-import-valuta.html" class="active">EU, import och valuta</a></li>
+                </ol>
+            </nav>
+
+            <article class="wiki-article">
+                <h2>EU, import och valuta</h2>
+
+                <p>När man handlar med utlandet blir det genast mer komplicerat. Momsen fungerar annorlunda, valutor ska räknas om, och ibland tillkommer tull. Välkommen till internationell handel.</p>
+
+                <h3>Inköp från EU (omvänd skattskyldighet)</h3>
+                <p>När ett svenskt företag köper varor från ett annat EU-land betalar man ingen moms till säljaren. Istället redovisar man momsen själv i Sverige. Det kallas omvänd skattskyldighet.</p>
+
+                <p>I praktiken bokför man både utgående och ingående moms. De tar ut varandra, men måste redovisas.</p>
+
+                <div class="kontering-example">
+                    <h4>Inköp från Tyskland 10 000 kr (omvänd moms 2 500 kr):</h4>
+                    <table class="kontering-table">
+                        <tr>
+                            <th>Konto</th>
+                            <th>Debet</th>
+                            <th>Kredit</th>
+                        </tr>
+                        <tr>
+                            <td>4010 Inköp varor EU</td>
+                            <td>10 000</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2645 Ingående moms EU</td>
+                            <td>2 500</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2614 Utgående moms EU</td>
+                            <td></td>
+                            <td>2 500</td>
+                        </tr>
+                        <tr>
+                            <td>2440 Leverantörsskulder</td>
+                            <td></td>
+                            <td>10 000</td>
+                        </tr>
+                    </table>
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #666;">Momsen nollas ut men redovisas på momsdeklarationen.</p>
+                </div>
+
+                <h3>Import från land utanför EU</h3>
+                <p>Vid import från exempelvis USA eller Kina betalar man moms och eventuellt tull till Tullverket vid gränsen. Ingen omvänd skattskyldighet här.</p>
+
+                <div class="kontering-example">
+                    <h4>Import från USA: varor 8 000 kr, tull 400 kr, moms 2 100 kr:</h4>
+                    <table class="kontering-table">
+                        <tr>
+                            <th>Konto</th>
+                            <th>Debet</th>
+                            <th>Kredit</th>
+                        </tr>
+                        <tr>
+                            <td>4010 Inköp av varor</td>
+                            <td>8 400</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2640 Ingående moms</td>
+                            <td>2 100</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2440 Leverantörsskulder</td>
+                            <td></td>
+                            <td>8 000</td>
+                        </tr>
+                        <tr>
+                            <td>1930 Företagskonto</td>
+                            <td></td>
+                            <td>2 500</td>
+                        </tr>
+                    </table>
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #666;">Tullen läggs på varans kostnad. Moms och tull betalas till Tullverket.</p>
+                </div>
+
+                <h3>Försäljning till EU</h3>
+                <p>Vid försäljning till momsregistrerade företag i andra EU-länder tar man inte ut moms. Köparen redovisar momsen i sitt land istället.</p>
+
+                <div class="kontering-example">
+                    <h4>Försäljning till företag i Finland 20 000 kr (momsfritt):</h4>
+                    <table class="kontering-table">
+                        <tr>
+                            <th>Konto</th>
+                            <th>Debet</th>
+                            <th>Kredit</th>
+                        </tr>
+                        <tr>
+                            <td>1510 Kundfordringar</td>
+                            <td>20 000</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>3100 Försäljning EU</td>
+                            <td></td>
+                            <td>20 000</td>
+                        </tr>
+                    </table>
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #666;">Ingen moms. Redovisas separat i momsdeklarationen.</p>
+                </div>
+
+                <h3>Valutakursdifferenser</h3>
+                <p>När man handlar i utländsk valuta kan kursen ändras mellan fakturadatum och betalningsdatum. Skillnaden bokförs som valutakursvinst eller valutakursförlust.</p>
+
+                <div class="kontering-example">
+                    <h4>Faktura 1 000 EUR vid kurs 11,50 = 11 500 kr. Betalas vid kurs 11,80:</h4>
+                    <table class="kontering-table">
+                        <tr>
+                            <th>Konto</th>
+                            <th>Debet</th>
+                            <th>Kredit</th>
+                        </tr>
+                        <tr>
+                            <td>2440 Leverantörsskulder</td>
+                            <td>11 500</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>7960 Valutakursförluster</td>
+                            <td>300</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>1930 Företagskonto</td>
+                            <td></td>
+                            <td>11 800</td>
+                        </tr>
+                    </table>
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #666;">Kursen gick upp, så det blev dyrare. Skillnaden är en förlust.</p>
+                </div>
+
+                <div class="kontering-example">
+                    <h4>Om kursen istället gått ner till 11,20:</h4>
+                    <table class="kontering-table">
+                        <tr>
+                            <th>Konto</th>
+                            <th>Debet</th>
+                            <th>Kredit</th>
+                        </tr>
+                        <tr>
+                            <td>2440 Leverantörsskulder</td>
+                            <td>11 500</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>1930 Företagskonto</td>
+                            <td></td>
+                            <td>11 200</td>
+                        </tr>
+                        <tr>
+                            <td>3960 Valutakursvinster</td>
+                            <td></td>
+                            <td>300</td>
+                        </tr>
+                    </table>
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #666;">Kursen gick ner, billigare att betala. Skillnaden är en vinst.</p>
+                </div>
+
+                <h3>Sammanfattning</h3>
+                <p>Internationell handel kräver lite extra bokföring, men principerna är desamma. Håll koll på vilken typ av handel det är (EU eller tredje land), om omvänd skattskyldighet gäller, och notera valutakursen på fakturadatum.</p>
+
+                <div class="wiki-cta">
+                    <p>Redo för internationell bokföring?</p>
+                    <a href="../index.html?level=10" class="btn btn-primary">Öva på EU, import och valuta</a>
+                </div>
+
+                <nav class="wiki-article-nav">
+                    <a href="mer-periodiseringar.html">← Föregående: Mer periodiseringar</a>
+                    <span></span>
+                </nav>
+            </article>
+        </main>
+
+        <footer class="wiki-footer">
+            <p>Del av <a href="../index.html">BokaKul</a></p>
+        </footer>
+    </div>
+</body>
+</html>

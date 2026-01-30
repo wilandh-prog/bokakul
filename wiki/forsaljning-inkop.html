@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Försäljning och inköp | BokaKul Wiki</title>
+    <meta name="description" content="Lär dig bokföra försäljning och inköp utan moms. Grundläggande affärshändelser i bokföringen.">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+    <div class="wiki-container">
+        <header class="wiki-header">
+            <h1><img src="../logga.png" alt="BokaKul" class="site-logo"> Wiki</h1>
+            <a href="../index.html" class="btn btn-secondary">Tillbaka till appen</a>
+        </header>
+
+        <main class="wiki-content">
+            <nav class="wiki-nav">
+                <h2>Ämnen</h2>
+                <ol class="wiki-topic-list">
+                    <li><a href="grundlaggande.html">Grundläggande kontering</a></li>
+                    <li><a href="forsaljning-inkop.html" class="active">Försäljning och inköp</a></li>
+                    <li><a href="moms.html">Moms</a></li>
+                    <li><a href="momsredovisning.html">Momsredovisning</a></li>
+                    <li><a href="resultatrakning.html">Resultaträkning</a></li>
+                    <li><a href="kreditfakturor.html">Kreditfakturor, ränta och kontokort</a></li>
+                    <li><a href="loner.html">Löner</a></li>
+                    <li><a href="periodiseringar.html">Periodiseringar</a></li>
+                    <li><a href="mer-periodiseringar.html">Mer periodiseringar</a></li>
+                    <li><a href="eu-import-valuta.html">EU, import och valuta</a></li>
+                </ol>
+            </nav>
+
+            <article class="wiki-article">
+                <h2>Försäljning och inköp</h2>
+
+                <p>De flesta affärshändelser i ett företag handlar om att sälja saker eller köpa saker. Här går vi igenom hur man bokför det, utan att blanda in moms (det kommer i nästa avsnitt).</p>
+
+                <h3>Försäljning</h3>
+                <p>När företaget säljer något händer två saker: pengar kommer in och en inkomst uppstår. Om kunden betalar direkt hamnar pengarna på bankkontot. Om kunden får faktura uppstår en kundfordran först.</p>
+
+                <div class="kontering-example">
+                    <h4>Kontantförsäljning 10 000 kr:</h4>
+                    <table class="kontering-table">
+                        <tr>
+                            <th>Konto</th>
+                            <th>Debet</th>
+                            <th>Kredit</th>
+                        </tr>
+                        <tr>
+                            <td>1930 Företagskonto</td>
+                            <td>10 000</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>3000 Försäljning</td>
+                            <td></td>
+                            <td>10 000</td>
+                        </tr>
+                    </table>
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #666;">Bankkontot ökar (debet), inkomsten ökar (kredit).</p>
+                </div>
+
+                <div class="kontering-example">
+                    <h4>Försäljning på faktura 10 000 kr:</h4>
+                    <table class="kontering-table">
+                        <tr>
+                            <th>Konto</th>
+                            <th>Debet</th>
+                            <th>Kredit</th>
+                        </tr>
+                        <tr>
+                            <td>1510 Kundfordringar</td>
+                            <td>10 000</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>3000 Försäljning</td>
+                            <td></td>
+                            <td>10 000</td>
+                        </tr>
+                    </table>
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #666;">Kundfordran uppstår (debet), inkomsten bokförs direkt.</p>
+                </div>
+
+                <h3>Inköp</h3>
+                <p>När företaget köper något händer motsatsen: pengar går ut och en utgift uppstår. Eller så får man en faktura och en leverantörsskuld uppstår.</p>
+
+                <div class="kontering-example">
+                    <h4>Inköp av varor för 5 000 kr, betalat direkt:</h4>
+                    <table class="kontering-table">
+                        <tr>
+                            <th>Konto</th>
+                            <th>Debet</th>
+                            <th>Kredit</th>
+                        </tr>
+                        <tr>
+                            <td>4000 Inköp av varor</td>
+                            <td>5 000</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>1930 Företagskonto</td>
+                            <td></td>
+                            <td>5 000</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="kontering-example">
+                    <h4>Inköp på faktura 5 000 kr:</h4>
+                    <table class="kontering-table">
+                        <tr>
+                            <th>Konto</th>
+                            <th>Debet</th>
+                            <th>Kredit</th>
+                        </tr>
+                        <tr>
+                            <td>4000 Inköp av varor</td>
+                            <td>5 000</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2440 Leverantörsskulder</td>
+                            <td></td>
+                            <td>5 000</td>
+                        </tr>
+                    </table>
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #666;">Utgiften bokförs direkt, skulden till leverantören ökar.</p>
+                </div>
+
+                <h3>När fakturan betalas</h3>
+                <p>Sen när kunden betalar sin faktura, eller när företaget betalar leverantören, gör man en till bokning:</p>
+
+                <div class="kontering-example">
+                    <h4>Kund betalar sin faktura:</h4>
+                    <table class="kontering-table">
+                        <tr>
+                            <th>Konto</th>
+                            <th>Debet</th>
+                            <th>Kredit</th>
+                        </tr>
+                        <tr>
+                            <td>1930 Företagskonto</td>
+                            <td>10 000</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>1510 Kundfordringar</td>
+                            <td></td>
+                            <td>10 000</td>
+                        </tr>
+                    </table>
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #666;">Pengarna kommer in, fordran försvinner.</p>
+                </div>
+
+                <p>Notera att inkomsten redan bokfördes när fakturan skickades. Betalningen påverkar bara balansräkningen.</p>
+
+                <div class="wiki-cta">
+                    <p>Dags att öva?</p>
+                    <a href="../index.html?level=2" class="btn btn-primary">Öva på försäljning och inköp</a>
+                </div>
+
+                <nav class="wiki-article-nav">
+                    <a href="grundlaggande.html">← Föregående: Grundläggande kontering</a>
+                    <a href="moms.html">Nästa: Moms →</a>
+                </nav>
+            </article>
+        </main>
+
+        <footer class="wiki-footer">
+            <p>Del av <a href="../index.html">BokaKul</a></p>
+        </footer>
+    </div>
+</body>
+</html>

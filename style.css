@@ -56,10 +56,11 @@ body {
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 300px;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: auto auto 1fr;
     gap: 20px;
     grid-template-areas:
         "header header"
+        "intro intro"
         "main aside";
 }
 
@@ -82,6 +83,14 @@ header h1 {
     color: #667eea;
     font-size: 2em;
     margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.site-logo {
+    max-height: 80px;
+    width: auto;
 }
 
 .header-badge {
@@ -1643,5 +1652,138 @@ main {
 
     .step-handle {
         padding: 15px;
+    }
+}
+
+/* Intro Section - SEO content */
+.intro-section {
+    grid-area: intro;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.intro-section h2 {
+    color: #667eea;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+.intro-section p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 12px;
+    max-width: 800px;
+}
+
+.intro-details {
+    margin: 20px 0;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.intro-details summary {
+    padding: 15px 20px;
+    background: #f8f9fa;
+    cursor: pointer;
+    font-weight: 600;
+    color: #667eea;
+    list-style: none;
+}
+
+.intro-details summary::-webkit-details-marker {
+    display: none;
+}
+
+.intro-details summary::before {
+    content: "▶ ";
+    font-size: 0.8em;
+}
+
+.intro-details[open] summary::before {
+    content: "▼ ";
+}
+
+.intro-details summary:hover {
+    background: #f0f0f0;
+}
+
+.level-list {
+    list-style: none;
+    padding: 15px 20px;
+}
+
+.level-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+    color: #555;
+}
+
+.level-list li:last-child {
+    border-bottom: none;
+}
+
+.level-list li strong {
+    color: #333;
+}
+
+.intro-cta {
+    margin-top: 20px;
+    padding: 15px 20px;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+    border-radius: 10px;
+    font-weight: 500;
+}
+
+.intro-start-btn {
+    display: inline-block;
+    margin: 20px 0;
+    text-decoration: none;
+    font-size: 1.1em;
+}
+
+.hint-wiki-link {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255,255,255,0.3);
+    font-size: 0.9em;
+}
+
+.hint-wiki-link a {
+    color: inherit;
+    opacity: 0.9;
+}
+
+.hint-wiki-link a:hover {
+    opacity: 1;
+}
+
+.site-footer {
+    max-width: 1400px;
+    margin: 20px auto 0;
+    padding: 15px 30px;
+    text-align: center;
+}
+
+.site-footer a {
+    color: white;
+    text-decoration: none;
+    opacity: 0.8;
+}
+
+.site-footer a:hover {
+    opacity: 1;
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .intro-section {
+        padding: 20px;
+    }
+
+    .intro-section h2 {
+        font-size: 1.3em;
     }
 }

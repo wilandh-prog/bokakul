@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moms i bokföringen | BokaKul Wiki</title>
+    <meta name="description" content="Lär dig bokföra moms. Ingående moms, utgående moms och hur man håller isär dem.">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+    <div class="wiki-container">
+        <header class="wiki-header">
+            <h1><img src="../logga.png" alt="BokaKul" class="site-logo"> Wiki</h1>
+            <a href="../index.html" class="btn btn-secondary">Tillbaka till appen</a>
+        </header>
+
+        <main class="wiki-content">
+            <nav class="wiki-nav">
+                <h2>Ämnen</h2>
+                <ol class="wiki-topic-list">
+                    <li><a href="grundlaggande.html">Grundläggande kontering</a></li>
+                    <li><a href="forsaljning-inkop.html">Försäljning och inköp</a></li>
+                    <li><a href="moms.html" class="active">Moms</a></li>
+                    <li><a href="momsredovisning.html">Momsredovisning</a></li>
+                    <li><a href="resultatrakning.html">Resultaträkning</a></li>
+                    <li><a href="kreditfakturor.html">Kreditfakturor, ränta och kontokort</a></li>
+                    <li><a href="loner.html">Löner</a></li>
+                    <li><a href="periodiseringar.html">Periodiseringar</a></li>
+                    <li><a href="mer-periodiseringar.html">Mer periodiseringar</a></li>
+                    <li><a href="eu-import-valuta.html">EU, import och valuta</a></li>
+                </ol>
+            </nav>
+
+            <article class="wiki-article">
+                <h2>Moms</h2>
+
+                <p>Moms är en skatt som slutkunden betalar, men som företaget samlar in åt staten. Företaget fungerar alltså som en sorts obetald skatteindrivare. Trevligt.</p>
+
+                <h3>Två typer av moms</h3>
+                <p>I bokföringen skiljer man på:</p>
+                <ul>
+                    <li><strong>Utgående moms (2610)</strong>: momsen företaget tar ut när det säljer något</li>
+                    <li><strong>Ingående moms (2640)</strong>: momsen företaget betalar när det köper något</li>
+                </ul>
+
+                <p>Skillnaden mellan dessa är vad företaget ska betala in till Skatteverket (eller få tillbaka, om man köpt mer än man sålt).</p>
+
+                <h3>Räkna ut momsen</h3>
+                <p>I Sverige är vanligaste momssatsen 25%. Om något kostar 1 000 kr exklusive moms blir momsen 250 kr, totalt 1 250 kr.</p>
+
+                <p>Baklängesräkning (från totalpris till moms): dela med 1,25 för att få priset utan moms, sen subtrahera. Eller multiplicera totalen med 0,2 för att få momsen direkt.</p>
+
+                <h3>Försäljning med moms</h3>
+
+                <div class="kontering-example">
+                    <h4>Försäljning 10 000 kr + moms (2 500 kr), kund betalar direkt:</h4>
+                    <table class="kontering-table">
+                        <tr>
+                            <th>Konto</th>
+                            <th>Debet</th>
+                            <th>Kredit</th>
+                        </tr>
+                        <tr>
+                            <td>1930 Företagskonto</td>
+                            <td>12 500</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>3000 Försäljning</td>
+                            <td></td>
+                            <td>10 000</td>
+                        </tr>
+                        <tr>
+                            <td>2610 Utgående moms</td>
+                            <td></td>
+                            <td>2 500</td>
+                        </tr>
+                    </table>
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #666;">Inkomsten är 10 000 kr. Momsen är en skuld till staten som ska betalas in senare.</p>
+                </div>
+
+                <h3>Inköp med moms</h3>
+
+                <div class="kontering-example">
+                    <h4>Inköp av varor 4 000 kr + moms (1 000 kr), betalat direkt:</h4>
+                    <table class="kontering-table">
+                        <tr>
+                            <th>Konto</th>
+                            <th>Debet</th>
+                            <th>Kredit</th>
+                        </tr>
+                        <tr>
+                            <td>4000 Inköp av varor</td>
+                            <td>4 000</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2640 Ingående moms</td>
+                            <td>1 000</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>1930 Företagskonto</td>
+                            <td></td>
+                            <td>5 000</td>
+                        </tr>
+                    </table>
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #666;">Utgiften är 4 000 kr. Momsen får företaget tillbaka från staten (eller dra av från utgående moms).</p>
+                </div>
+
+                <h3>Varför moms inte är en utgift</h3>
+                <p>För ett momsregistrerat företag är moms varken en inkomst eller utgift. Det är bara pengar som passerar genom företaget på väg till eller från staten. Därför bokförs momsen på skuldkonton (2xxx), inte på resultaträkningen.</p>
+
+                <div class="wiki-cta">
+                    <p>Redo att öva på moms?</p>
+                    <a href="../index.html?level=3" class="btn btn-primary">Öva på transaktioner med moms</a>
+                </div>
+
+                <nav class="wiki-article-nav">
+                    <a href="forsaljning-inkop.html">← Föregående: Försäljning och inköp</a>
+                    <a href="momsredovisning.html">Nästa: Momsredovisning →</a>
+                </nav>
+            </article>
+        </main>
+
+        <footer class="wiki-footer">
+            <p>Del av <a href="../index.html">BokaKul</a></p>
+        </footer>
+    </div>
+</body>
+</html>

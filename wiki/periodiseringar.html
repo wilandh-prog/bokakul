@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Periodiseringar | BokaKul Wiki</title>
+    <meta name="description" content="Lär dig bokföra periodiseringar. Förutbetalda kostnader, upplupna intäkter och varför rätt period spelar roll.">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+    <div class="wiki-container">
+        <header class="wiki-header">
+            <h1><img src="../logga.png" alt="BokaKul" class="site-logo"> Wiki</h1>
+            <a href="../index.html" class="btn btn-secondary">Tillbaka till appen</a>
+        </header>
+
+        <main class="wiki-content">
+            <nav class="wiki-nav">
+                <h2>Ämnen</h2>
+                <ol class="wiki-topic-list">
+                    <li><a href="grundlaggande.html">Grundläggande kontering</a></li>
+                    <li><a href="forsaljning-inkop.html">Försäljning och inköp</a></li>
+                    <li><a href="moms.html">Moms</a></li>
+                    <li><a href="momsredovisning.html">Momsredovisning</a></li>
+                    <li><a href="resultatrakning.html">Resultaträkning</a></li>
+                    <li><a href="kreditfakturor.html">Kreditfakturor, ränta och kontokort</a></li>
+                    <li><a href="loner.html">Löner</a></li>
+                    <li><a href="periodiseringar.html" class="active">Periodiseringar</a></li>
+                    <li><a href="mer-periodiseringar.html">Mer periodiseringar</a></li>
+                    <li><a href="eu-import-valuta.html">EU, import och valuta</a></li>
+                </ol>
+            </nav>
+
+            <article class="wiki-article">
+                <h2>Periodiseringar</h2>
+
+                <p>Periodisering handlar om att kostnader och intäkter ska hamna i rätt period. Betalar du hyra för nästa kvartal i december ska inte hela kostnaden belasta december. Logiskt, men kräver lite extra bokföring.</p>
+
+                <h3>Varför periodisera?</h3>
+                <p>Resultaträkningen ska visa hur det gick under en specifik period. Om du betalar årsförsäkringen i januari men bokför hela kostnaden där, ser januari dyrt ut och resten av året billigt. Det ger en skev bild.</p>
+
+                <h3>Fyra typer av periodiseringar</h3>
+                <ul>
+                    <li><strong>Förutbetalda kostnader (1710)</strong>: betalat i förväg för något som gäller nästa period</li>
+                    <li><strong>Upplupna kostnader (2990)</strong>: kostnad som tillhör perioden men inte betalats än</li>
+                    <li><strong>Förutbetalda intäkter (2990)</strong>: fått betalt för något som levereras nästa period</li>
+                    <li><strong>Upplupna intäkter (1790)</strong>: intäkt som tillhör perioden men inte fakturerats än</li>
+                </ul>
+
+                <h3>Förutbetalda kostnader</h3>
+                <p>Du betalar försäkring för hela nästa år i december.</p>
+
+                <div class="kontering-example">
+                    <h4>Betalar försäkring 12 000 kr för nästa år:</h4>
+                    <table class="kontering-table">
+                        <tr>
+                            <th>Konto</th>
+                            <th>Debet</th>
+                            <th>Kredit</th>
+                        </tr>
+                        <tr>
+                            <td>1710 Förutbetalda kostnader</td>
+                            <td>12 000</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>1930 Företagskonto</td>
+                            <td></td>
+                            <td>12 000</td>
+                        </tr>
+                    </table>
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #666;">Pengarna går ut, men det blir en tillgång (fordran) istället för kostnad.</p>
+                </div>
+
+                <div class="kontering-example">
+                    <h4>Varje månad nästa år (1/12 av kostnaden):</h4>
+                    <table class="kontering-table">
+                        <tr>
+                            <th>Konto</th>
+                            <th>Debet</th>
+                            <th>Kredit</th>
+                        </tr>
+                        <tr>
+                            <td>6310 Försäkringskostnader</td>
+                            <td>1 000</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>1710 Förutbetalda kostnader</td>
+                            <td></td>
+                            <td>1 000</td>
+                        </tr>
+                    </table>
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #666;">Kostnaden bokförs i rätt månad, tillgången minskar.</p>
+                </div>
+
+                <h3>Upplupna kostnader</h3>
+                <p>Elräkningen för december kommer i januari. Kostnaden tillhör december.</p>
+
+                <div class="kontering-example">
+                    <h4>Periodisera elkostnad 3 000 kr i december:</h4>
+                    <table class="kontering-table">
+                        <tr>
+                            <th>Konto</th>
+                            <th>Debet</th>
+                            <th>Kredit</th>
+                        </tr>
+                        <tr>
+                            <td>5020 El</td>
+                            <td>3 000</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2990 Upplupna kostnader</td>
+                            <td></td>
+                            <td>3 000</td>
+                        </tr>
+                    </table>
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #666;">Kostnaden hamnar i december, skulden väntar på fakturan.</p>
+                </div>
+
+                <h3>Avskrivningar</h3>
+                <p>En variant av periodisering. När företaget köper en maskin för 100 000 kr som ska användas i 5 år, ska inte hela kostnaden tas år 1. Istället skrivs den av med 20 000 kr per år.</p>
+
+                <div class="kontering-example">
+                    <h4>Årlig avskrivning på maskin:</h4>
+                    <table class="kontering-table">
+                        <tr>
+                            <th>Konto</th>
+                            <th>Debet</th>
+                            <th>Kredit</th>
+                        </tr>
+                        <tr>
+                            <td>7830 Avskrivningar maskiner</td>
+                            <td>20 000</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>1219 Ack. avskr. maskiner</td>
+                            <td></td>
+                            <td>20 000</td>
+                        </tr>
+                    </table>
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #666;">Kostnaden fördelas över tillgångens livslängd.</p>
+                </div>
+
+                <div class="wiki-cta">
+                    <p>Redo att periodisera?</p>
+                    <a href="../index.html?level=8" class="btn btn-primary">Öva på periodiseringar</a>
+                </div>
+
+                <nav class="wiki-article-nav">
+                    <a href="loner.html">← Föregående: Löner</a>
+                    <a href="mer-periodiseringar.html">Nästa: Mer periodiseringar →</a>
+                </nav>
+            </article>
+        </main>
+
+        <footer class="wiki-footer">
+            <p>Del av <a href="../index.html">BokaKul</a></p>
+        </footer>
+    </div>
+</body>
+</html>

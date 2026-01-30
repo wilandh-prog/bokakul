@@ -270,6 +270,7 @@ let levelStartTime = null;
 let sessionCorrect = 0;
 let sessionIncorrect = 0;
 const sessionStartTime = Date.now();
+let isInitialLoad = true;
 
 // Achievements
 const achievements = {
@@ -454,8 +455,22 @@ async function init() {
     renderAchievements();
     setupEventListeners();
     updateStats();
-    // Ladda nivå 1 som standard
-    await loadLevel(1);
+
+    // Kolla om en nivå anges i URL:en (t.ex. ?level=3)
+    const urlParams = new URLSearchParams(window.location.search);
+    const levelParam = urlParams.get('level');
+    const startLevel = levelParam ? parseInt(levelParam, 10) : 1;
+
+    // Ladda angiven nivå eller nivå 1 som standard
+    await loadLevel(startLevel >= 1 && startLevel <= 10 ? startLevel : 1);
+
+    // Om man kom med level-parameter, dölj introt och scrolla till övningen
+    if (levelParam) {
+        const intro = document.getElementById('intro');
+        if (intro) {
+            intro.style.display = 'none';
+        }
+    }
 }
 
 // Rendera kontoplanen
@@ -530,11 +545,14 @@ function loadEvent() {
         renderDragExercise(event, type);
     }
 
-    // Scrolla till uppgiften
-    const eventCard = document.querySelector('.event-card');
-    if (eventCard) {
-        eventCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // Scrolla till uppgiften (men inte vid första sidladdningen)
+    if (!isInitialLoad) {
+        const eventCard = document.querySelector('.event-card');
+        if (eventCard) {
+            eventCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
     }
+    isInitialLoad = false;
 }
 
 // Lägg till bokföringsrad
@@ -1723,11 +1741,26 @@ function closeMobileToast(toast) {
     }
 }
 
+// Mappning från nivå till wiki-sida
+const wikiPages = {
+    1: 'grundlaggande.html',
+    2: 'forsaljning-inkop.html',
+    3: 'moms.html',
+    4: 'momsredovisning.html',
+    5: 'resultatrakning.html',
+    6: 'kreditfakturor.html',
+    7: 'loner.html',
+    8: 'periodiseringar.html',
+    9: 'mer-periodiseringar.html',
+    10: 'eu-import-valuta.html'
+};
+
 // Visa ledtråd
 function showHint() {
     const event = events[currentEventIndex];
     const hint = document.getElementById('hint');
-    hint.innerHTML = `<strong>💡 Ledtråd:</strong> ${event.hint}`;
+    const wikiPage = wikiPages[selectedLevel] || 'index.html';
+    hint.innerHTML = `<strong>💡 Ledtråd:</strong> ${event.hint}<p class="hint-wiki-link"><a href="wiki/${wikiPage}">Läs mer om detta ämne i wikin</a></p>`;
     hint.style.display = 'block';
 }
 
