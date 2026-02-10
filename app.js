@@ -459,10 +459,20 @@ async function init() {
     // Kolla om en nivå anges i URL:en (t.ex. ?level=3)
     const urlParams = new URLSearchParams(window.location.search);
     const levelParam = urlParams.get('level');
+    const eventParam = urlParams.get('event');
     const startLevel = levelParam ? parseInt(levelParam, 10) : 1;
 
     // Ladda angiven nivå eller nivå 1 som standard
     await loadLevel(startLevel >= 1 && startLevel <= 10 ? startLevel : 1);
+
+    // Om man kom med event-parameter, hoppa till den övningen
+    if (eventParam) {
+        const eventIndex = parseInt(eventParam, 10);
+        if (eventIndex >= 0 && eventIndex < events.length) {
+            currentEventIndex = eventIndex;
+            loadEvent();
+        }
+    }
 
     // Om man kom med level-parameter, dölj introt och scrolla till övningen
     if (levelParam) {
@@ -1813,7 +1823,8 @@ function showHint() {
     const event = events[currentEventIndex];
     const hint = document.getElementById('hint');
     const wikiPage = wikiPages[selectedLevel] || 'index.html';
-    hint.innerHTML = `<strong>💡 Ledtråd:</strong> ${event.hint}<p class="hint-wiki-link"><a href="wiki/${wikiPage}">Läs mer om detta ämne i wikin</a></p>`;
+    // Lägg till level och eventIndex i URL:en så användaren kan komma tillbaka till samma övning
+    hint.innerHTML = `<strong>💡 Ledtråd:</strong> ${event.hint}<p class="hint-wiki-link"><a href="wiki/${wikiPage}?level=${selectedLevel}&event=${currentEventIndex}">Läs mer om detta ämne i wikin</a></p>`;
     hint.style.display = 'block';
 }
 
