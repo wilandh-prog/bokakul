@@ -729,6 +729,46 @@ function handleInputChange(e) {
         renderBookingRows();
     } else {
         updateTotals();
+
+        // Kontrollera om både debet och kredit är ifyllda på samma rad
+        if (field === 'debetAmount' || field === 'kreditAmount') {
+            checkDualEntry(index);
+        }
+    }
+}
+
+// Kontrollera och varna om både debet och kredit är ifyllda på samma rad
+function checkDualEntry(index) {
+    const row = bookingRows[index];
+    const debetValue = parseFloat(row.debetAmount);
+    const kreditValue = parseFloat(row.kreditAmount);
+
+    // Om både debet och kredit har värden > 0
+    if (debetValue > 0 && kreditValue > 0) {
+        // Hitta input-elementen för denna rad
+        const container = document.getElementById('booking-entries');
+        const rowElement = container.querySelectorAll('tr')[index];
+
+        if (rowElement) {
+            const debetInput = rowElement.querySelector('input[data-field="debetAmount"]');
+            const kreditInput = rowElement.querySelector('input[data-field="kreditAmount"]');
+
+            // Lägg till varningsklass
+            if (debetInput) debetInput.classList.add('dual-entry-warning');
+            if (kreditInput) kreditInput.classList.add('dual-entry-warning');
+        }
+    } else {
+        // Ta bort varningsklass om bara ett fält är ifyllt
+        const container = document.getElementById('booking-entries');
+        const rowElement = container.querySelectorAll('tr')[index];
+
+        if (rowElement) {
+            const debetInput = rowElement.querySelector('input[data-field="debetAmount"]');
+            const kreditInput = rowElement.querySelector('input[data-field="kreditAmount"]');
+
+            if (debetInput) debetInput.classList.remove('dual-entry-warning');
+            if (kreditInput) kreditInput.classList.remove('dual-entry-warning');
+        }
     }
 }
 
@@ -758,6 +798,19 @@ function checkAnswer() {
 
 // Klassisk konteringsvalidering
 function checkClassicAnswer(event) {
+    // Kolla om det finns rader med både debet och kredit ifyllda
+    const dualEntryRows = bookingRows.filter((row, index) => {
+        const debetValue = parseFloat(row.debetAmount);
+        const kreditValue = parseFloat(row.kreditAmount);
+        return debetValue > 0 && kreditValue > 0;
+    });
+
+    if (dualEntryRows.length > 0) {
+        playWrongSound();
+        showFeedback(false, "⚠️ Dubbel kontering på samma rad!\n\nEn bokföringsrad kan INTE ha både debet och kredit. Varje kontering ska antingen ha:\n• Ett belopp i DEBET-kolumnen, ELLER\n• Ett belopp i KREDIT-kolumnen\n\nOm ett konto ska ha både debet och kredit (t.ex. vid nettning), använd två separata rader.\n\n💡 Tips: Ta bort beloppet i antingen debet- eller kreditkolumnen på de markerade raderna.");
+        return null;
+    }
+
     // Konvertera nya formatet till gammalt format för jämförelse
     const userAnswer = [];
     bookingRows.forEach(row => {
